@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="51b33ec9-76f6-403d-ace8-39e8c69b6427" name="Changes" comment="Добавлены исходники">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/textures/item/awaking_staff.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/ExampleMod.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/ExampleMod.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/ExampleMod.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/ExampleMod.test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/examplemod/lang/ru_ru.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,7 +196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678985800322</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Добавлены исходники">
+      <created>1679150967365</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1679150967365</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -214,10 +218,10 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Добавлены исходники" />
     <MESSAGE value="Добавлен Example код + gradle" />
     <MESSAGE value="+ пороховая бочка" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ пороховая бочка" />
+    <MESSAGE value="Добавлены исходники" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлены исходники" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
