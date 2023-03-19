@@ -3,6 +3,7 @@ package com.beetw.examplemod.block;
 import com.beetw.examplemod.ExampleMod;
 import com.beetw.examplemod.ModGroup;
 import com.beetw.examplemod.block.impl.BlockGunpowderBarrel;
+import com.beetw.examplemod.block.impl.BlockWoodCasing;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -37,4 +38,6 @@ public class ModBlocks {
                     event.getRegistry().register(blockItem);
                 });
     }
+    public static final RegistryObject<Block> WOOD_CASING = new BlockWoodCasing()
+            .register(BLOCKS);
 }

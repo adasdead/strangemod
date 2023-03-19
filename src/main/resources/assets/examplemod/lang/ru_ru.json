@@ -2,6 +2,7 @@
   "itemGroup.examplemod": "Пример Мода",
   "block.examplemod.gunpowder_barrel": "Пороховая бочка",
   "item.examplemod.awaking_staff": "Пробуждённый Посох",
-  "item.examplemod.awaking_iron_ingot": "Пробуждённый Железный Слиток"
+  "item.examplemod.awaking_iron_ingot": "Пробуждённый Железный Слиток",
+  "block.examplemod.wood_casing": "Деревянный Корпус"
 
 }
