@@ -1,6 +1,6 @@
-package com.beetw.examplemod.item.impl;
+package com.beetw.examplemod.item;
 
-import com.beetw.examplemod.ModGroup;
+import com.beetw.examplemod.init.ModGroups;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTier;
@@ -11,7 +11,7 @@ public class AwakingStaffItem extends SwordItem {
     private static final Item.Properties PROPERTIES = new Item.Properties()
             .stacksTo(1)
             .durability(100)
-            .tab(ModGroup.getInstance());
+            .tab(ModGroups.EXAMPLE_MOD);
 
     public AwakingStaffItem() {
         super(ItemTier.IRON, 2, 3.0f, PROPERTIES);

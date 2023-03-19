@@ -1,9 +1,10 @@
-package com.beetw.examplemod.block.impl;
+package com.beetw.examplemod.block;
 
-import com.beetw.examplemod.block.item.ModBlockItem;
+import com.beetw.examplemod.init.blockitem.RegisterBlockItem;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.IBooleanFunction;
@@ -15,8 +16,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.stream.Stream;
 
-@ModBlockItem
-public class WoodCasingBlock extends Block {
+@RegisterBlockItem
+public class WoodCasingBlock extends HorizontalBlock {
     private static final Properties PROPERTIES = AbstractBlock.Properties
             .of(Material.WOOD)
             .lightLevel((state) -> 15);

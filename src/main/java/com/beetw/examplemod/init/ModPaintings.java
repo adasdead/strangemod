@@ -1,4 +1,4 @@
-package com.beetw.examplemod.paintings;
+package com.beetw.examplemod.init;
 
 import com.beetw.examplemod.ExampleMod;
 import net.minecraft.entity.item.PaintingType;

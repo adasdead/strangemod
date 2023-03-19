@@ -1,8 +1,7 @@
-package com.beetw.examplemod.item;
+package com.beetw.examplemod.init;
 
 import com.beetw.examplemod.ExampleMod;
-import com.beetw.examplemod.ModGroup;
-import com.beetw.examplemod.item.impl.AwakingStaffItem;
+import com.beetw.examplemod.item.AwakingStaffItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -17,8 +16,8 @@ public class ModItems {
             "awaking_staff", AwakingStaffItem::new);
 
     public static final RegistryObject<Item> AWAKING_IRON_INGOT = ITEMS.register(
-            "awaking_iron_ingot", () -> new Item(new Item.Properties().tab(ModGroup.getInstance())));
+            "awaking_iron_ingot", () -> new Item(new Item.Properties().tab(ModGroups.EXAMPLE_MOD)));
 
     public static final RegistryObject<Item> STEEL_INGOT = ITEMS.register(
-            "steel_ingot", () -> new Item(new Item.Properties().tab(ModGroup.getInstance())));
+            "steel_ingot", () -> new Item(new Item.Properties().tab(ModGroups.EXAMPLE_MOD)));
 }

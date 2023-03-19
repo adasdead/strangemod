@@ -1,8 +1,8 @@
-package com.beetw.examplemod.block;
+package com.beetw.examplemod.init;
 
 import com.beetw.examplemod.ExampleMod;
-import com.beetw.examplemod.block.impl.GunpowderBarrelBlock;
-import com.beetw.examplemod.block.impl.WoodCasingBlock;
+import com.beetw.examplemod.block.GunpowderBarrelBlock;
+import com.beetw.examplemod.block.WoodCasingBlock;
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;

@@ -1,9 +1,9 @@
 package com.beetw.examplemod;
 
-import com.beetw.examplemod.block.ModBlocks;
-import com.beetw.examplemod.item.ModItems;
-import com.beetw.examplemod.item.recipe.ModRecipes;
-import com.beetw.examplemod.paintings.ModPaintings;
+import com.beetw.examplemod.init.ModBlocks;
+import com.beetw.examplemod.init.ModItems;
+import com.beetw.examplemod.init.ModPaintings;
+import com.beetw.examplemod.init.ModRecipes;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
