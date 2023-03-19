@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  n",
+    "_R ",
+    "O_ "
+  ],
+  "key": {
+    "n": {
+      "item": "examplemod:steel_ingot"
+    },
+    "_": {
+      "item": "minecraft:red_sandstone_slab"
+    },
+    "R": {
+      "item": "minecraft:redstone_block"
+    },
+    "O": {
+      "item": "minecraft:oak_log"
+    }
+  },
+  "result": {
+    "item": "examplemod:awaking_staff",
+    "count": 1
+  }
+}
