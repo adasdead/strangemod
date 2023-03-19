@@ -2,6 +2,8 @@ package com.beetw.examplemod;
 
 import com.beetw.examplemod.block.ModBlocks;
 import com.beetw.examplemod.item.ModItems;
+import com.beetw.examplemod.item.recipe.ModRecipes;
+import com.beetw.examplemod.paintings.ModPaintings;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -16,12 +18,19 @@ public class ExampleMod {
     private static final Logger LOGGER = LogManager.getLogger();
 
     public ExampleMod() {
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-        ModBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        ModItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        eventBus.addListener(this::setup);
+
+        ModBlocks.BLOCKS.register(eventBus);
+        ModItems.ITEMS.register(eventBus);
+        ModRecipes.RECIPES.register(eventBus);
+        ModPaintings.PAINTINGS_TYPES.register(eventBus);
+
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
         LOGGER.info("Mod initialized!!!");
-}}
+    }
+}

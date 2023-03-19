@@ -1,4 +1,7 @@
-package com.beetw.examplemod.block;
+package com.beetw.examplemod.block.item;
+
+import net.minecraft.item.Item;
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -14,4 +17,16 @@ import java.lang.annotation.RetentionPolicy;
  */
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ModBlockItem {
+    interface Properties {
+
+        /**
+         * ВНИМАНИЕ: Не используй без реализации {@link ModBlockItem}
+         *
+         * @return {@link Item.Properties} предмета для данного блока
+         */
+        @NotNull
+        default Item.Properties getBlockItemProperties() {
+            return new Item.Properties();
+        }
+    }
 }

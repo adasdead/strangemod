@@ -1,7 +1,8 @@
 {
   "itemGroup.examplemod": "Example Mod",
-  "block.examplemod.gunpowder_barrel": "Gunpowder Barrel",
-  "item.examplemod.awaking_staff": "Awaking Staff",
-  "item.examplemod.awaking_iron_ingot": "Awaking Iron Ingot",
-  "block.examplemod.wood_casing": "Wood Case"
+  "block.examplemod.gunpowder_barrel": "Gunpowder barrel",
+  "item.examplemod.awaking_staff": "Awaking staff",
+  "item.examplemod.awaking_iron_ingot": "Awaking iron ingot",
+  "block.examplemod.wood_casing": "Wood case",
+  "item.examplemod.steel_ingot": "Steel ingot"
 }
