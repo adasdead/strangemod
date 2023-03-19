@@ -1,4 +1,6 @@
 {
   "itemGroup.examplemod": "Example Mod",
-  "block.examplemod.gunpowder_barrel": "Gunpowder Barrel"
+  "block.examplemod.gunpowder_barrel": "Gunpowder Barrel",
+  "item.examplemod.awaking_staff": "Awaking Staff",
+  "item.examplemod.awaking_iron_ingot": "Awaking Iron Ingot"
 }

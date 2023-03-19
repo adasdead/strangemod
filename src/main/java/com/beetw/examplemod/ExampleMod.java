@@ -3,6 +3,7 @@ package com.beetw.examplemod;
 import com.beetw.examplemod.block.ModBlocks;
 import com.beetw.examplemod.item.ModItems;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -23,5 +24,4 @@ public class ExampleMod {
 
     private void setup(final FMLCommonSetupEvent event) {
         LOGGER.info("Mod initialized!!!");
-    }
-}
+}}
