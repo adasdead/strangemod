@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 /**
- * Данный абстрактный класс, во много раз упрощает создание и регистрацию блоков.
+ * Данный абстрактный класс во много раз упрощает создание и регистрацию блоков.
  *
  * <pre>
  * public class BlockName extends ModBlock {
@@ -51,8 +51,14 @@ public abstract class ModBlock extends Block {
      * @return {@link RegistryObject} данного блока
      */
     @NotNull
-    public RegistryObject<Block> register(final @NotNull DeferredRegister<Block> difReg) {
-        return difReg.register(registryName, () -> this);
+    public RegistryObject<Block> register(@NotNull DeferredRegister<Block> difReg) {
+        return difReg.register(registryName, () -> {
+            try {
+                return this.getClass().newInstance();
+            } catch (IllegalAccessException | InstantiationException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     /**

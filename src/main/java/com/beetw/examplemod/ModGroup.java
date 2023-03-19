@@ -23,6 +23,6 @@ public class ModGroup extends ItemGroup {
 
     @Override
     public @NotNull ItemStack makeIcon() {
-        return new ItemStack(ModBlocks.EXAMPLE_BLOCK.get());
+        return new ItemStack(ModBlocks.GUNPOWDER_BARREL.get());
     }
 }
