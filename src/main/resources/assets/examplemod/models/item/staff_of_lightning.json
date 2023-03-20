@@ -2,9 +2,9 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "examplemod:item/lightbolt_sphere",
-		"1": "iron_block",
-		"2": "quartz_pillar",
-		"3": "obsidian",
+		"1": "examplemod:item/iron_blockik",
+		"2": "examplemod:item/quartz_pillarina",
+		"3": "examplemod:item/obsidina",
 		"particle": "examplemod:item/lightbolt_sphere"
 	},
 	"elements": [
