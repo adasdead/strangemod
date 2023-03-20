@@ -1,4 +1,4 @@
-package com.beetw.examplemod.init.blockitem;
+package com.beetw.examplemod.block.extra;
 
 import net.minecraft.item.Item;
 import org.jetbrains.annotations.NotNull;

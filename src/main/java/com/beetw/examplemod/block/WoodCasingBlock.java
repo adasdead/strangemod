@@ -1,6 +1,6 @@
 package com.beetw.examplemod.block;
 
-import com.beetw.examplemod.init.blockitem.RegisterBlockItem;
+import com.beetw.examplemod.block.extra.RegisterBlockItem;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

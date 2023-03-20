@@ -1,6 +1,7 @@
-package com.beetw.examplemod.init.blockitem;
+package com.beetw.examplemod.event;
 
 import com.beetw.examplemod.ExampleMod;
+import com.beetw.examplemod.block.extra.RegisterBlockItem;
 import com.beetw.examplemod.init.ModBlocks;
 import com.beetw.examplemod.init.ModGroups;
 import net.minecraft.block.Block;
@@ -14,9 +15,9 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.Objects;
 
 @Mod.EventBusSubscriber(modid = ExampleMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class RegisterBlockItemService {
+public class RegisterItemEvent {
     @SubscribeEvent
-    public static void onRegisterItems(RegistryEvent.Register<Item> event) {
+    public static void onRegisterItem(RegistryEvent.Register<Item> event) {
         ModBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)
                 .filter(block -> block.getClass().isAnnotationPresent(RegisterBlockItem.class))
                 .forEach(block -> registerBlockItem(block, event));

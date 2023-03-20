@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTier;
 import net.minecraft.item.ToolItem;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.vector.Vector3d;
@@ -38,7 +39,7 @@ public class AwakingStaffItem extends ToolItem {
                                                           @NotNull Hand hand) {
 
         ItemStack itemInHand = playerEntity.getItemInHand(hand);
-        itemInHand.hurtAndBreak(20, playerEntity, entity -> entity.broadcastBreakEvent(hand));
+        itemInHand.hurtAndBreak(50, playerEntity, entity -> entity.broadcastBreakEvent(hand));
         scheduleTimer.schedule(new TossIntoTheAirTask(livingEntity), 0, 1);
         return ActionResultType.PASS;
     }
@@ -73,6 +74,9 @@ public class AwakingStaffItem extends ToolItem {
             double finalY = denormalize(normalizedFinalY, startPos.y);
 
             livingEntity.setPos(startPos.x, finalY, startPos.z);
+
+            livingEntity.level.addParticle(ParticleTypes.CLOUD,
+                    startPos.x, finalY, startPos.z, 0.0D, 0.0D, 0.0D);
 
             if ((currentY - 1) >= MAX_HEIGHT) {
                 livingEntity.kill();
