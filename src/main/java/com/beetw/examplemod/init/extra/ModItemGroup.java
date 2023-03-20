@@ -1,4 +1,4 @@
-package com.beetw.examplemod.init.group;
+package com.beetw.examplemod.init.extra;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;

@@ -1,7 +1,7 @@
 package com.beetw.examplemod.init;
 
 import com.beetw.examplemod.ExampleMod;
-import com.beetw.examplemod.init.group.ModItemGroup;
+import com.beetw.examplemod.init.extra.ModItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
