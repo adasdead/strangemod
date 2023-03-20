@@ -28,8 +28,10 @@ public class StaffOfLightningItem extends ToolItem {
                                                 @NotNull PlayerEntity entity,
                                                 @NotNull Hand hand) {
 
-        // TODO: нужно дописать основной функционал
+
 
         return ActionResult.pass(entity.getItemInHand(hand));
     }
+
+
 }
