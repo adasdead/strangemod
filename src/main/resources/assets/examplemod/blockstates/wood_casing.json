@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "examplemod:block/wood_casing" }
+    "": {
+      "model": "examplemod:block/wood_casing"
+    }
   }
 }

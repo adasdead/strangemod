@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "examplemod:block/gunpowder_barrel" }
+    "": {
+      "model": "examplemod:block/gunpowder_barrel"
+    }
   }
 }

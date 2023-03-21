@@ -31,6 +31,7 @@ public class StaffOfLightningItem extends ToolItem {
             .tab(ModGroups.EXAMPLE_MOD);
 
     private static final double RAY_TRACE_DISTANCE = 50.0;
+    private boolean isShoot = false;
 
     public StaffOfLightningItem() {
         super(2, 3.0f, ItemTier.IRON, new HashSet<>(), PROPERTIES);
@@ -41,6 +42,10 @@ public class StaffOfLightningItem extends ToolItem {
         LightningBoltEntity boltEntity = new LightningBoltEntity(type, world);
         boltEntity.setPos(pos.x, pos.y, pos.z);
         world.addFreshEntity(boltEntity);
+    }
+
+    public static float checkShoot(@NotNull ItemStack stack) {
+        return ((StaffOfLightningItem) stack.getItem()).isShoot();
     }
 
     @Override
@@ -60,6 +65,8 @@ public class StaffOfLightningItem extends ToolItem {
                 itemInHand.hurtAndBreak(5, playerEntity,
                         entity -> entity.broadcastBreakEvent(hand));
                 spawnLightningBolt(world, vec);
+                changeShootState();
+
                 return ActionResult.success(itemInHand);
             }
         }
@@ -75,5 +82,24 @@ public class StaffOfLightningItem extends ToolItem {
         fireballEntity.shootFromRotation(playerEntity, playerEntity.xRot, playerEntity.yRot,
                 0.0f, 3.0f, 0.0f);
         world.addFreshEntity(fireballEntity);
+        changeShootState();
+    }
+
+    public void changeShootState() {
+        new Thread(() -> {
+            isShoot = true;
+
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            isShoot = false;
+        }).start();
+    }
+
+    public float isShoot() {
+        return isShoot ? 1.0f : 0.0f;
     }
 }

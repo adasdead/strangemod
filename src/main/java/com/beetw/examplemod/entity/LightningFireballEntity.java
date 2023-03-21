@@ -18,17 +18,18 @@ public class LightningFireballEntity extends AbstractFireballEntity {
     @Override
     protected void onHit(@NotNull RayTraceResult result) {
         if (!this.level.isClientSide) {
-            Vector3d location = result.getLocation();
+            Vector3d curPosition = result.getLocation();
 
             for (int i = 0; i < LIGHTNING_COUNT; i++) {
-                int xOffset = 5 - random.nextInt(10);
-                int zOffset = 5 - random.nextInt(10);
-
-                StaffOfLightningItem.spawnLightningBolt(this.level,
-                        location.add(xOffset, 0, zOffset));
+                Vector3d position = curPosition.add(random(), 0, random());
+                StaffOfLightningItem.spawnLightningBolt(this.level, position);
             }
 
             this.remove();
         }
+    }
+
+    private int random() {
+        return 5 - random.nextInt(10);
     }
 }
