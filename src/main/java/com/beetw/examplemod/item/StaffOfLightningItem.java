@@ -4,7 +4,9 @@ import com.beetw.examplemod.ExampleMod;
 import com.beetw.examplemod.entity.LightningFireballEntity;
 import com.beetw.examplemod.init.ModGroups;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -20,6 +22,7 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
 
@@ -31,7 +34,7 @@ public class StaffOfLightningItem extends ToolItem {
             .tab(ModGroups.EXAMPLE_MOD);
 
     private static final double RAY_TRACE_DISTANCE = 50.0;
-    private boolean isShoot = false;
+    public boolean isShoot = false;
 
     public StaffOfLightningItem() {
         super(2, 3.0f, ItemTier.IRON, new HashSet<>(), PROPERTIES);
@@ -44,8 +47,16 @@ public class StaffOfLightningItem extends ToolItem {
         world.addFreshEntity(boltEntity);
     }
 
-    public static float checkShoot(@NotNull ItemStack stack) {
-        return ((StaffOfLightningItem) stack.getItem()).isShoot();
+    public static float itemProperties(@NotNull ItemStack itemStack,
+                                       @Nullable ClientWorld world,
+                                       @Nullable LivingEntity entity) {
+
+        if (((StaffOfLightningItem) itemStack.getItem()).isShoot) {
+            ((StaffOfLightningItem) itemStack.getItem()).isShoot = false;
+            return 1.0f;
+        }
+
+        return 0.0f;
     }
 
     @Override
@@ -65,7 +76,7 @@ public class StaffOfLightningItem extends ToolItem {
                 itemInHand.hurtAndBreak(5, playerEntity,
                         entity -> entity.broadcastBreakEvent(hand));
                 spawnLightningBolt(world, vec);
-                changeShootState();
+                isShoot = true;
 
                 return ActionResult.success(itemInHand);
             }
@@ -82,24 +93,6 @@ public class StaffOfLightningItem extends ToolItem {
         fireballEntity.shootFromRotation(playerEntity, playerEntity.xRot, playerEntity.yRot,
                 0.0f, 3.0f, 0.0f);
         world.addFreshEntity(fireballEntity);
-        changeShootState();
-    }
-
-    public void changeShootState() {
-        new Thread(() -> {
-            isShoot = true;
-
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-            isShoot = false;
-        }).start();
-    }
-
-    public float isShoot() {
-        return isShoot ? 1.0f : 0.0f;
+        isShoot = true;
     }
 }

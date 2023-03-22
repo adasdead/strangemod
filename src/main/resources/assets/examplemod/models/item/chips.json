@@ -1,0 +1,14 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "examplemod:item/chips"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "examplemod:eating": 1
+      },
+      "model": "examplemod:item/chips_eating"
+    }
+  ]
+}

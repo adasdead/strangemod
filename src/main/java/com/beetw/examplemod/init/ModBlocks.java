@@ -12,8 +12,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(
             ForgeRegistries.BLOCKS, ExampleMod.MOD_ID);
+
     public static final RegistryObject<Block> GUNPOWDER_BARREL = BLOCKS.register(
             "gunpowder_barrel", GunpowderBarrelBlock::new);
+
     public static final RegistryObject<Block> WOOD_CASING = BLOCKS.register(
             "wood_casing", WoodCasingBlock::new);
 }
