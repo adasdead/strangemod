@@ -30,7 +30,7 @@ import java.util.HashSet;
 public class StaffOfLightningItem extends ToolItem {
     private static final Item.Properties PROPERTIES = new Item.Properties()
             .stacksTo(1)
-            .durability(100)
+            .durability(1000)
             .tab(ModGroups.EXAMPLE_MOD);
 
     private static final double RAY_TRACE_DISTANCE = 50.0;

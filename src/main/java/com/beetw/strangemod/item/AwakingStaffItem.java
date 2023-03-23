@@ -21,7 +21,7 @@ import java.util.TimerTask;
 public class AwakingStaffItem extends ToolItem {
     private static final Item.Properties PROPERTIES = new Item.Properties()
             .stacksTo(1)
-            .durability(100)
+            .durability(1000)
             .tab(ModGroups.EXAMPLE_MOD);
 
     private static final double MAX_HEIGHT = 250;
