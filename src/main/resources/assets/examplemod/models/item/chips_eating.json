@@ -1,6 +1,0 @@
-{
-  "parent": "examplemod:item/chips",
-  "textures": {
-    "layer0": "examplemod:item/chips_eating"
-  }
-}

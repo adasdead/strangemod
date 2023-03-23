@@ -1,0 +1,6 @@
+{
+  "parent": "strange_mod:item/chips",
+  "textures": {
+    "layer0": "strange_mod:item/chips_eating"
+  }
+}
