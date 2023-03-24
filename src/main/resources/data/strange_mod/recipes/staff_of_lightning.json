@@ -13,14 +13,14 @@
       "item": "minecraft:obsidian"
     },
     "R": {
-      "item": "strange_mod:awaking_sphere"
+      "item": "strange_mod:lightbolt_sphere"
     },
     "O": {
       "item": "minecraft:quartz_pillar"
     }
   },
   "result": {
-    "item": "strange_mod:awaking_staff",
+    "item": "strange_mod:staff_of_lightning",
     "count": 1
   }
 }
