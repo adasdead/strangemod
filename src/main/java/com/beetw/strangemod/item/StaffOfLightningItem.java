@@ -3,6 +3,7 @@ package com.beetw.strangemod.item;
 import com.beetw.strangemod.StrangeMod;
 import com.beetw.strangemod.entity.LightningFireballEntity;
 import com.beetw.strangemod.init.ModGroups;
+import com.beetw.strangemod.item.extra.ItemEmptyClick;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.EntityType;
@@ -27,7 +28,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashSet;
 
 @Mod.EventBusSubscriber(modid = StrangeMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class StaffOfLightningItem extends ToolItem {
+public class StaffOfLightningItem extends ToolItem implements ItemEmptyClick {
     private static final Item.Properties PROPERTIES = new Item.Properties()
             .stacksTo(1)
             .durability(1000)
@@ -85,6 +86,7 @@ public class StaffOfLightningItem extends ToolItem {
         return ActionResult.pass(playerEntity.getItemInHand(hand));
     }
 
+    @Override
     public void onEmptyClick(@NotNull World world, @NotNull PlayerEntity playerEntity) {
         playerEntity.getMainHandItem().hurtAndBreak(25, playerEntity,
                 entity -> entity.broadcastBreakEvent(playerEntity.getUsedItemHand()));

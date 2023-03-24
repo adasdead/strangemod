@@ -1,4 +1,6 @@
 {
-  "replace": "false",
-  "values": ["strangemod:chips"]
+  "replace": false,
+  "values": [
+    "strange_mod:chips"
+  ]
 }

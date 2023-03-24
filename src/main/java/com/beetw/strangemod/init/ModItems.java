@@ -3,8 +3,9 @@ package com.beetw.strangemod.init;
 import com.beetw.strangemod.StrangeMod;
 import com.beetw.strangemod.item.AwakingStaffItem;
 import com.beetw.strangemod.item.ChipsItem;
-import com.beetw.strangemod.item.ModItem;
+import com.beetw.strangemod.item.FunnyNokiaItem;
 import com.beetw.strangemod.item.StaffOfLightningItem;
+import com.beetw.strangemod.item.extra.ModItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -29,4 +30,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> CHIPS = ITEMS.register(
             "chips", ChipsItem::new);
+
+    public static final RegistryObject<Item> FUNNY_NOKIA = ITEMS.register(
+            "funny_nokia", FunnyNokiaItem::new);
 }

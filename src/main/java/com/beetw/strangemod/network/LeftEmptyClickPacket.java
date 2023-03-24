@@ -1,6 +1,6 @@
 package com.beetw.strangemod.network;
 
-import com.beetw.strangemod.item.StaffOfLightningItem;
+import com.beetw.strangemod.item.extra.ItemEmptyClick;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
@@ -13,17 +13,17 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 @SuppressWarnings({"unused", "InstantiationOfUtilityClass"})
-public class StaffEmptyClickPacket {
+public class LeftEmptyClickPacket {
     @Contract(value = "_ -> new", pure = true)
-    public static @NotNull StaffEmptyClickPacket decode(PacketBuffer buf) {
-        return new StaffEmptyClickPacket();
+    public static @NotNull LeftEmptyClickPacket decode(PacketBuffer buf) {
+        return new LeftEmptyClickPacket();
     }
 
-    public static void encode(StaffEmptyClickPacket msg, PacketBuffer buf) {
+    public static void encode(LeftEmptyClickPacket msg, PacketBuffer buf) {
     }
 
     public static class Handler {
-        public static void handle(StaffEmptyClickPacket msg,
+        public static void handle(LeftEmptyClickPacket msg,
                                   @NotNull Supplier<NetworkEvent.Context> ctx) {
 
             ctx.get().enqueueWork(() -> handleWork(ctx));
@@ -34,9 +34,9 @@ public class StaffEmptyClickPacket {
             PlayerEntity player = Objects.requireNonNull(ctx.get().getSender());
             ItemStack itemInHand = player.getMainHandItem();
 
-            if (!itemInHand.isEmpty() && (itemInHand.getItem() instanceof StaffOfLightningItem)) {
+            if (itemInHand.getItem() instanceof ItemEmptyClick) {
                 World world = Objects.requireNonNull(ctx.get().getSender()).getLevel();
-                ((StaffOfLightningItem) itemInHand.getItem()).onEmptyClick(world, player);
+                ((ItemEmptyClick) itemInHand.getItem()).onEmptyClick(world, player);
             }
         }
     }

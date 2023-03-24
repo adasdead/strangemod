@@ -11,7 +11,6 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraftforge.common.ForgeHooks;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
@@ -32,21 +31,18 @@ public class AwakingStaffItem extends ToolItem {
         super(2, 3.0f, ItemTier.IRON, new HashSet<>(), PROPERTIES);
     }
 
+    @NotNull
     @Override
-    public @NotNull ActionResultType interactLivingEntity(@NotNull ItemStack itemStack,
-                                                          @NotNull PlayerEntity playerEntity,
-                                                          @NotNull LivingEntity livingEntity,
-                                                          @NotNull Hand hand) {
+    public ActionResultType interactLivingEntity(@NotNull ItemStack itemStack,
+                                                 @NotNull PlayerEntity playerEntity,
+                                                 @NotNull LivingEntity livingEntity,
+                                                 @NotNull Hand hand) {
 
         ItemStack itemInHand = playerEntity.getItemInHand(hand);
-        itemInHand.hurtAndBreak(50, playerEntity, entity -> entity.broadcastBreakEvent(hand));
+        itemInHand.hurtAndBreak(50, playerEntity,
+                entity -> entity.broadcastBreakEvent(hand));
         scheduleTimer.schedule(new TossIntoTheAirTask(livingEntity), 0, 1);
         return ActionResultType.PASS;
-    }
-
-    @Override
-    public ItemStack getContainerItem(ItemStack itemStack) {
-        return ForgeHooks.getContainerItem(itemStack);
     }
 
     @Override

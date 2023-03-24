@@ -14,7 +14,7 @@ public class ModPacketHandler {
     private static int i = 0;
 
     public static void register() {
-        INSTANCE.registerMessage(i++, StaffEmptyClickPacket.class, StaffEmptyClickPacket::encode,
-                StaffEmptyClickPacket::decode, StaffEmptyClickPacket.Handler::handle);
+        INSTANCE.registerMessage(i++, LeftEmptyClickPacket.class, LeftEmptyClickPacket::encode,
+                LeftEmptyClickPacket::decode, LeftEmptyClickPacket.Handler::handle);
     }
 }
