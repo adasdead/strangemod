@@ -14,7 +14,8 @@ public class ModItem extends Item {
     }
 
     public static class Builder {
-        private Item.Properties properties = new Properties();
+        private Item.Properties properties = new Properties()
+                .tab(ModGroups.EXAMPLE_MOD);
 
         public Builder tab(ItemGroup itemGroup) {
             properties = properties.tab(itemGroup);
@@ -28,6 +29,11 @@ public class ModItem extends Item {
 
         public Builder food(Food food) {
             properties = properties.food(food);
+            return this;
+        }
+
+        public Builder stacksTo(int count) {
+            properties = properties.stacksTo(count);
             return this;
         }
 

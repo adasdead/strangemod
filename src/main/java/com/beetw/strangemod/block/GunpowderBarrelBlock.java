@@ -143,6 +143,14 @@ public class GunpowderBarrelBlock extends FallingBlock {
         this.explode(world, pos, explosion.getExploder());
     }
 
+    @Override
+    public int getFlammability(BlockState state,
+                               IBlockReader world,
+                               BlockPos pos,
+                               Direction face) {
+        return 5;
+    }
+
     @SuppressWarnings("deprecation")
     @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state,

@@ -1,6 +1,4 @@
 {
   "parent": "item/generated",
-
-    "layer0": "strange_mod:item/lightbolt_sphere2"
-
+  "layer0": "strange_mod:item/lightbolt_sphere2"
 }

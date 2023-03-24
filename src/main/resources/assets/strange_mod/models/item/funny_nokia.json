@@ -1,78 +1,276 @@
 {
-	"credit": "Made with Blockbench",
-	"texture_size": [32, 32],
-	"textures": {
-		"0": "strange_mod:item/funny_nokia",
-		"particle": "strange_mod:item/funny_nokia"
-	},
-	"elements": [
-		{
-			"from": [5, 0, 1],
-			"to": [12, 1, 10],
-			"faces": {
-				"north": {"uv": [7, 2, 10.5, 2.5], "texture": "#0"},
-				"east": {"uv": [7, 0, 11.5, 0.5], "texture": "#0"},
-				"south": {"uv": [7, 2.5, 10.5, 3], "texture": "#0"},
-				"west": {"uv": [7, 0.5, 11.5, 1], "texture": "#0"},
-				"up": {"uv": [3.5, 4.5, 0, 0], "texture": "#0"},
-				"down": {"uv": [7, 0, 3.5, 4.5], "texture": "#0"}
-			}
-		},
-		{
-			"from": [5, -7, 7.10051],
-			"to": [12, -6, 16.10051],
-			"rotation": {"angle": -45, "axis": "x", "origin": [0, 0, 0.10051]},
-			"faces": {
-				"north": {"uv": [7, 3, 10.5, 3.5], "texture": "#0"},
-				"east": {"uv": [7, 1, 11.5, 1.5], "texture": "#0"},
-				"south": {"uv": [7, 3.5, 10.5, 4], "texture": "#0"},
-				"west": {"uv": [7, 1.5, 11.5, 2], "texture": "#0"},
-				"up": {"uv": [3.5, 9, 0, 4.5], "texture": "#0"},
-				"down": {"uv": [7, 4.5, 3.5, 9], "texture": "#0"}
-			}
-		}
-	],
-	"display": {
-		"thirdperson_righthand": {
-			"rotation": [-103.25, 0, -180],
-			"translation": [0.25, 2.25, 2.25],
-			"scale": [0.29, 0.29, 0.29]
-		},
-		"thirdperson_lefthand": {
-			"rotation": [-87.34, 3.28, -176.32],
-			"translation": [0.25, 2, 3],
-			"scale": [0.31, 0.31, 0.31]
-		},
-		"firstperson_righthand": {
-			"rotation": [-141.21, 0.53, 161.53],
-			"translation": [0.75, 4.75, 0.25],
-			"scale": [0.58594, 0.58594, 0.58594]
-		},
-		"ground": {
-			"translation": [0, 1.75, 0],
-			"scale": [0.56445, 0.56445, 0.56445]
-		},
-		"gui": {
-			"rotation": [69, 180, 0],
-			"translation": [0.5, 0.75, 0],
-			"scale": [0.81, 0.81, 0.81]
-		},
-		"head": {
-			"translation": [0, 14.25, 2.25]
-		},
-		"fixed": {
-			"rotation": [-54.75, 0, 0],
-			"translation": [-0.5, 0, -5.75]
-		}
-	},
-	"groups": [
-		{
-			"name": "nokia",
-			"origin": [0, 0, 0.10051],
-			"color": 0,
-			"nbt": "{}",
-			"armAnimationEnabled": false,
-			"children": [0, 1]
-		}
-	]
+  "credit": "Made with Blockbench",
+  "texture_size": [
+    32,
+    32
+  ],
+  "textures": {
+    "0": "strange_mod:item/funny_nokia",
+    "particle": "strange_mod:item/funny_nokia"
+  },
+  "elements": [
+    {
+      "from": [
+        5,
+        0,
+        1
+      ],
+      "to": [
+        12,
+        1,
+        10
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            7,
+            2,
+            10.5,
+            2.5
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            7,
+            0,
+            11.5,
+            0.5
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            7,
+            2.5,
+            10.5,
+            3
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            7,
+            0.5,
+            11.5,
+            1
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            3.5,
+            4.5,
+            0,
+            0
+          ],
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            7,
+            0,
+            3.5,
+            4.5
+          ],
+          "texture": "#0"
+        }
+      }
+    },
+    {
+      "from": [
+        5,
+        -7,
+        7.10051
+      ],
+      "to": [
+        12,
+        -6,
+        16.10051
+      ],
+      "rotation": {
+        "angle": -45,
+        "axis": "x",
+        "origin": [
+          0,
+          0,
+          0.10051
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            7,
+            3,
+            10.5,
+            3.5
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            7,
+            1,
+            11.5,
+            1.5
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            7,
+            3.5,
+            10.5,
+            4
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            7,
+            1.5,
+            11.5,
+            2
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            3.5,
+            9,
+            0,
+            4.5
+          ],
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            7,
+            4.5,
+            3.5,
+            9
+          ],
+          "texture": "#0"
+        }
+      }
+    }
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [
+        -103.25,
+        0,
+        -180
+      ],
+      "translation": [
+        0.25,
+        2.25,
+        2.25
+      ],
+      "scale": [
+        0.29,
+        0.29,
+        0.29
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        -87.34,
+        3.28,
+        -176.32
+      ],
+      "translation": [
+        0.25,
+        2,
+        3
+      ],
+      "scale": [
+        0.31,
+        0.31,
+        0.31
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        -141.21,
+        0.53,
+        161.53
+      ],
+      "translation": [
+        0.75,
+        4.75,
+        0.25
+      ],
+      "scale": [
+        0.58594,
+        0.58594,
+        0.58594
+      ]
+    },
+    "ground": {
+      "translation": [
+        0,
+        1.75,
+        0
+      ],
+      "scale": [
+        0.56445,
+        0.56445,
+        0.56445
+      ]
+    },
+    "gui": {
+      "rotation": [
+        69,
+        180,
+        0
+      ],
+      "translation": [
+        0.5,
+        0.75,
+        0
+      ],
+      "scale": [
+        0.81,
+        0.81,
+        0.81
+      ]
+    },
+    "head": {
+      "translation": [
+        0,
+        14.25,
+        2.25
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        -54.75,
+        0,
+        0
+      ],
+      "translation": [
+        -0.5,
+        0,
+        -5.75
+      ]
+    }
+  },
+  "groups": [
+    {
+      "name": "nokia",
+      "origin": [
+        0,
+        0,
+        0.10051
+      ],
+      "color": 0,
+      "nbt": "{}",
+      "armAnimationEnabled": false,
+      "children": [
+        0,
+        1
+      ]
+    }
+  ]
 }
