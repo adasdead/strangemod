@@ -18,4 +18,7 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> WOOD_CASING = BLOCKS.register(
             "wood_casing", WoodCasingBlock::new);
+
+    public static final RegistryObject<Block> MAXWELL = BLOCKS.register(
+            "maxwell_block", WoodCasingBlock::new);
 }
