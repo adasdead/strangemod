@@ -4,6 +4,8 @@ import com.beetw.strangemod.entity.NokiaBoxEntity;
 import com.beetw.strangemod.init.ModEntityTypes;
 import com.beetw.strangemod.init.ModGroups;
 import com.beetw.strangemod.item.extra.ItemEmptyClick;
+import com.beetw.strangemod.item.extra.ItemTooltipAppender;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -13,8 +15,12 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class FunnyNokiaItem extends Item implements ItemEmptyClick {
     private static final Item.Properties PROPERTIES = new Item.Properties()
@@ -49,6 +55,22 @@ public class FunnyNokiaItem extends Item implements ItemEmptyClick {
         entity.setPos(playerEntity.getX(), playerEntity.getEyeY(), playerEntity.getZ());
         entity.push(direction.x, direction.y, direction.z);
         world.addFreshEntity(entity);
+    }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack,
+                                @Nullable World world,
+                                @NotNull List<ITextComponent> components,
+                                @NotNull ITooltipFlag flag) {
+
+        ItemTooltipAppender appender = new ItemTooltipAppender(components);
+        appender.text("");
+        appender.translate("funny_nokia.0");
+        appender.translate("funny_nokia.1");
+        appender.text("");
+        appender.text("§e§oفيديوهات مضحكة 2023 اهاها شاهد الجميع");
+
+        super.appendHoverText(stack, world, components, flag);
     }
 
     @NotNull

@@ -1,11 +1,8 @@
 package com.beetw.strangemod.init;
 
 import com.beetw.strangemod.StrangeMod;
-import com.beetw.strangemod.item.AwakingStaffItem;
-import com.beetw.strangemod.item.ChipsItem;
-import com.beetw.strangemod.item.FunnyNokiaItem;
-import com.beetw.strangemod.item.StaffOfLightningItem;
-import com.beetw.strangemod.item.extra.ModItem;
+import com.beetw.strangemod.item.*;
+import com.beetw.strangemod.item.extra.ItemBuilder;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -23,10 +20,10 @@ public class ModItems {
             "staff_of_lightning", StaffOfLightningItem::new);
 
     public static final RegistryObject<Item> AWAKING_IRON_INGOT = ITEMS.register(
-            "awaking_iron_ingot", ModItem.Prepared.supplier());
+            "awaking_iron_ingot", new ItemBuilder().foil().supplier());
 
     public static final RegistryObject<Item> STEEL_INGOT = ITEMS.register(
-            "steel_ingot", ModItem.Prepared.supplier());
+            "steel_ingot", new ItemBuilder().supplier());
 
     public static final RegistryObject<Item> CHIPS = ITEMS.register(
             "chips", ChipsItem::new);
@@ -35,8 +32,11 @@ public class ModItems {
             "funny_nokia", FunnyNokiaItem::new);
 
     public static final RegistryObject<Item> AWAKING_SPHERE = ITEMS.register(
-            "awaking_sphere", new ModItem.Builder().stacksTo(1).supplier());
+            "awaking_sphere", new ItemBuilder().stacksTo(1).supplier());
 
     public static final RegistryObject<Item> LIGHTBOLT_SPHERE = ITEMS.register(
-            "lightbolt_sphere", new ModItem.Builder().stacksTo(1).supplier());
+            "lightbolt_sphere", new ItemBuilder().stacksTo(1).supplier());
+
+    public static final RegistryObject<Item> AWAKENED_PICKAXE = ITEMS.register(
+            "awakened_pickaxe", AwakenedPickaxeItem::new);
 }
