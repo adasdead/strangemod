@@ -14,5 +14,6 @@
   "tooltip.strange_mod.awakened_pickaxe.0": "§e§oBreaks 3x3x1",
   "tooltip.strange_mod.awakened_pickaxe.1": "§e§oInstantly melts iron and gold",
   "tooltip.strange_mod.funny_nokia.0": "§e§oLMB - throw a bomb",
-  "tooltip.strange_mod.funny_nokia.1": "§e§oRMB - detonate all bombs"
+  "tooltip.strange_mod.funny_nokia.1": "§e§oRMB - detonate all bombs",
+  "item.strange_mod.furhands": "Fur Hands"
 }

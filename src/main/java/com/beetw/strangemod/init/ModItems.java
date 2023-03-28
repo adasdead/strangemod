@@ -39,4 +39,6 @@ public class ModItems {
 
     public static final RegistryObject<Item> AWAKENED_PICKAXE = ITEMS.register(
             "awakened_pickaxe", AwakenedPickaxeItem::new);
+    public static final RegistryObject<Item> FURHANDS = ITEMS.register(
+            "furhands", FurhandsItem::new);
 }
