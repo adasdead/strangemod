@@ -14,5 +14,6 @@
   "tooltip.strange_mod.awakened_pickaxe.0": "§e§oЛомает 3x3x1",
   "tooltip.strange_mod.awakened_pickaxe.1": "§e§oСразу же плавит железо и золото",
   "tooltip.strange_mod.funny_nokia.0": "§e§oЛКМ - бросить бомбу",
-  "tooltip.strange_mod.funny_nokia.1": "§e§oПКМ - взорвать все бомбы"
+  "tooltip.strange_mod.funny_nokia.1": "§e§oПКМ - взорвать все бомбы",
+  "block.strange_mod.maxwell_block": "§oMAXWELL"
 }
