@@ -79,6 +79,10 @@ public class AwakenedPickaxeItem extends PickaxeItem {
                 spawnItem = Optional.of(Items.IRON_INGOT.getDefaultInstance());
             }
 
+            if (block.is(Blocks.SAND)) {
+                spawnItem = Optional.of(Items.GLASS.getDefaultInstance());
+            }
+
             if (block.is(Blocks.GOLD_ORE)) {
                 spawnItem = Optional.of(Items.GOLD_INGOT.getDefaultInstance());
             }
