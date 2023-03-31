@@ -1,4 +1,4 @@
-package com.beetw.strangemod.init;
+package com.beetw.strangemod.registry;
 
 import com.beetw.strangemod.StrangeMod;
 import net.minecraft.item.ItemGroup;

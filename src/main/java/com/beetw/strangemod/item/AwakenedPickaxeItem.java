@@ -1,7 +1,7 @@
 package com.beetw.strangemod.item;
 
-import com.beetw.strangemod.init.ModGroups;
 import com.beetw.strangemod.item.extra.ItemTooltipAppender;
+import com.beetw.strangemod.registry.ModGroups;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.util.ITooltipFlag;

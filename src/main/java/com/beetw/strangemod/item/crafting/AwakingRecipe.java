@@ -1,7 +1,7 @@
 package com.beetw.strangemod.item.crafting;
 
-import com.beetw.strangemod.init.ModItems;
-import com.beetw.strangemod.init.ModRecipes;
+import com.beetw.strangemod.registry.ModItems;
+import com.beetw.strangemod.registry.ModRecipes;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;

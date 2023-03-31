@@ -1,7 +1,7 @@
 package com.beetw.strangemod.item;
 
-import com.beetw.strangemod.init.ModFoods;
-import com.beetw.strangemod.init.ModGroups;
+import com.beetw.strangemod.registry.ModFoods;
+import com.beetw.strangemod.registry.ModGroups;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

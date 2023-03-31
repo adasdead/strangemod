@@ -1,22 +1,22 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "  n",
-    "_R ",
-    "O_ "
+    " iD",
+    " Oi",
+    "Q  "
   ],
   "key": {
-    "n": {
+    "i": {
       "item": "strange_mod:steel_ingot"
     },
-    "_": {
-      "item": "minecraft:obsidian"
-    },
-    "R": {
+    "D": {
       "item": "strange_mod:awaking_sphere"
     },
     "O": {
-      "item": "minecraft:quartz_pillar"
+      "item": "minecraft:obsidian"
+    },
+    "Q": {
+      "item": "minecraft:quartz_block"
     }
   },
   "result": {

@@ -2,8 +2,8 @@ package com.beetw.strangemod.item;
 
 import com.beetw.strangemod.StrangeMod;
 import com.beetw.strangemod.entity.LightningFireballEntity;
-import com.beetw.strangemod.init.ModGroups;
 import com.beetw.strangemod.item.extra.ItemEmptyClick;
+import com.beetw.strangemod.registry.ModGroups;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.EntityType;

@@ -1,10 +1,9 @@
-package com.beetw.strangemod.init;
+package com.beetw.strangemod.registry;
 
 import com.beetw.strangemod.StrangeMod;
 import com.beetw.strangemod.item.*;
 import com.beetw.strangemod.item.extra.ItemBuilder;
 import net.minecraft.item.Item;
-import net.minecraft.item.Rarity;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -40,6 +39,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> AWAKENED_PICKAXE = ITEMS.register(
             "awakened_pickaxe", AwakenedPickaxeItem::new);
+
     public static final RegistryObject<Item> FURHANDS = ITEMS.register(
             "furhands", FurhandsItem::new);
 }

@@ -3,7 +3,7 @@ package com.beetw.strangemod;
 import com.beetw.strangemod.event.ClientSetupEvent;
 import com.beetw.strangemod.event.CommonSetupEvent;
 import com.beetw.strangemod.event.EnqueueIMCEvent;
-import com.beetw.strangemod.init.*;
+import com.beetw.strangemod.registry.*;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;

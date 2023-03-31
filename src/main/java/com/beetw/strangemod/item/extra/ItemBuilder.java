@@ -1,6 +1,6 @@
 package com.beetw.strangemod.item.extra;
 
-import com.beetw.strangemod.init.ModGroups;
+import com.beetw.strangemod.registry.ModGroups;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;

@@ -1,8 +1,9 @@
-package com.beetw.strangemod.init;
+package com.beetw.strangemod.registry;
 
 import com.beetw.strangemod.StrangeMod;
 import com.beetw.strangemod.block.GunpowderBarrelBlock;
 import com.beetw.strangemod.block.WoodCasingBlock;
+import com.beetw.strangemod.block.extra.MetalBlock;
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -18,4 +19,10 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> WOOD_CASING = BLOCKS.register(
             "wood_casing", WoodCasingBlock::new);
+
+    public static final RegistryObject<Block> STEEL_BLOCK = BLOCKS.register(
+            "steel_block", MetalBlock::new);
+
+    public static final RegistryObject<Block> AWAKENED_IRON_BLOCK = BLOCKS.register(
+            "awakened_iron_block", MetalBlock::new);
 }

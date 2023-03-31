@@ -2,10 +2,10 @@ package com.beetw.strangemod.event;
 
 import com.beetw.strangemod.StrangeMod;
 import com.beetw.strangemod.client.renderer.entity.NokiaBoxRenderer;
-import com.beetw.strangemod.init.ModEntityTypes;
-import com.beetw.strangemod.init.ModItems;
 import com.beetw.strangemod.item.ChipsItem;
 import com.beetw.strangemod.item.StaffOfLightningItem;
+import com.beetw.strangemod.registry.ModEntityTypes;
+import com.beetw.strangemod.registry.ModItems;
 import net.minecraft.item.ItemModelsProperties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
