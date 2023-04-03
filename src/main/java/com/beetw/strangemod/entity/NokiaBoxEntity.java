@@ -19,8 +19,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public class NokiaBoxEntity extends MobEntity {
-    private static final ResourceLocation SOUNDS_LOCATION =
-            new ResourceLocation(StrangeMod.MOD_ID, "nokia_box_ringtone");
+    private static final ResourceLocation SOUNDS_LOCATION = StrangeMod
+            .location("nokia_box_ringtone");
 
     private final NokiaBoxTickableSound tickableSound;
 
@@ -31,11 +31,9 @@ public class NokiaBoxEntity extends MobEntity {
     }
 
     public static @NotNull EntityType<NokiaBoxEntity> newEntityTypeFabric() {
-        ResourceLocation location = new ResourceLocation(StrangeMod.MOD_ID, "nokia_box");
-
         return EntityType.Builder
                 .of(NokiaBoxEntity::new, EntityClassification.MISC)
-                .build(location.toString());
+                .build(StrangeMod.location("nokia_box").toString());
     }
 
     public void explode(@NotNull DamageSource damageSource) {

@@ -42,4 +42,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> FURHANDS = ITEMS.register(
             "furhands", FurhandsItem::new);
+
+    public static final RegistryObject<Item> GUY_FAWKES_MASK = ITEMS.register(
+            "guy_fawkes_mask", GuyFawkesMaskItem::new);
 }

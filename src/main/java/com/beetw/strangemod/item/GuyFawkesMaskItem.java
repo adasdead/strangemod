@@ -1,9 +1,15 @@
 package com.beetw.strangemod.item;
 
 import com.beetw.strangemod.item.extra.ItemTooltipAppender;
+import com.beetw.strangemod.registry.ModArmorMaterial;
 import com.beetw.strangemod.registry.ModGroups;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.*;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ArmorItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
@@ -11,19 +17,21 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static net.minecraftforge.common.ToolType.PICKAXE;
+import static net.minecraft.potion.Effects.JUMP;
 
-public class FurhandsItem extends ShovelItem {
-
+public class GuyFawkesMaskItem extends ArmorItem {
     private static final Item.Properties PROPERTIES = new Item.Properties()
             .stacksTo(1)
-            .durability(5000)
-            .tab(ModGroups.EXAMPLE_MOD)
-            .addToolType(PICKAXE, 2)
-            .rarity(Rarity.EPIC);
+            .durability(50)
+            .tab(ModGroups.EXAMPLE_MOD);
 
-    public FurhandsItem() {
-        super(ItemTier.IRON, 2, 3.0f, PROPERTIES);
+    public GuyFawkesMaskItem() {
+        super(ModArmorMaterial.GUY_FAWKES_MASK, EquipmentSlotType.HEAD, PROPERTIES);
+    }
+
+    @Override
+    public void onArmorTick(ItemStack stack, World world, @NotNull PlayerEntity player) {
+        player.addEffect(new EffectInstance(JUMP, 10, 5));
     }
 
     @Override
@@ -33,7 +41,7 @@ public class FurhandsItem extends ShovelItem {
                                 @NotNull ITooltipFlag flag) {
 
         ItemTooltipAppender appender = new ItemTooltipAppender(components);
-        appender.empty_line().translate("furhands.0");
+        appender.translate("guy_fawkes_mask.0");
         super.appendHoverText(stack, world, components, flag);
     }
 }

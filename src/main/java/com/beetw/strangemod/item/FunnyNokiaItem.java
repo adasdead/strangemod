@@ -67,13 +67,8 @@ public class FunnyNokiaItem extends Item implements ItemEmptyClick {
                                 @NotNull List<ITextComponent> components,
                                 @NotNull ITooltipFlag flag) {
 
-        ItemTooltipAppender appender = new ItemTooltipAppender(components);
-        appender.text("");
-        appender.translate("funny_nokia.0");
-        appender.translate("funny_nokia.1");
-        appender.text("");
-        appender.text("§e§oفيديوهات مضحكة 2023 اهاها شاهد الجميع");
-
+        ItemTooltipAppender appender = new ItemTooltipAppender(components, true);
+        appender.translate("funny_nokia.0").translate("funny_nokia.1");
         super.appendHoverText(stack, world, components, flag);
     }
 

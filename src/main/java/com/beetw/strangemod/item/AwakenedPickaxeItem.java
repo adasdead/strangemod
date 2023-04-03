@@ -91,7 +91,6 @@ public class AwakenedPickaxeItem extends PickaxeItem {
                 ItemEntity entity = new ItemEntity(EntityType.ITEM, world);
                 entity.setPos(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
                 entity.setItem(spawnItem.get());
-
                 world.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
                 world.addFreshEntity(entity);
             } else {
@@ -106,11 +105,8 @@ public class AwakenedPickaxeItem extends PickaxeItem {
                                 @NotNull List<ITextComponent> components,
                                 @NotNull ITooltipFlag flag) {
 
-        ItemTooltipAppender appender = new ItemTooltipAppender(components);
-        appender.text("");
-        appender.translate("awakened_pickaxe.0");
-        appender.translate("awakened_pickaxe.1");
-
+        ItemTooltipAppender appender = new ItemTooltipAppender(components, true);
+        appender.translate("awakened_pickaxe.0").translate("awakened_pickaxe.1");
         super.appendHoverText(stack, world, components, flag);
     }
 

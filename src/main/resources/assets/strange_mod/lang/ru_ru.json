@@ -14,9 +14,12 @@
   "item.strange_mod.lightbolt_sphere": "Сфера Молний",
   "item.strange_mod.awakened_pickaxe": "Пробужденная кирка",
   "item.strange_mod.furhands": "Пушистые Перчатки",
+  "item.strange_mod.guy_fawkes_mask": "Маска анонимуса",
+  "tooltip.strange_mod.shift": "§e§oНажми SHIFT, чтобы посмотреть доп. инфу",
   "tooltip.strange_mod.awakened_pickaxe.0": "§e§oЛомает 3x3x1",
   "tooltip.strange_mod.awakened_pickaxe.1": "§e§oСразу же плавит железо, золото и песок",
   "tooltip.strange_mod.funny_nokia.0": "§e§oЛКМ - бросить бомбу",
   "tooltip.strange_mod.funny_nokia.1": "§e§oПКМ - взорвать все бомбы",
-  "tooltip.strange_mod.furhands.0": "§e§oРеференс: Скаллдог Рэя"
+  "tooltip.strange_mod.furhands.0": "§e§oРеференс: Скаллдог Рэя",
+  "tooltip.strange_mod.guy_fawkes_mask.0": "§5§oВзлом жопы"
 }
