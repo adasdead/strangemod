@@ -1,9 +1,12 @@
 {
   "itemGroup.strange_mod": "Strange Mod",
   "block.strange_mod.gunpowder_barrel": "Gunpowder barrel",
+  "block.strange_mod.wood_casing": "Wood case",
+  "block.strange_mod.steel_block": "Steel block",
+  "block.strange_mod.awakened_iron_block": "Awakened iron block",
+  "block.strange_mod.maxwell_block": "§oMAXWELL",
   "item.strange_mod.awaking_staff": "Awaking staff",
   "item.strange_mod.awaking_iron_ingot": "Awaking iron ingot",
-  "block.strange_mod.wood_casing": "Wood case",
   "item.strange_mod.steel_ingot": "Steel ingot",
   "item.strange_mod.staff_of_lightning": "Staff of lightning",
   "item.strange_mod.chips": "Chips",
@@ -11,9 +14,13 @@
   "item.strange_mod.awaking_sphere": "Awaking Sphere",
   "item.strange_mod.lightbolt_sphere": "Lightbolt Sphere",
   "item.strange_mod.awakened_pickaxe": "Awakened pickaxe",
+  "item.strange_mod.furhands": "Fur Hands",
+  "item.strange_mod.guy_fawkes_mask": "Guy Fawkes mask",
+  "tooltip.strange_mod.shift": "§e§oHold SHIFT for more info",
   "tooltip.strange_mod.awakened_pickaxe.0": "§e§oBreaks 3x3x1",
-  "tooltip.strange_mod.awakened_pickaxe.1": "§e§oInstantly melts iron and gold",
+  "tooltip.strange_mod.awakened_pickaxe.1": "§e§oInstantly melts iron, gold and sand",
   "tooltip.strange_mod.funny_nokia.0": "§e§oLMB - throw a bomb",
   "tooltip.strange_mod.funny_nokia.1": "§e§oRMB - detonate all bombs",
-  "block.strange_mod.maxwell_block": "§oMAXWELL"
+  "tooltip.strange_mod.furhands.0": "§e§oReference: Ray's Skulldog",
+  "tooltip.strange_mod.guy_fawkes_mask.0": "§5§oR U A Wizard?"
 }

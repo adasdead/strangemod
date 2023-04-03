@@ -2,8 +2,8 @@ package com.beetw.strangemod.event;
 
 import com.beetw.strangemod.StrangeMod;
 import com.beetw.strangemod.block.extra.RegisterBlockItem;
-import com.beetw.strangemod.init.ModBlocks;
-import com.beetw.strangemod.init.ModGroups;
+import com.beetw.strangemod.registry.ModBlocks;
+import com.beetw.strangemod.registry.ModGroups;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;

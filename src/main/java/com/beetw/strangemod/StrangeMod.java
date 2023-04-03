@@ -3,12 +3,13 @@ package com.beetw.strangemod;
 import com.beetw.strangemod.event.ClientSetupEvent;
 import com.beetw.strangemod.event.CommonSetupEvent;
 import com.beetw.strangemod.event.EnqueueIMCEvent;
-import com.beetw.strangemod.init.*;
+import com.beetw.strangemod.registry.*;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-
+import org.jetbrains.annotations.NotNull;
 
 @Mod(StrangeMod.MOD_ID)
 public class StrangeMod {
@@ -29,6 +30,8 @@ public class StrangeMod {
 
         MinecraftForge.EVENT_BUS.register(this);
     }
+
+    public static @NotNull ResourceLocation location(String path) {
+        return new ResourceLocation(MOD_ID, path);
+    }
 }
-
-

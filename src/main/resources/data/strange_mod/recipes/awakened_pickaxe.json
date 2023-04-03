@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    " # ",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "strange_mod:awaking_iron_ingot"
+    }
+  },
+  "result": {
+    "item": "strange_mod:awakened_pickaxe"
+  }
+}

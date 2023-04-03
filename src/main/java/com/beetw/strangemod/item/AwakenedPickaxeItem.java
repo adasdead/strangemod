@@ -1,7 +1,7 @@
 package com.beetw.strangemod.item;
 
-import com.beetw.strangemod.init.ModGroups;
 import com.beetw.strangemod.item.extra.ItemTooltipAppender;
+import com.beetw.strangemod.registry.ModGroups;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.util.ITooltipFlag;
@@ -79,6 +79,10 @@ public class AwakenedPickaxeItem extends PickaxeItem {
                 spawnItem = Optional.of(Items.IRON_INGOT.getDefaultInstance());
             }
 
+            if (block.is(Blocks.SAND)) {
+                spawnItem = Optional.of(Items.GLASS.getDefaultInstance());
+            }
+
             if (block.is(Blocks.GOLD_ORE)) {
                 spawnItem = Optional.of(Items.GOLD_INGOT.getDefaultInstance());
             }
@@ -87,7 +91,6 @@ public class AwakenedPickaxeItem extends PickaxeItem {
                 ItemEntity entity = new ItemEntity(EntityType.ITEM, world);
                 entity.setPos(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
                 entity.setItem(spawnItem.get());
-
                 world.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
                 world.addFreshEntity(entity);
             } else {
@@ -102,11 +105,8 @@ public class AwakenedPickaxeItem extends PickaxeItem {
                                 @NotNull List<ITextComponent> components,
                                 @NotNull ITooltipFlag flag) {
 
-        ItemTooltipAppender appender = new ItemTooltipAppender(components);
-        appender.text("");
-        appender.translate("awakened_pickaxe.0");
-        appender.translate("awakened_pickaxe.1");
-
+        ItemTooltipAppender appender = new ItemTooltipAppender(components, true);
+        appender.translate("awakened_pickaxe.0").translate("awakened_pickaxe.1");
         super.appendHoverText(stack, world, components, flag);
     }
 

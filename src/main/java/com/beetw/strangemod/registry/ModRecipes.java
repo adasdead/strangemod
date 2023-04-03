@@ -1,4 +1,4 @@
-package com.beetw.strangemod.init;
+package com.beetw.strangemod.registry;
 
 import com.beetw.strangemod.StrangeMod;
 import com.beetw.strangemod.item.crafting.AwakingRecipe;

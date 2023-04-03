@@ -18,6 +18,6 @@ public class NokiaBoxRenderer extends MobRenderer<NokiaBoxEntity, NokiaBoxModel>
 
     @Override
     public @NotNull ResourceLocation getTextureLocation(@NotNull NokiaBoxEntity entity) {
-        return new ResourceLocation(StrangeMod.MOD_ID, "textures/entity/nokia_box.png");
+        return StrangeMod.location("textures/entity/nokia_box.png");
     }
 }

@@ -1,7 +1,7 @@
 package com.beetw.strangemod.event;
 
 import com.beetw.strangemod.StrangeMod;
-import com.beetw.strangemod.init.ModEntityTypes;
+import com.beetw.strangemod.registry.ModEntityTypes;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;

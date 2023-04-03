@@ -2,12 +2,10 @@ package com.beetw.strangemod.item;
 
 import com.beetw.strangemod.StrangeMod;
 import com.beetw.strangemod.entity.LightningFireballEntity;
-import com.beetw.strangemod.init.ModGroups;
 import com.beetw.strangemod.item.extra.ItemEmptyClick;
+import com.beetw.strangemod.registry.ModGroups;
 import net.minecraft.block.Blocks;
-import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -23,7 +21,6 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
 
@@ -35,7 +32,6 @@ public class StaffOfLightningItem extends ToolItem implements ItemEmptyClick {
             .tab(ModGroups.EXAMPLE_MOD);
 
     private static final double RAY_TRACE_DISTANCE = 50.0;
-    public boolean isShoot = false;
 
     public StaffOfLightningItem() {
         super(2, 3.0f, ItemTier.IRON, new HashSet<>(), PROPERTIES);
@@ -46,18 +42,6 @@ public class StaffOfLightningItem extends ToolItem implements ItemEmptyClick {
         LightningBoltEntity boltEntity = new LightningBoltEntity(type, world);
         boltEntity.setPos(pos.x, pos.y, pos.z);
         world.addFreshEntity(boltEntity);
-    }
-
-    public static float itemProperties(@NotNull ItemStack itemStack,
-                                       @Nullable ClientWorld world,
-                                       @Nullable LivingEntity entity) {
-
-        if (((StaffOfLightningItem) itemStack.getItem()).isShoot) {
-            ((StaffOfLightningItem) itemStack.getItem()).isShoot = false;
-            return 1.0f;
-        }
-
-        return 0.0f;
     }
 
     @Override
@@ -77,7 +61,6 @@ public class StaffOfLightningItem extends ToolItem implements ItemEmptyClick {
                 itemInHand.hurtAndBreak(5, playerEntity,
                         entity -> entity.broadcastBreakEvent(hand));
                 spawnLightningBolt(world, vec);
-                isShoot = true;
 
                 return ActionResult.success(itemInHand);
             }
@@ -95,6 +78,5 @@ public class StaffOfLightningItem extends ToolItem implements ItemEmptyClick {
         fireballEntity.shootFromRotation(playerEntity, playerEntity.xRot, playerEntity.yRot,
                 0.0f, 3.0f, 0.0f);
         world.addFreshEntity(fireballEntity);
-        isShoot = true;
     }
 }

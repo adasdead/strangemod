@@ -1,9 +1,12 @@
 {
   "itemGroup.strange_mod": "Странный мод",
   "block.strange_mod.gunpowder_barrel": "Пороховая бочка",
+  "block.strange_mod.wood_casing": "Деревянный корпус",
+  "block.strange_mod.steel_block": "Блок стали",
+  "block.strange_mod.awakened_iron_block": "Пробужденный железный блок",
+  "block.strange_mod.maxwell_block": "§oMAXWELL",
   "item.strange_mod.awaking_staff": "Пробуждающий посох",
   "item.strange_mod.awaking_iron_ingot": "Пробуждённый железный слиток",
-  "block.strange_mod.wood_casing": "Деревянный корпус",
   "item.strange_mod.steel_ingot": "Стальной слиток",
   "item.strange_mod.staff_of_lightning": "Посох Молний",
   "item.strange_mod.chips": "Чипсы",
@@ -11,9 +14,13 @@
   "item.strange_mod.awaking_sphere": "Сфера Пробуждения",
   "item.strange_mod.lightbolt_sphere": "Сфера Молний",
   "item.strange_mod.awakened_pickaxe": "Пробужденная кирка",
+  "item.strange_mod.furhands": "Пушистые Перчатки",
+  "item.strange_mod.guy_fawkes_mask": "Маска анонимуса",
+  "tooltip.strange_mod.shift": "§e§oНажми SHIFT, чтобы посмотреть доп. инфу",
   "tooltip.strange_mod.awakened_pickaxe.0": "§e§oЛомает 3x3x1",
-  "tooltip.strange_mod.awakened_pickaxe.1": "§e§oСразу же плавит железо и золото",
+  "tooltip.strange_mod.awakened_pickaxe.1": "§e§oСразу же плавит железо, золото и песок",
   "tooltip.strange_mod.funny_nokia.0": "§e§oЛКМ - бросить бомбу",
   "tooltip.strange_mod.funny_nokia.1": "§e§oПКМ - взорвать все бомбы",
-  "block.strange_mod.maxwell_block": "§oMAXWELL"
+  "tooltip.strange_mod.furhands.0": "§e§oРеференс: Скаллдог Рэя",
+  "tooltip.strange_mod.guy_fawkes_mask.0": "§5§oВзлом жопы"
 }

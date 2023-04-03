@@ -1,4 +1,4 @@
-package com.beetw.strangemod.init;
+package com.beetw.strangemod.registry;
 
 import net.minecraft.item.Food;
 

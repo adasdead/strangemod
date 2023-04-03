@@ -1,10 +1,10 @@
 package com.beetw.strangemod.item;
 
 import com.beetw.strangemod.entity.NokiaBoxEntity;
-import com.beetw.strangemod.init.ModEntityTypes;
-import com.beetw.strangemod.init.ModGroups;
 import com.beetw.strangemod.item.extra.ItemEmptyClick;
 import com.beetw.strangemod.item.extra.ItemTooltipAppender;
+import com.beetw.strangemod.registry.ModEntityTypes;
+import com.beetw.strangemod.registry.ModGroups;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -50,11 +50,15 @@ public class FunnyNokiaItem extends Item implements ItemEmptyClick {
 
     @Override
     public void onEmptyClick(@NotNull World world, @NotNull PlayerEntity playerEntity) {
+        if (playerEntity.getCooldowns().isOnCooldown(this)) return;
+
         Vector3d direction = getPushDirectionByPlayer(playerEntity);
         NokiaBoxEntity entity = new NokiaBoxEntity(ModEntityTypes.NOKIA_BOX.get(), world);
         entity.setPos(playerEntity.getX(), playerEntity.getEyeY(), playerEntity.getZ());
         entity.push(direction.x, direction.y, direction.z);
         world.addFreshEntity(entity);
+
+        playerEntity.getCooldowns().addCooldown(this, 15);
     }
 
     @Override
@@ -63,13 +67,8 @@ public class FunnyNokiaItem extends Item implements ItemEmptyClick {
                                 @NotNull List<ITextComponent> components,
                                 @NotNull ITooltipFlag flag) {
 
-        ItemTooltipAppender appender = new ItemTooltipAppender(components);
-        appender.text("");
-        appender.translate("funny_nokia.0");
-        appender.translate("funny_nokia.1");
-        appender.text("");
-        appender.text("§e§oفيديوهات مضحكة 2023 اهاها شاهد الجميع");
-
+        ItemTooltipAppender appender = new ItemTooltipAppender(components, true);
+        appender.translate("funny_nokia.0").translate("funny_nokia.1");
         super.appendHoverText(stack, world, components, flag);
     }
 

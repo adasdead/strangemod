@@ -1,6 +1,6 @@
 package com.beetw.strangemod.item;
 
-import com.beetw.strangemod.init.ModGroups;
+import com.beetw.strangemod.registry.ModGroups;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;

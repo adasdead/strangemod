@@ -1,7 +1,7 @@
 {
   "credit": "Made with Blockbench",
   "textures": {
-    "0": "strange_mod:item/lightbolt_sphere",
+    "0": "strange_mod:block/lightbolt_sphere",
     "1": "minecraft:block/iron_block",
     "2": "minecraft:block/quartz_pillar",
     "3": "minecraft:block/obsidian",

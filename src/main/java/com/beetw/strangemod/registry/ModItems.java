@@ -1,4 +1,4 @@
-package com.beetw.strangemod.init;
+package com.beetw.strangemod.registry;
 
 import com.beetw.strangemod.StrangeMod;
 import com.beetw.strangemod.item.*;
@@ -32,11 +32,17 @@ public class ModItems {
             "funny_nokia", FunnyNokiaItem::new);
 
     public static final RegistryObject<Item> AWAKING_SPHERE = ITEMS.register(
-            "awaking_sphere", new ItemBuilder().stacksTo(1).supplier());
+            "awaking_sphere", new ItemBuilder().stacksTo(1).foil().supplier());
 
     public static final RegistryObject<Item> LIGHTBOLT_SPHERE = ITEMS.register(
-            "lightbolt_sphere", new ItemBuilder().stacksTo(1).supplier());
+            "lightbolt_sphere", new ItemBuilder().stacksTo(1).foil().supplier());
 
     public static final RegistryObject<Item> AWAKENED_PICKAXE = ITEMS.register(
             "awakened_pickaxe", AwakenedPickaxeItem::new);
+
+    public static final RegistryObject<Item> FURHANDS = ITEMS.register(
+            "furhands", FurhandsItem::new);
+
+    public static final RegistryObject<Item> GUY_FAWKES_MASK = ITEMS.register(
+            "guy_fawkes_mask", GuyFawkesMaskItem::new);
 }
