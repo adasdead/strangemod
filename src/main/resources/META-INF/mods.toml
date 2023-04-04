@@ -1,31 +1,25 @@
 modLoader = "javafml"
-loaderVersion = "[36,)"
+loaderVersion = "[45,)"
 license = "MIT"
+
 [[mods]]
 modId = "strange_mod"
-version = "Alpha 1.2.1"
+version = "${file.jarVersion}"
 displayName = "Strange Mod"
 logoFile = "strange_mod.png"
 authors = "adasdead & Slieko"
 description = '''
 A very strange mod. I'm serious!
 '''
-# A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.strange_mod]] #optional
+
+[[dependencies.examplemod]] #optional
 # the modid of the dependency
 modId = "forge" #mandatory
 # Does this dependency have to exist - if not, ordering below must be specified
 mandatory = true #mandatory
 # The version range of the dependency
-versionRange = "[36,)" #mandatory
+versionRange = "[45,)" #mandatory
 # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
 ordering = "NONE"
 # Side this dependency is applied on - BOTH, CLIENT or SERVER
 side = "BOTH"
-# Here's another dependency
-[[dependencies.strange_mod]]
-modId = "curios"
-mandatory = true
-# This version range declares a minimum of the current minecraft version up to but not including the next major version
-versionRange = "[1.16.5-4.0.5.2,)"
-

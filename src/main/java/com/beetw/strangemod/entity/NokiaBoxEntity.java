@@ -2,49 +2,43 @@ package com.beetw.strangemod.entity;
 
 import com.beetw.strangemod.StrangeMod;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.EntityTickableSound;
-import net.minecraft.client.audio.SoundHandler;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.World;
+import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
+import net.minecraft.client.resources.sounds.SoundInstance;
+import net.minecraft.client.sounds.SoundManager;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-
-public class NokiaBoxEntity extends MobEntity {
+public class NokiaBoxEntity extends Mob {
     private static final ResourceLocation SOUNDS_LOCATION = StrangeMod
             .location("nokia_box_ringtone");
 
     private final NokiaBoxTickableSound tickableSound;
 
-    public NokiaBoxEntity(EntityType<? extends NokiaBoxEntity> type, World world) {
-        super(type, world);
+    public NokiaBoxEntity(EntityType<? extends NokiaBoxEntity> type, Level level) {
+        super(type, level);
 
-        tickableSound = new NokiaBoxTickableSound(this, new SoundEvent(SOUNDS_LOCATION));
+        SoundEvent event = SoundEvent.createVariableRangeEvent(SOUNDS_LOCATION);
+        tickableSound = new NokiaBoxTickableSound(event, this.getSoundSource());
     }
 
     public static @NotNull EntityType<NokiaBoxEntity> newEntityTypeFabric() {
         return EntityType.Builder
-                .of(NokiaBoxEntity::new, EntityClassification.MISC)
+                .of(NokiaBoxEntity::new, MobCategory.MISC)
                 .build(StrangeMod.location("nokia_box").toString());
     }
 
-    public void explode(@NotNull DamageSource damageSource) {
-        if (Objects.nonNull(damageSource.getEntity())) {
-            World world = damageSource.getEntity().level;
-
-            if (!world.isClientSide()) {
-                world.explode(null, getX(), getY(), getZ(),
-                        5.0f, false, Explosion.Mode.DESTROY);
-                remove();
-            }
+    public void explode(@NotNull Level level) {
+        if (!level.isClientSide()) {
+            level.explode(null, getX(), getY(), getZ(),
+                    5.0f, false, Level.ExplosionInteraction.TNT);
+            remove(RemovalReason.KILLED);
         }
     }
 
@@ -63,20 +57,25 @@ public class NokiaBoxEntity extends MobEntity {
         super.baseTick();
     }
 
-    static public class NokiaBoxTickableSound extends EntityTickableSound {
+    static public class NokiaBoxTickableSound extends AbstractTickableSoundInstance {
         private boolean played = false;
 
-        public NokiaBoxTickableSound(Entity entity, SoundEvent event) {
-            super(event, SoundCategory.BLOCKS, entity);
+        public NokiaBoxTickableSound(SoundEvent event, SoundSource soundSource) {
+            super(event, soundSource, SoundInstance.createUnseededRandom());
             this.looping = true;
         }
 
         public void startPlaying() {
             if (!played) {
-                SoundHandler handler = Minecraft.getInstance().getSoundManager();
-                handler.queueTickingSound(this);
+                SoundManager manager = Minecraft.getInstance().getSoundManager();
+                manager.queueTickingSound(this);
                 played = true;
             }
+        }
+
+        @Override
+        public void tick() {
+            // None
         }
     }
 }

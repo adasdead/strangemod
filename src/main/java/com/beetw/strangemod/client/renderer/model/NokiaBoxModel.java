@@ -1,26 +1,34 @@
 package com.beetw.strangemod.client.renderer.model;
 
+import com.beetw.strangemod.StrangeMod;
 import com.beetw.strangemod.entity.NokiaBoxEntity;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
-import net.minecraft.client.renderer.entity.model.EntityModel;
-import net.minecraft.client.renderer.model.ModelRenderer;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.QuadrupedModel;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(value = Dist.CLIENT)
 public class NokiaBoxModel extends EntityModel<NokiaBoxEntity> {
-    private final ModelRenderer renderer;
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(
+            StrangeMod.location("nokia_box"), "main");
 
-    public NokiaBoxModel() {
-        this.texWidth = 64;
-        this.texHeight = 64;
+    public static @NotNull LayerDefinition createLayer() {
+        MeshDefinition meshDefinition = QuadrupedModel.createBodyMesh(12, CubeDeformation.NONE);
+        CubeListBuilder cubeListBuilder = CubeListBuilder.create()
+                .texOffs(0, 0)
+                .addBox(-6.0F, -10.0F, -5.0F, 12.0F, 10.0F, 10.0F, false);
+        PartPose pose = PartPose.offsetAndRotation(0.0F, 24.0F, 0.0F, 0.0F, 0.0F, 0.0F);
 
-        renderer = new ModelRenderer(this);
-        renderer.setPos(0.0F, 24.0F, 0.0F);
-        renderer.texOffs(0, 0)
-                .addBox(-6.0F, -10.0F, -5.0F, 12.0F, 10.0F, 10.0F, 0.0F, false);
+        PartDefinition partDefinition = meshDefinition.getRoot();
+        partDefinition.addOrReplaceChild("body", cubeListBuilder, pose);
+
+        return LayerDefinition.create(meshDefinition, 64, 64);
     }
 
     @Override
@@ -33,8 +41,8 @@ public class NokiaBoxModel extends EntityModel<NokiaBoxEntity> {
     }
 
     @Override
-    public void renderToBuffer(@NotNull MatrixStack matrixStack,
-                               @NotNull IVertexBuilder buffer,
+    public void renderToBuffer(@NotNull PoseStack poseStack,
+                               @NotNull VertexConsumer consumer,
                                int packedLight,
                                int packedOverlay,
                                float red,
@@ -42,6 +50,5 @@ public class NokiaBoxModel extends EntityModel<NokiaBoxEntity> {
                                float blue,
                                float alpha) {
 
-        renderer.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
     }
 }

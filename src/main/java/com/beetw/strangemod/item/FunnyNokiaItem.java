@@ -4,19 +4,18 @@ import com.beetw.strangemod.entity.NokiaBoxEntity;
 import com.beetw.strangemod.item.extra.ItemEmptyClick;
 import com.beetw.strangemod.item.extra.ItemTooltipAppender;
 import com.beetw.strangemod.registry.ModEntityTypes;
-import com.beetw.strangemod.registry.ModGroups;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.World;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,8 +23,7 @@ import java.util.List;
 
 public class FunnyNokiaItem extends Item implements ItemEmptyClick {
     private static final Item.Properties PROPERTIES = new Item.Properties()
-            .stacksTo(1)
-            .tab(ModGroups.EXAMPLE_MOD);
+            .stacksTo(1);
 
     private static final double TO_DEGREES = Math.PI / 180.0;
 
@@ -34,38 +32,37 @@ public class FunnyNokiaItem extends Item implements ItemEmptyClick {
     }
 
     @Override
-    public @NotNull ActionResult<ItemStack> use(@NotNull World world,
-                                                @NotNull PlayerEntity playerEntity,
-                                                @NotNull Hand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level,
+                                                           @NotNull Player player,
+                                                           @NotNull InteractionHand hand) {
 
         EntityType<NokiaBoxEntity> entityType = ModEntityTypes.NOKIA_BOX.get();
-        AxisAlignedBB alignedBB = playerEntity.getBoundingBox()
-                .inflate(50, 50, 50);
+        AABB aabb = player.getBoundingBox().inflate(50, 50, 50);
 
-        playerEntity.level.getEntities(entityType, alignedBB, entity -> true)
-                .forEach(entity -> entity.explode(DamageSource.mobAttack(playerEntity)));
+        player.level.getEntities(entityType, aabb, entity -> true)
+                .forEach(entity -> entity.explode(entity.level));
 
-        return super.use(world, playerEntity, hand);
+        return super.use(level, player, hand);
     }
 
     @Override
-    public void onEmptyClick(@NotNull World world, @NotNull PlayerEntity playerEntity) {
-        if (playerEntity.getCooldowns().isOnCooldown(this)) return;
+    public void onEmptyClick(@NotNull Level world, @NotNull ServerPlayer player) {
+        if (player.getCooldowns().isOnCooldown(this)) return;
 
-        Vector3d direction = getPushDirectionByPlayer(playerEntity);
+        Vec3 direction = getPushDirectionByPlayer(player);
         NokiaBoxEntity entity = new NokiaBoxEntity(ModEntityTypes.NOKIA_BOX.get(), world);
-        entity.setPos(playerEntity.getX(), playerEntity.getEyeY(), playerEntity.getZ());
+        entity.setPos(player.getX(), player.getEyeY(), player.getZ());
         entity.push(direction.x, direction.y, direction.z);
         world.addFreshEntity(entity);
 
-        playerEntity.getCooldowns().addCooldown(this, 15);
+        player.getCooldowns().addCooldown(this, 15);
     }
 
     @Override
     public void appendHoverText(@NotNull ItemStack stack,
-                                @Nullable World world,
-                                @NotNull List<ITextComponent> components,
-                                @NotNull ITooltipFlag flag) {
+                                @Nullable Level world,
+                                @NotNull List<Component> components,
+                                @NotNull TooltipFlag flag) {
 
         ItemTooltipAppender appender = new ItemTooltipAppender(components, true);
         appender.translate("funny_nokia.0").translate("funny_nokia.1");
@@ -73,9 +70,9 @@ public class FunnyNokiaItem extends Item implements ItemEmptyClick {
     }
 
     @NotNull
-    private Vector3d getPushDirectionByPlayer(@NotNull PlayerEntity playerEntity) {
-        double x = -Math.sin(playerEntity.yRot * TO_DEGREES) * Math.cos(playerEntity.xRot * TO_DEGREES);
-        double z = Math.cos(playerEntity.yRot * TO_DEGREES) * Math.cos(playerEntity.xRot * TO_DEGREES);
-        return new Vector3d(x, 0, z);
+    private Vec3 getPushDirectionByPlayer(@NotNull Player player) {
+        double x = -Math.sin(player.yHeadRot * TO_DEGREES) * Math.cos(player.xRotO * TO_DEGREES);
+        double z = Math.cos(player.yHeadRot * TO_DEGREES) * Math.cos(player.xRotO * TO_DEGREES);
+        return new Vec3(x, 0, z);
     }
 }

@@ -1,70 +1,62 @@
 package com.beetw.strangemod.block;
 
 import com.beetw.strangemod.block.extra.RegisterBlockItem;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.FallingBlock;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.FallingBlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.IBooleanFunction;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
-import net.minecraftforge.common.ToolType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.FallingBlockEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.FallingBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.stream.Stream;
 
-@RegisterBlockItem
+@SuppressWarnings("deprecation")
+@RegisterBlockItem(registryName = "gunpowder_barrel")
 public class GunpowderBarrelBlock extends FallingBlock {
-    private static final Properties PROPERTIES = AbstractBlock.Properties
+    private static final Block.Properties PROPERTIES = Block.Properties
             .of(Material.WOOD)
-            .harvestLevel(1)
-            .harvestTool(ToolType.AXE)
             .strength(1.0f);
 
     private static final float EXPLODE_RADIUS = 5.0f;
 
     public GunpowderBarrelBlock() {
         super(PROPERTIES);
-
-        RenderTypeLookup.setRenderLayer(this, RenderType.cutout());
     }
 
-    @SuppressWarnings("deprecation")
     @Override
-    public @NotNull ActionResultType use(@NotNull BlockState blockState,
-                                         @NotNull World world,
-                                         @NotNull BlockPos pos,
-                                         @NotNull PlayerEntity player,
-                                         @NotNull Hand hand,
-                                         @NotNull BlockRayTraceResult traceResult) {
+    public @NotNull InteractionResult use(@NotNull BlockState blockState,
+                                          @NotNull Level level,
+                                          @NotNull BlockPos pos,
+                                          @NotNull Player player,
+                                          @NotNull InteractionHand hand,
+                                          @NotNull BlockHitResult hitResult) {
 
         ItemStack itemInHand = player.getItemInHand(hand);
         Item item = itemInHand.getItem();
 
         if (item != Items.FLINT_AND_STEEL && item != Items.FIRE_CHARGE) {
-            return super.use(blockState, world, pos, player, hand, traceResult);
+            return super.use(blockState, level, pos, player, hand, hitResult);
         } else {
-            this.catchFire(blockState, world, pos, traceResult.getDirection(), player);
+            this.onCaughtFire(blockState, level, pos, hitResult.getDirection(), player);
 
             if (!player.isCreative()) {
                 if (item == Items.FLINT_AND_STEEL) {
@@ -75,26 +67,26 @@ public class GunpowderBarrelBlock extends FallingBlock {
                 }
             }
 
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
     }
 
     @Override
     public void onPlace(@NotNull BlockState state,
-                        @NotNull World world,
+                        @NotNull Level level,
                         @NotNull BlockPos pos,
                         @NotNull BlockState state2,
                         boolean magic) {
 
-        if (world.hasNeighborSignal(pos)) {
-            this.explode(world, pos, null);
+        if (level.hasNeighborSignal(pos)) {
+            this.explode(level, pos, null);
         } else {
-            super.onPlace(state, world, pos, state2, magic);
+            super.onPlace(state, level, pos, state2, magic);
         }
     }
 
     @Override
-    public void onLand(@NotNull World world,
+    public void onLand(@NotNull Level world,
                        @NotNull BlockPos pos,
                        @NotNull BlockState state,
                        @NotNull BlockState state2,
@@ -104,20 +96,20 @@ public class GunpowderBarrelBlock extends FallingBlock {
     }
 
     @Override
-    public void catchFire(BlockState state,
-                          World world,
-                          BlockPos pos,
-                          @Nullable Direction face,
-                          @Nullable LivingEntity igniter) {
+    public void onCaughtFire(BlockState state,
+                             Level level,
+                             BlockPos pos,
+                             @Nullable Direction direction,
+                             @Nullable LivingEntity igniter) {
 
-        this.explode(world, pos, igniter);
+        this.explode(level, pos, igniter);
     }
 
     @Override
     public boolean canConnectRedstone(BlockState state,
-                                      IBlockReader world,
+                                      BlockGetter level,
                                       BlockPos pos,
-                                      @Nullable Direction side) {
+                                      @Nullable Direction direction) {
 
         return true;
     }
@@ -125,38 +117,39 @@ public class GunpowderBarrelBlock extends FallingBlock {
     @SuppressWarnings("deprecation")
     @Override
     public void neighborChanged(@NotNull BlockState state,
-                                @NotNull World world,
+                                @NotNull Level level,
                                 @NotNull BlockPos pos,
                                 @NotNull Block block,
                                 @NotNull BlockPos neighbor,
                                 boolean magic) {
 
-        super.neighborChanged(state, world, pos, block, neighbor, magic);
-        this.onPlace(state, world, pos, state, magic);
+        super.neighborChanged(state, level, pos, block, neighbor, magic);
+        this.onPlace(state, level, pos, state, magic);
     }
 
     @Override
-    public void wasExploded(@NotNull World world,
+    public void wasExploded(@NotNull Level level,
                             @NotNull BlockPos pos,
                             @NotNull Explosion explosion) {
 
-        this.explode(world, pos, explosion.getExploder());
+        this.explode(level, pos, explosion.getExploder());
     }
 
     @Override
-    public int getFlammability(BlockState state,
-                               IBlockReader world,
-                               BlockPos pos,
-                               Direction face) {
-        return 5;
+    public int getFireSpreadSpeed(BlockState state,
+                                  BlockGetter level,
+                                  BlockPos pos,
+                                  Direction direction) {
+
+        return 1;
     }
 
     @SuppressWarnings("deprecation")
     @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state,
-                                        @NotNull IBlockReader blockReader,
+                                        @NotNull BlockGetter getter,
                                         @NotNull BlockPos pos,
-                                        @NotNull ISelectionContext context) {
+                                        @NotNull CollisionContext context) {
 
         return Stream.of(
                 Block.box(14.778174593052023, 0, 4, 15.778174593052023, 16, 12),
@@ -167,14 +160,14 @@ public class GunpowderBarrelBlock extends FallingBlock {
                 Block.box(4, 1, 1, 12, 2, 15),
                 Block.box(1, 14, 4, 15, 15, 12),
                 Block.box(4, 14, 1, 12, 15, 15)
-        ).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
+        ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
     }
 
-    private void explode(@NotNull World world, @NotNull BlockPos pos, Entity entity) {
-        if (!world.isClientSide) {
-            world.destroyBlock(pos, true, entity);
-            world.explode(entity, pos.getX(), pos.getY(), pos.getZ(), EXPLODE_RADIUS, true,
-                    Explosion.Mode.DESTROY);
+    private void explode(@NotNull Level level, @NotNull BlockPos pos, Entity entity) {
+        if (!level.isClientSide) {
+            level.destroyBlock(pos, true, entity);
+            level.explode(entity, pos.getX(), pos.getY(), pos.getZ(), EXPLODE_RADIUS, true,
+                    Level.ExplosionInteraction.TNT);
         }
     }
 }

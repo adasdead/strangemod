@@ -1,19 +1,17 @@
 package com.beetw.strangemod.item;
 
 import com.beetw.strangemod.item.extra.ItemTooltipAppender;
-import com.beetw.strangemod.registry.ModGroups;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -22,88 +20,86 @@ import java.util.Optional;
 
 public class AwakenedPickaxeItem extends PickaxeItem {
     private static final Item.Properties PROPERTIES = new Item.Properties()
-            .stacksTo(1)
-            .durability(500)
-            .tab(ModGroups.EXAMPLE_MOD);
+            .stacksTo(1).durability(500);
 
     public AwakenedPickaxeItem() {
-        super(ItemTier.NETHERITE, 2, 3.0f, PROPERTIES);
+        super(Tiers.NETHERITE, 2, 3.0f, PROPERTIES);
     }
 
     @Override
-    public boolean onBlockStartBreak(ItemStack itemStack, BlockPos pos, @NotNull PlayerEntity player) {
-        RayTraceResult result = player.pick(25.0, 3.0f, true);
+    public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, @NotNull Player player) {
+        HitResult result = player.pick(25.0, 3.0f, true);
 
-        if (getDestroySpeed(itemStack, player.level.getBlockState(pos)) != speed) {
+        if (getDestroySpeed(itemstack, player.level.getBlockState(pos)) != speed) {
             player.level.destroyBlock(pos, true);
         }
 
-        if (result.getType() == RayTraceResult.Type.BLOCK) {
-            BlockRayTraceResult blockResult = (BlockRayTraceResult) result;
+        if (result.getType() == HitResult.Type.BLOCK) {
+            BlockHitResult blockHitResult = (BlockHitResult) result;
 
             for (int i = -1; i <= 1; i++) {
                 for (int j = -1; j <= 1; j++) {
-                    switch (blockResult.getDirection().getAxis()) {
+                    switch (blockHitResult.getDirection().getAxis()) {
                         case X:
-                            handleBlock(itemStack, player.level, pos.offset(0, i, j));
+                            handleBlock(itemstack, player.level, pos.offset(0, i, j));
                             break;
                         case Y:
-                            handleBlock(itemStack, player.level, pos.offset(i, 0, j));
+                            handleBlock(itemstack, player.level, pos.offset(i, 0, j));
                             break;
                         case Z:
-                            handleBlock(itemStack, player.level, pos.offset(i, j, 0));
+                            handleBlock(itemstack, player.level, pos.offset(i, j, 0));
                             break;
                     }
                 }
             }
         }
 
-        itemStack.hurtAndBreak(5, player, livingEntity -> {
+        itemstack.hurtAndBreak(5, player, livingEntity -> {
             livingEntity.broadcastBreakEvent(livingEntity.getUsedItemHand());
         });
 
         return true;
     }
 
-    private void handleBlock(@NotNull ItemStack stack, @NotNull World world, @NotNull BlockPos pos) {
-        Block block = world.getBlockState(pos).getBlock();
+    private void handleBlock(@NotNull ItemStack stack, @NotNull Level level, @NotNull BlockPos pos) {
+        BlockState blockState = level.getBlockState(pos);
 
-        if (!block.is(Blocks.AIR)) {
+        if (!blockState.is(Blocks.AIR)) {
             Optional<ItemStack> spawnItem = Optional.empty();
 
-            if (getDestroySpeed(stack, block.defaultBlockState()) != speed) {
+            if (getDestroySpeed(stack, blockState) != speed) {
                 return;
             }
 
-            if (block.is(Blocks.IRON_ORE)) {
+            if (blockState.is(Blocks.IRON_ORE)) {
                 spawnItem = Optional.of(Items.IRON_INGOT.getDefaultInstance());
             }
 
-            if (block.is(Blocks.SAND)) {
+            if (blockState.is(Blocks.SAND)) {
                 spawnItem = Optional.of(Items.GLASS.getDefaultInstance());
             }
 
-            if (block.is(Blocks.GOLD_ORE)) {
+            if (blockState.is(Blocks.GOLD_ORE)) {
                 spawnItem = Optional.of(Items.GOLD_INGOT.getDefaultInstance());
             }
 
             if (spawnItem.isPresent()) {
-                ItemEntity entity = new ItemEntity(EntityType.ITEM, world);
+                ItemEntity entity = new ItemEntity(EntityType.ITEM, level);
                 entity.setPos(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
                 entity.setItem(spawnItem.get());
-                world.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
-                world.addFreshEntity(entity);
+                level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+                level.addFreshEntity(entity);
             } else {
-                world.destroyBlock(pos, true);
+                level.destroyBlock(pos, true);
             }
         }
     }
 
     @Override
     public void appendHoverText(@NotNull ItemStack stack,
-                                @Nullable World world,
-                                @NotNull List<ITextComponent> components,
-                                @NotNull ITooltipFlag flag) {
+                                @Nullable Level world,
+                                @NotNull List<Component> components,
+                                @NotNull TooltipFlag flag) {
 
         ItemTooltipAppender appender = new ItemTooltipAppender(components, true);
         appender.translate("awakened_pickaxe.0").translate("awakened_pickaxe.1");

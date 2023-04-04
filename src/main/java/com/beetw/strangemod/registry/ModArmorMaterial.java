@@ -1,20 +1,19 @@
 package com.beetw.strangemod.registry;
 
 import com.beetw.strangemod.StrangeMod;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.LazyValue;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
-public enum ModArmorMaterial implements IArmorMaterial {
+public enum ModArmorMaterial implements ArmorMaterial {
     GUY_FAWKES_MASK("guy_fawkes_mask", 5, new int[]{1, 2, 3, 1}, 15,
             SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(Items.LEATHER));
 
@@ -26,7 +25,7 @@ public enum ModArmorMaterial implements IArmorMaterial {
     private final SoundEvent soundEvent;
     private final float toughness;
     private final float knockbackResistance;
-    private final LazyValue<Ingredient> repairMaterial;
+    private final Supplier<Ingredient> repairMaterial;
 
     ModArmorMaterial(String nameIn,
                      int maxDamageFactorIn,
@@ -44,17 +43,17 @@ public enum ModArmorMaterial implements IArmorMaterial {
         this.soundEvent = equipSoundIn;
         this.toughness = p_i48533_8_;
         this.knockbackResistance = knockbackResistIn;
-        this.repairMaterial = new LazyValue<>(repairMaterialSupplier);
+        this.repairMaterial = repairMaterialSupplier;
     }
 
     @Override
-    public int getDurabilityForSlot(EquipmentSlotType slotIn) {
-        return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.maxDamageFactor;
+    public int getDurabilityForType(@NotNull ArmorItem.Type type) {
+        return MAX_DAMAGE_ARRAY[type.getSlot().getIndex()] * this.maxDamageFactor;
     }
 
     @Override
-    public int getDefenseForSlot(@NotNull EquipmentSlotType slotIn) {
-        return this.damageReductionAmountArray[slotIn.getIndex()];
+    public int getDefenseForType(@NotNull ArmorItem.Type type) {
+        return this.damageReductionAmountArray[type.getSlot().getIndex()];
     }
 
     @Override

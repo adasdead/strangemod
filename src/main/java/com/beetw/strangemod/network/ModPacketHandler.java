@@ -1,8 +1,8 @@
 package com.beetw.strangemod.network;
 
 import com.beetw.strangemod.StrangeMod;
-import net.minecraftforge.fml.network.NetworkRegistry;
-import net.minecraftforge.fml.network.simple.SimpleChannel;
+import net.minecraftforge.network.NetworkRegistry;
+import net.minecraftforge.network.simple.SimpleChannel;
 
 public class ModPacketHandler {
     private static final String PROTOCOL_VERSION = "1";

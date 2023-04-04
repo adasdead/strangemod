@@ -1,81 +1,70 @@
 package com.beetw.strangemod.item;
 
-import com.beetw.strangemod.registry.ModGroups;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTier;
-import net.minecraft.item.ToolItem;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashSet;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class AwakingStaffItem extends ToolItem {
+public class AwakingStaffItem extends Item {
     private static final Item.Properties PROPERTIES = new Item.Properties()
-            .stacksTo(1)
-            .durability(1000)
-            .tab(ModGroups.EXAMPLE_MOD);
+            .stacksTo(1).durability(1000);
 
     private static final double MAX_HEIGHT = 250;
 
     private final Timer scheduleTimer = new Timer();
 
     public AwakingStaffItem() {
-        super(2, 3.0f, ItemTier.IRON, new HashSet<>(), PROPERTIES);
+        super(PROPERTIES);
     }
 
     @NotNull
     @Override
-    public ActionResultType interactLivingEntity(@NotNull ItemStack itemStack,
-                                                 @NotNull PlayerEntity playerEntity,
-                                                 @NotNull LivingEntity livingEntity,
-                                                 @NotNull Hand hand) {
+    public InteractionResult interactLivingEntity(@NotNull ItemStack itemStack,
+                                                  @NotNull Player player,
+                                                  @NotNull LivingEntity livingEntity,
+                                                  @NotNull InteractionHand hand) {
 
-        ItemStack itemInHand = playerEntity.getItemInHand(hand);
-        itemInHand.hurtAndBreak(50, playerEntity,
+        ItemStack itemInHand = player.getItemInHand(hand);
+        itemInHand.hurtAndBreak(50, player,
                 entity -> entity.broadcastBreakEvent(hand));
         scheduleTimer.schedule(new TossIntoTheAirTask(livingEntity), 0, 1);
-        return ActionResultType.PASS;
-    }
-
-    @Override
-    public boolean hasContainerItem(ItemStack stack) {
-        return true;
+        return InteractionResult.PASS;
     }
 
     private static class TossIntoTheAirTask extends TimerTask {
-        private final LivingEntity livingEntity;
-        private final Vector3d startPos;
+        private final LivingEntity entity;
+        private final Vec3 startPos;
         private double currentY;
 
-        public TossIntoTheAirTask(@NotNull LivingEntity livingEntity) {
-            this.livingEntity = livingEntity;
-            this.startPos = livingEntity.position();
+        public TossIntoTheAirTask(@NotNull LivingEntity entity) {
+            this.entity = entity;
+            this.startPos = entity.position();
             this.currentY = this.startPos.y;
         }
 
         @Override
         public void run() {
-            if (!livingEntity.isAlive()) cancel();
+            if (!entity.isAlive()) cancel();
 
             double normalized = normalize(currentY, startPos.y);
             double normalizedFinalY = easeIn(normalized);
             double finalY = denormalize(normalizedFinalY, startPos.y);
 
-            livingEntity.setPos(startPos.x, finalY, startPos.z);
+            entity.setPos(startPos.x, finalY, startPos.z);
 
-            livingEntity.level.addParticle(ParticleTypes.CLOUD,
+            entity.level.addParticle(ParticleTypes.CLOUD,
                     startPos.x, finalY, startPos.z, 0.0D, 0.0D, 0.0D);
 
             if ((currentY - 1) >= MAX_HEIGHT) {
-                livingEntity.kill();
+                entity.kill();
                 cancel();
             }
 

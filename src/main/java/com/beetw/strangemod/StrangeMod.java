@@ -2,9 +2,11 @@ package com.beetw.strangemod;
 
 import com.beetw.strangemod.event.ClientSetupEvent;
 import com.beetw.strangemod.event.CommonSetupEvent;
-import com.beetw.strangemod.event.EnqueueIMCEvent;
-import com.beetw.strangemod.registry.*;
-import net.minecraft.util.ResourceLocation;
+import com.beetw.strangemod.registry.ModBlocks;
+import com.beetw.strangemod.registry.ModEntityTypes;
+import com.beetw.strangemod.registry.ModItems;
+import com.beetw.strangemod.registry.ModPaintings;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -20,11 +22,9 @@ public class StrangeMod {
 
         eventBus.addListener(CommonSetupEvent::onCommonSetup);
         eventBus.addListener(ClientSetupEvent::onClientSetup);
-        eventBus.addListener(EnqueueIMCEvent::onEnqueueIMC);
 
-        ModBlocks.BLOCKS.register(eventBus);
         ModItems.ITEMS.register(eventBus);
-        ModRecipes.RECIPES.register(eventBus);
+        ModBlocks.BLOCKS.register(eventBus);
         ModPaintings.PAINTINGS_TYPES.register(eventBus);
         ModEntityTypes.ENTITY_TYPES.register(eventBus);
 

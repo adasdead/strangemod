@@ -1,32 +1,30 @@
 package com.beetw.strangemod.item.extra;
 
 import com.beetw.strangemod.StrangeMod;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 public class ItemTooltipAppender {
-    private final List<ITextComponent> components;
+    private final List<Component> components;
     private final String modId;
     private final boolean shift;
 
-    public ItemTooltipAppender(@NotNull List<ITextComponent> components) {
+    public ItemTooltipAppender(@NotNull List<Component> components) {
         this(components, false);
     }
 
-    public ItemTooltipAppender(@NotNull List<ITextComponent> components,
+    public ItemTooltipAppender(@NotNull List<Component> components,
                                boolean shift) {
 
         this(StrangeMod.MOD_ID, components, shift);
     }
 
     public ItemTooltipAppender(@NotNull String modId,
-                               @NotNull List<ITextComponent> components,
+                               @NotNull List<Component> components,
                                boolean shift) {
 
         this.components = components;
@@ -34,19 +32,19 @@ public class ItemTooltipAppender {
         this.shift = shift;
 
         if (shift && !Screen.hasShiftDown()) {
-            components.add(translateComponent("shift"));
+            components.add(translatable("shift"));
         }
     }
 
     public ItemTooltipAppender translate(String path) {
         if (!Screen.hasShiftDown() && shift) return this;
-        components.add(translateComponent(path));
+        components.add(translatable(path));
         return this;
     }
 
     public ItemTooltipAppender text(String text) {
         if (!Screen.hasShiftDown() && shift) return this;
-        components.add(new StringTextComponent(text));
+        components.add(Component.literal(text));
         return this;
     }
 
@@ -55,7 +53,7 @@ public class ItemTooltipAppender {
     }
 
     @Contract(value = "_ -> new", pure = true)
-    private @NotNull ITextComponent translateComponent(String path) {
-        return new TranslationTextComponent("tooltip." + modId + "." + path);
+    private @NotNull Component translatable(String path) {
+        return Component.translatable("tooltip." + modId + "." + path);
     }
 }

@@ -1,31 +1,31 @@
 package com.beetw.strangemod.entity;
 
 import com.beetw.strangemod.item.StaffOfLightningItem;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.projectile.AbstractFireballEntity;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.projectile.Fireball;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
-public class LightningFireballEntity extends AbstractFireballEntity {
+public class LightningFireballEntity extends Fireball {
     private static final int LIGHTNING_COUNT = 25;
 
-    public LightningFireballEntity(World world) {
-        super(EntityType.FIREBALL, world);
+    public LightningFireballEntity(Level level) {
+        super(EntityType.FIREBALL, level);
     }
 
     @Override
-    protected void onHit(@NotNull RayTraceResult result) {
+    protected void onHit(@NotNull HitResult result) {
         if (!this.level.isClientSide) {
-            Vector3d curPosition = result.getLocation();
+            Vec3 curPosition = result.getLocation();
 
             for (int i = 0; i < LIGHTNING_COUNT; i++) {
-                Vector3d position = curPosition.add(random(), 0, random());
+                Vec3 position = curPosition.add(random(), 0, random());
                 StaffOfLightningItem.spawnLightningBolt(this.level, position);
             }
 
-            this.remove();
+            remove(RemovalReason.DISCARDED);
         }
     }
 

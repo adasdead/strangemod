@@ -1,82 +1,75 @@
 package com.beetw.strangemod.item;
 
-import com.beetw.strangemod.StrangeMod;
 import com.beetw.strangemod.entity.LightningFireballEntity;
 import com.beetw.strangemod.item.extra.ItemEmptyClick;
-import com.beetw.strangemod.registry.ModGroups;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.effect.LightningBoltEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTier;
-import net.minecraft.item.ToolItem;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LightningBolt;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec2;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashSet;
-
-@Mod.EventBusSubscriber(modid = StrangeMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class StaffOfLightningItem extends ToolItem implements ItemEmptyClick {
+public class StaffOfLightningItem extends Item implements ItemEmptyClick {
     private static final Item.Properties PROPERTIES = new Item.Properties()
-            .stacksTo(1)
-            .durability(1000)
-            .tab(ModGroups.EXAMPLE_MOD);
+            .stacksTo(1).durability(1000);
 
     private static final double RAY_TRACE_DISTANCE = 50.0;
 
     public StaffOfLightningItem() {
-        super(2, 3.0f, ItemTier.IRON, new HashSet<>(), PROPERTIES);
+        super(PROPERTIES);
     }
 
-    public static void spawnLightningBolt(@NotNull World world, @NotNull Vector3d pos) {
-        EntityType<? extends LightningBoltEntity> type = EntityType.LIGHTNING_BOLT;
-        LightningBoltEntity boltEntity = new LightningBoltEntity(type, world);
-        boltEntity.setPos(pos.x, pos.y, pos.z);
-        world.addFreshEntity(boltEntity);
+    public static void spawnLightningBolt(@NotNull Level level, @NotNull Vec3 pos) {
+        EntityType<? extends LightningBolt> type = EntityType.LIGHTNING_BOLT;
+        LightningBolt lightningBolt = new LightningBolt(type, level);
+        lightningBolt.setPos(pos.x, pos.y, pos.z);
+        level.addFreshEntity(lightningBolt);
     }
 
     @Override
-    public @NotNull ActionResult<ItemStack> use(@NotNull World world,
-                                                @NotNull PlayerEntity playerEntity,
-                                                @NotNull Hand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level,
+                                                           @NotNull Player player,
+                                                           @NotNull InteractionHand hand) {
 
-        RayTraceResult result = playerEntity.pick(RAY_TRACE_DISTANCE, 3.0f, true);
+        ItemStack itemInHand = player.getItemInHand(hand);
+        HitResult result = player.pick(RAY_TRACE_DISTANCE, 3.0f, true);
 
-        if (result instanceof BlockRayTraceResult) {
-            BlockRayTraceResult blockResult = ((BlockRayTraceResult) result);
-            BlockPos pos = blockResult.getBlockPos();
+        if (result instanceof BlockHitResult blockHitResult) {
+            BlockPos pos = blockHitResult.getBlockPos();
 
-            if (!world.getBlockState(pos).is(Blocks.AIR)) {
-                ItemStack itemInHand = playerEntity.getItemInHand(hand);
-                Vector3d vec = new Vector3d(pos.getX(), pos.getY(), pos.getZ());
-                itemInHand.hurtAndBreak(5, playerEntity,
-                        entity -> entity.broadcastBreakEvent(hand));
-                spawnLightningBolt(world, vec);
+            if (!level.getBlockState(pos).is(Blocks.AIR)) {
+                Vec3 vec = new Vec3(pos.getX(), pos.getY(), pos.getZ());
+                itemInHand.hurtAndBreak(5, player, entity -> entity.broadcastBreakEvent(hand));
+                spawnLightningBolt(level, vec);
 
-                return ActionResult.success(itemInHand);
+                return InteractionResultHolder.success(itemInHand);
             }
         }
 
-        return ActionResult.pass(playerEntity.getItemInHand(hand));
+        return InteractionResultHolder.pass(itemInHand);
     }
 
     @Override
-    public void onEmptyClick(@NotNull World world, @NotNull PlayerEntity playerEntity) {
-        playerEntity.getMainHandItem().hurtAndBreak(25, playerEntity,
-                entity -> entity.broadcastBreakEvent(playerEntity.getUsedItemHand()));
-        LightningFireballEntity fireballEntity = new LightningFireballEntity(world);
-        fireballEntity.setPos(playerEntity.getX(), playerEntity.getEyeY(), playerEntity.getZ());
-        fireballEntity.shootFromRotation(playerEntity, playerEntity.xRot, playerEntity.yRot,
+    public void onEmptyClick(@NotNull Level level, @NotNull ServerPlayer player) {
+        Vec2 rotation = player.getRotationVector();
+
+        LightningFireballEntity fireballEntity = new LightningFireballEntity(level);
+        fireballEntity.setPos(player.getX(), player.getEyeY(), player.getZ());
+        fireballEntity.shootFromRotation(player, rotation.x, rotation.y,
                 0.0f, 3.0f, 0.0f);
-        world.addFreshEntity(fireballEntity);
+        level.addFreshEntity(fireballEntity);
+
+        player.getMainHandItem().hurtAndBreak(25, player,
+                entity -> entity.broadcastBreakEvent(player.getUsedItemHand()));
     }
 }

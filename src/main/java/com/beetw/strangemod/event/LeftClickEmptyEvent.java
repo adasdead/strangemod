@@ -4,7 +4,7 @@ import com.beetw.strangemod.StrangeMod;
 import com.beetw.strangemod.item.extra.ItemEmptyClick;
 import com.beetw.strangemod.network.LeftEmptyClickPacket;
 import com.beetw.strangemod.network.ModPacketHandler;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

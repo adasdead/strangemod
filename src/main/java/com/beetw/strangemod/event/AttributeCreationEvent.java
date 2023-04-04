@@ -2,8 +2,8 @@ package com.beetw.strangemod.event;
 
 import com.beetw.strangemod.StrangeMod;
 import com.beetw.strangemod.registry.ModEntityTypes;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 public class AttributeCreationEvent {
     @SubscribeEvent
     public static void addEntityAttributes(@NotNull EntityAttributeCreationEvent event) {
-        event.put(ModEntityTypes.NOKIA_BOX.get(), MobEntity.createMobAttributes()
+        event.put(ModEntityTypes.NOKIA_BOX.get(), Mob.createMobAttributes()
                 .add(Attributes.MOVEMENT_SPEED, 0)
                 .build());
     }

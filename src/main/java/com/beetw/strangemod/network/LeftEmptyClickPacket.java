@@ -1,11 +1,11 @@
 package com.beetw.strangemod.network;
 
 import com.beetw.strangemod.item.extra.ItemEmptyClick;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.network.NetworkEvent;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -15,11 +15,11 @@ import java.util.function.Supplier;
 @SuppressWarnings({"unused", "InstantiationOfUtilityClass"})
 public class LeftEmptyClickPacket {
     @Contract(value = "_ -> new", pure = true)
-    public static @NotNull LeftEmptyClickPacket decode(PacketBuffer buf) {
+    public static @NotNull LeftEmptyClickPacket decode(FriendlyByteBuf buf) {
         return new LeftEmptyClickPacket();
     }
 
-    public static void encode(LeftEmptyClickPacket msg, PacketBuffer buf) {
+    public static void encode(LeftEmptyClickPacket msg, FriendlyByteBuf buf) {
     }
 
     public static class Handler {
@@ -31,12 +31,12 @@ public class LeftEmptyClickPacket {
         }
 
         private static void handleWork(@NotNull Supplier<NetworkEvent.Context> ctx) {
-            PlayerEntity player = Objects.requireNonNull(ctx.get().getSender());
+            ServerPlayer player = Objects.requireNonNull(ctx.get().getSender());
             ItemStack itemInHand = player.getMainHandItem();
 
             if (itemInHand.getItem() instanceof ItemEmptyClick) {
-                World world = Objects.requireNonNull(ctx.get().getSender()).getLevel();
-                ((ItemEmptyClick) itemInHand.getItem()).onEmptyClick(world, player);
+                Level level = Objects.requireNonNull(ctx.get().getSender()).getLevel();
+                ((ItemEmptyClick) itemInHand.getItem()).onEmptyClick(level, player);
             }
         }
     }

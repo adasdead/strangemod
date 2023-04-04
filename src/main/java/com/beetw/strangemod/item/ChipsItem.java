@@ -1,40 +1,28 @@
 package com.beetw.strangemod.item;
 
 import com.beetw.strangemod.registry.ModFoods;
-import com.beetw.strangemod.registry.ModGroups;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.world.World;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.api.SlotTypePreset;
-import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-import java.util.Objects;
-import java.util.Random;
-
-import static net.minecraft.potion.Effects.SATURATION;
-
-public class ChipsItem extends Item implements ICurioItem {
+public class ChipsItem extends Item {
     private static final Item.Properties PROPERTIES = new Item.Properties()
-            .stacksTo(1)
-            .food(ModFoods.CHIPS)
-            .durability(200)
-            .tab(ModGroups.EXAMPLE_MOD);
+            .stacksTo(1).food(ModFoods.CHIPS).durability(200);
 
     public ChipsItem() {
         super(PROPERTIES);
     }
 
-    public static float itemProperties(@NotNull ItemStack itemStack,
-                                       @Nullable ClientWorld world,
-                                       @Nullable LivingEntity entity) {
-
+    public static float itemProperties(ItemStack itemStack,
+                                       @Nullable ClientLevel level,
+                                       @Nullable LivingEntity entity,
+                                       int time) {
 
         return entity != null && entity.isUsingItem() &&
                 entity.getUseItem() == itemStack ? 1.0f : 0.0f;
@@ -42,16 +30,16 @@ public class ChipsItem extends Item implements ICurioItem {
 
     @Override
     public @NotNull ItemStack finishUsingItem(@NotNull ItemStack itemStack,
-                                              @NotNull World world,
+                                              @NotNull Level level,
                                               @NotNull LivingEntity entity) {
 
         ItemStack copyStack = itemStack.copy();
 
-        super.finishUsingItem(itemStack, world, entity);
+        super.finishUsingItem(itemStack, level, entity);
 
-        if (entity instanceof PlayerEntity) {
-            if (!((PlayerEntity) entity).isCreative()) {
-                copyStack.hurt(10, new Random(), null);
+        if (entity instanceof Player) {
+            if (!((Player) entity).isCreative()) {
+                copyStack.hurt(10, RandomSource.create(), null);
 
                 if (copyStack.getDamageValue() >= copyStack.getMaxDamage()) {
                     copyStack = ItemStack.EMPTY;
@@ -60,21 +48,5 @@ public class ChipsItem extends Item implements ICurioItem {
         }
 
         return copyStack;
-    }
-
-    @Override
-    public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
-        PlayerEntity player = (PlayerEntity) livingEntity;
-
-        if (!(player.level.isClientSide || Objects.nonNull(player.getEffect(SATURATION)))) {
-            player.addEffect(new EffectInstance(SATURATION, 200));
-
-            if (random.nextFloat() > 0.6f) {
-                stack.hurtAndBreak(5, player, entity -> CuriosApi.getCuriosHelper()
-                        .onBrokenCurio(SlotTypePreset.HANDS.getIdentifier(), index, entity));
-            }
-        }
-
-        ICurioItem.super.curioTick(identifier, index, player, stack);
     }
 }
