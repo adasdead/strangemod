@@ -1,0 +1,16 @@
+package com.github.strangemod.registry;
+
+import com.github.strangemod.StrangeMod;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
+
+public class ModSoundEvents {
+    public static final DeferredRegister<SoundEvent> SOUND_EVENTS =
+            DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, StrangeMod.MOD_ID);
+
+    public static final RegistryObject<SoundEvent> NOKIA_BOX_RINGTONE = SOUND_EVENTS
+            .register("nokia_box_ringtone", () -> SoundEvent.createVariableRangeEvent(
+                    StrangeMod.location("nokia_box_ringtone")));
+}

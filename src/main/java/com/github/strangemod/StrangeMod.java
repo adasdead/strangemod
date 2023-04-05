@@ -2,10 +2,7 @@ package com.github.strangemod;
 
 import com.github.strangemod.event.ClientSetupEvent;
 import com.github.strangemod.event.CommonSetupEvent;
-import com.github.strangemod.registry.ModBlocks;
-import com.github.strangemod.registry.ModEntityTypes;
-import com.github.strangemod.registry.ModItems;
-import com.github.strangemod.registry.ModPaintings;
+import com.github.strangemod.registry.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -27,6 +24,7 @@ public class StrangeMod {
         ModBlocks.BLOCKS.register(eventBus);
         ModPaintings.PAINTINGS_TYPES.register(eventBus);
         ModEntityTypes.ENTITY_TYPES.register(eventBus);
+        ModSoundEvents.SOUND_EVENTS.register(eventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }

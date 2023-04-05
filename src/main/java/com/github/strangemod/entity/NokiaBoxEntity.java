@@ -1,12 +1,11 @@
 package com.github.strangemod.entity;
 
 import com.github.strangemod.StrangeMod;
+import com.github.strangemod.registry.ModSoundEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
 import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.client.sounds.SoundManager;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
@@ -15,18 +14,13 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
-// TODO: need to fix entity model & music
 public class NokiaBoxEntity extends Mob {
-    private static final ResourceLocation SOUNDS_LOCATION = StrangeMod
-            .location("nokia_box_ringtone");
-
-    private final NokiaBoxTickableSound tickableSound;
+    private final NokiaBoxSoundInstance soundInstance;
 
     public NokiaBoxEntity(EntityType<? extends NokiaBoxEntity> type, Level level) {
         super(type, level);
 
-        SoundEvent event = SoundEvent.createVariableRangeEvent(SOUNDS_LOCATION);
-        tickableSound = new NokiaBoxTickableSound(event, this.getSoundSource());
+        this.soundInstance = new NokiaBoxSoundInstance(this);
     }
 
     public static @NotNull EntityType<NokiaBoxEntity> newEntityTypeFabric() {
@@ -37,8 +31,8 @@ public class NokiaBoxEntity extends Mob {
 
     public void explode(@NotNull Level level) {
         if (!level.isClientSide()) {
-            level.explode(null, getX(), getY(), getZ(),
-                    5.0f, false, Level.ExplosionInteraction.TNT);
+            level.explode(null, getX(), getY(), getZ(), 5.0f,
+                    false, Level.ExplosionInteraction.TNT);
             remove(RemovalReason.KILLED);
         }
     }
@@ -53,30 +47,36 @@ public class NokiaBoxEntity extends Mob {
     }
 
     @Override
-    public void baseTick() {
-        tickableSound.startPlaying();
-        super.baseTick();
-    }
+    public void onAddedToWorld() {
+        SoundManager manager = Minecraft.getInstance().getSoundManager();
 
-    static public class NokiaBoxTickableSound extends AbstractTickableSoundInstance {
-        private boolean played = false;
-
-        public NokiaBoxTickableSound(SoundEvent event, SoundSource soundSource) {
-            super(event, soundSource, SoundInstance.createUnseededRandom());
-            this.looping = true;
+        if (!manager.isActive(soundInstance)) {
+            manager.queueTickingSound(soundInstance);
         }
 
-        public void startPlaying() {
-            if (!played) {
-                SoundManager manager = Minecraft.getInstance().getSoundManager();
-                manager.queueTickingSound(this);
-                played = true;
-            }
+        super.onAddedToWorld();
+    }
+
+    static public class NokiaBoxSoundInstance extends AbstractTickableSoundInstance {
+        private final NokiaBoxEntity nokiaBoxEntity;
+
+        public NokiaBoxSoundInstance(NokiaBoxEntity nokiaBoxEntity) {
+            super(ModSoundEvents.NOKIA_BOX_RINGTONE.get(), SoundSource.NEUTRAL,
+                    SoundInstance.createUnseededRandom());
+
+            this.nokiaBoxEntity = nokiaBoxEntity;
+            this.looping = true;
         }
 
         @Override
         public void tick() {
-            // None
+            if (!nokiaBoxEntity.isRemoved() && nokiaBoxEntity.isAlive()) {
+                this.x = nokiaBoxEntity.getX();
+                this.y = nokiaBoxEntity.getY();
+                this.z = nokiaBoxEntity.getZ();
+            } else {
+                this.stop();
+            }
         }
     }
 }

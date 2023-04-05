@@ -1,25 +1,17 @@
 package com.github.strangemod.registry;
 
-import com.blakebr0.mysticalagriculture.api.crop.Crop;
-import com.blakebr0.mysticalagriculture.api.crop.CropTextures;
-import com.blakebr0.mysticalagriculture.api.crop.CropTier;
-import com.blakebr0.mysticalagriculture.api.crop.CropType;
-import com.blakebr0.mysticalagriculture.api.lib.LazyIngredient;
+import com.github.strangemod.StrangeMod;
 import com.github.strangemod.item.*;
 import com.github.strangemod.item.extra.ItemBuilder;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-
-import static com.github.strangemod.StrangeMod.MOD_ID;
-
 @SuppressWarnings("unused")
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
-            DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
+            DeferredRegister.create(ForgeRegistries.ITEMS, StrangeMod.MOD_ID);
     public static final RegistryObject<Item> AWAKING_STAFF = ITEMS.register(
             "awaking_staff", AwakingStaffItem::new);
     public static final RegistryObject<Item> STAFF_OF_LIGHTNING = ITEMS.register(
@@ -42,7 +34,4 @@ public class ModItems {
             "furhands", FurhandsItem::new);
     public static final RegistryObject<Item> GUY_FAWKES_MASK = ITEMS.register(
             "guy_fawkes_mask", GuyFawkesMaskItem::new);
-
-
-
 }

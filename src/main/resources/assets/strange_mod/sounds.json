@@ -1,9 +1,10 @@
 {
   "nokia_box_ringtone": {
-    "category": "music",
-    "stream": true,
     "sounds": [
-      "strange_mod:nokia_box_ringtone"
+      {
+        "name": "strange_mod:nokia_box_ringtone",
+        "stream": true
+      }
     ]
   }
 }
