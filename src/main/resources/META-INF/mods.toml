@@ -4,7 +4,7 @@ license = "MIT"
 
 [[mods]]
 modId = "strange_mod"
-version = "${file.jarVersion}"
+version = "0.1 Alpha"
 displayName = "Strange Mod"
 logoFile = "strange_mod.png"
 authors = "adasdead & Slieko"
@@ -12,7 +12,7 @@ description = '''
 A very strange mod. I'm serious!
 '''
 
-[[dependencies.examplemod]] #optional
+[[dependencies.strange_mod]] #optional
 # the modid of the dependency
 modId = "forge" #mandatory
 # Does this dependency have to exist - if not, ordering below must be specified

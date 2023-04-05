@@ -116,13 +116,17 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    // Put repositories for dependencies here
-    // ForgeGradle automatically adds the Forge maven and Maven Central for you
-
-    // If you have mod jar dependencies in ./libs, you can declare them as a repository like so:
-    // flatDir {
-    //     dir 'libs'
-    // }
+    maven {
+        url 'https://maven.blakesmods.com'
+    }
+    maven {
+        url 'https://cursemaven.com'
+    }
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "https://modmaven.k-4u.nl"
+    }
 }
 
 dependencies {
@@ -131,6 +135,9 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.19.4-45.0.41'
     implementation 'org.jetbrains:annotations:24.0.1'
+    implementation fg.deobf('com.blakebr0.cucumber:Cucumber:1.19.4-6.2.0')
+    implementation fg.deobf('com.blakebr0.mysticalagriculture:MysticalAgriculture:1.19.4-6.2.0')
+    implementation fg.deobf('com.blakebr0.mysticalagradditions:MysticalAgradditions:1.19.4-6.2.0')
 
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // implementation fg.deobf("com.tterrag.registrate:Registrate:MC${mc_version}-${registrate_version}") // Adds registrate as a dependency
