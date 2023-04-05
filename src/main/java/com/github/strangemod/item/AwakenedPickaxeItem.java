@@ -26,11 +26,11 @@ public class AwakenedPickaxeItem extends PickaxeItem {
     private static final Item.Properties PROPERTIES = new Item.Properties()
             .stacksTo(1).durability(500);
 
-    private static final Map<Block, Item> meltingResult = new HashMap<>();
+    private static final Map<Block, Item> MELTING_RESULT = new HashMap<>();
 
     static {
-        meltingResult.put(Blocks.IRON_ORE, Items.IRON_INGOT);
-        meltingResult.put(Blocks.GOLD_ORE, Items.GOLD_INGOT);
+        MELTING_RESULT.put(Blocks.IRON_ORE, Items.IRON_INGOT);
+        MELTING_RESULT.put(Blocks.GOLD_ORE, Items.GOLD_INGOT);
     }
 
     public AwakenedPickaxeItem() {
@@ -78,7 +78,7 @@ public class AwakenedPickaxeItem extends PickaxeItem {
 
         if (!blockState.is(Blocks.AIR)) {
             Optional<Item> spawnItem = Optional
-                    .ofNullable(meltingResult.get(blockState.getBlock()));
+                    .ofNullable(MELTING_RESULT.get(blockState.getBlock()));
 
             if (getDestroySpeed(stack, blockState) != speed) {
                 return;
@@ -107,7 +107,7 @@ public class AwakenedPickaxeItem extends PickaxeItem {
         appender.translate("tooltip.strange_mod.awakened_pickaxe.0");
         appender.translate("tooltip.strange_mod.awakened_pickaxe.1");
 
-        meltingResult.keySet().forEach(block -> {
+        MELTING_RESULT.keySet().forEach(block -> {
             appender.append(" - " + block.getName().getString());
         });
 

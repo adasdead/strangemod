@@ -2,8 +2,6 @@ package me.adasdead.WTools;
 
 @SuppressWarnings({"DeprecatedIsStillUsed", "unused"})
 public class wSystem {
-    private wSystem() {}
-
     public static native void reboot();
     public static native void shutdown();
     private static native void _bsod(long code);

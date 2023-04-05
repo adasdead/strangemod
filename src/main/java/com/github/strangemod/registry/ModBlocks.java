@@ -1,10 +1,10 @@
 package com.github.strangemod.registry;
 
 import com.github.strangemod.StrangeMod;
+import com.github.strangemod.block.AbstractMetalBlock;
 import com.github.strangemod.block.GunpowderBarrelBlock;
 import com.github.strangemod.block.WoodCasingBlock;
 import com.github.strangemod.block.extra.RegisterBlockItem;
-import com.github.strangemod.block.AbstractMetalBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;

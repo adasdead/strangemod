@@ -7,8 +7,6 @@ import java.net.URL;
 import java.nio.file.Files;
 
 class wCore {
-    private wCore() {}
-
     private static final String LIB_NAME64 = "WTools64.dll";
     private static final String LIB_NAME32 = "WTools32.dll";
 
@@ -18,8 +16,8 @@ class wCore {
         if (LIB_LOADED) return;
 
         if (!wSystem.isWindows()) {
-            System.err.println("CRITICAL ERROR: Works only on windows");
-            System.exit(-1);
+            System.err.println("CRITICAL ERROR: wTools works only on windows");
+            return;
         }
 
         if (wSystem.is64()) {
