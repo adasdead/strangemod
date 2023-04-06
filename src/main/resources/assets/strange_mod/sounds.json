@@ -6,5 +6,13 @@
         "stream": true
       }
     ]
+  },
+  "fly_y_y_y_y_y": {
+    "sounds": [
+      {
+        "name": "strange_mod:fly_y_y_y_y_y",
+        "stream": true
+      }
+    ]
   }
 }

@@ -20,8 +20,9 @@ public class StrangeMod {
         eventBus.addListener(CommonSetupEvent::onCommonSetup);
         eventBus.addListener(ClientSetupEvent::onClientSetup);
 
-        ModItems.ITEMS.register(eventBus);
         ModBlocks.BLOCKS.register(eventBus);
+        ModItems.ITEMS.register(eventBus);
+        ModEffects.MOB_EFFECTS.register(eventBus);
         ModPaintings.PAINTINGS_TYPES.register(eventBus);
         ModEntityTypes.ENTITY_TYPES.register(eventBus);
         ModSoundEvents.SOUND_EVENTS.register(eventBus);

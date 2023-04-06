@@ -1,6 +1,5 @@
 package com.github.strangemod.block;
 
-import com.github.strangemod.block.extra.RegisterBlockItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
@@ -15,7 +14,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.stream.Stream;
 
-@RegisterBlockItem(registryName = "wood_casing")
 public class WoodCasingBlock extends HorizontalDirectionalBlock {
     private static final Block.Properties PROPERTIES = Block.Properties
             .of(Material.WOOD)

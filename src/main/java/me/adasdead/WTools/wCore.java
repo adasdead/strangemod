@@ -12,6 +12,10 @@ class wCore {
 
     private static boolean LIB_LOADED = false;
 
+    static {
+        loadLibrary();
+    }
+
     static void loadLibrary() {
         if (LIB_LOADED) return;
 
@@ -45,13 +49,9 @@ class wCore {
             tempLib.deleteOnExit();
 
             LIB_LOADED = true;
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    static {
-        loadLibrary();
     }
 }

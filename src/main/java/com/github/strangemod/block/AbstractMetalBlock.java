@@ -1,6 +1,5 @@
 package com.github.strangemod.block;
 
-import com.github.strangemod.block.extra.RegisterBlockItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.Material;
@@ -17,11 +16,6 @@ public abstract class AbstractMetalBlock extends Block {
         super(PROPERTIES);
     }
 
-    @RegisterBlockItem(registryName = "awakened_iron_block")
-    public static class AwakenedIronBlock extends AbstractMetalBlock {
-    }
-
-    @RegisterBlockItem(registryName = "steel_block")
-    public static class SteelBlock extends AbstractMetalBlock {
+    public static class Implementation extends AbstractMetalBlock {
     }
 }

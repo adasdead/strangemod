@@ -1,6 +1,5 @@
 package com.github.strangemod.block;
 
-import com.github.strangemod.block.extra.RegisterBlockItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -30,7 +29,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.stream.Stream;
 
 @SuppressWarnings("deprecation")
-@RegisterBlockItem(registryName = "gunpowder_barrel")
 public class GunpowderBarrelBlock extends FallingBlock {
     private static final Block.Properties PROPERTIES = Block.Properties
             .of(Material.WOOD)
