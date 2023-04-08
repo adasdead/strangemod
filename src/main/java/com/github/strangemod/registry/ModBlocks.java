@@ -4,6 +4,7 @@ import com.github.strangemod.StrangeMod;
 import com.github.strangemod.block.AbstractMetalBlock;
 import com.github.strangemod.block.GunpowderBarrelBlock;
 import com.github.strangemod.block.WoodCasingBlock;
+import com.github.strangemod.block.entity.CompactChestBlockEntity;
 import com.github.strangemod.block.extra.RegisterBlockItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -24,7 +25,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> WOOD_CASING = register(WoodCasingBlock.class);
     public static final RegistryObject<Block> STEEL_BLOCK = register(AbstractMetalBlock.SteelBlock.class);
     public static final RegistryObject<Block> AWAKENED_IRON_BLOCK = register(AbstractMetalBlock.AwakenedIronBlock.class);
-
+    public static final RegistryObject<Block> COMPACT_CHEST = register(CompactChestBlockEntity.class);
     private static <T extends Block> RegistryObject<Block> register(@NotNull Class<T> clazz) {
 
         RegisterBlockItem registerInfo = clazz.getAnnotation(RegisterBlockItem.class);
