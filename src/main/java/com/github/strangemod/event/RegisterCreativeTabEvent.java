@@ -8,20 +8,21 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(modid = StrangeMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RegisterCreativeTabEvent {
     private static void addItemToTab(CreativeModeTab.ItemDisplayParameters params,
-                                     CreativeModeTab.Output output) {
+                                     CreativeModeTab.@NotNull Output output) {
 
-        ModItems.ITEMS.getEntries().stream().map(RegistryObject::get)
-                .forEach(item -> {
-                    if (!item.getClass().isAnnotationPresent(ItemNoTab.class)) {
-                        output.accept(item);
-                    }
-                });
+        ModItems.ITEMS.getEntries().stream().map(Supplier::get).forEach(item -> {
+            if (!item.getClass().isAnnotationPresent(ItemNoTab.class)) {
+                output.accept(item);
+            }
+        });
+
     }
 
     @SubscribeEvent

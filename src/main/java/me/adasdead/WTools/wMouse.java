@@ -2,34 +2,38 @@ package me.adasdead.WTools;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.AbstractMap;
-import java.util.Map;
-
 @SuppressWarnings({"unused"})
 public class wMouse {
-    private wMouse() {}
+    static {
+        wCore.loadLibrary();
+    }
 
     private static native void click(short button);
+
     private static native int[] _getPosition();
 
     public static native void setPosition(int x, int y);
-    
-    public enum Button {
-        RIGHT, LEFT
-    }
 
     public static void click(@NotNull Button button) {
         click((short) button.ordinal());
     }
 
-    /**
-     * @return {@link Map.Entry}, where: key = x / value = y
-     */
-    public static @NotNull Map.Entry<Integer, Integer> getPosition() {
-        return new AbstractMap.SimpleEntry<>(_getPosition()[0], _getPosition()[1]);
+    public static @NotNull Vec2i getPosition() {
+        int[] position = _getPosition();
+        return new Vec2i(position[0], position[1]);
     }
 
-    static {
-        wCore.loadLibrary();
+    public enum Button {
+        RIGHT, LEFT
+    }
+
+    static public class Vec2i {
+        public final int x;
+        public final int y;
+
+        public Vec2i(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
     }
 }

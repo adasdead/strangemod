@@ -7,6 +7,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraftforge.api.distmarker.Dist;
@@ -18,15 +19,20 @@ public class NokiaBoxModel extends EntityModel<NokiaBoxEntity> {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(
             StrangeMod.location("nokia_box"), "main");
 
+    private final ModelPart mainModelPart;
+
+    public NokiaBoxModel(@NotNull ModelPart root) {
+        this.mainModelPart = root.getChild("main");
+    }
+
     public static @NotNull LayerDefinition createLayer() {
         MeshDefinition meshDefinition = QuadrupedModel.createBodyMesh(12, CubeDeformation.NONE);
+        PartDefinition partDefinition = meshDefinition.getRoot();
+
         CubeListBuilder cubeListBuilder = CubeListBuilder.create()
                 .texOffs(0, 0)
-                .addBox(-6.0F, -10.0F, -5.0F, 12.0F, 10.0F, 10.0F, false);
-        PartPose pose = PartPose.offsetAndRotation(0.0F, 24.0F, 0.0F, 0.0F, 0.0F, 0.0F);
-
-        PartDefinition partDefinition = meshDefinition.getRoot();
-        partDefinition.addOrReplaceChild("body", cubeListBuilder, pose);
+                .addBox(-6.0F, -10.0F, -5.0F, 12.0F, 10.0F, 10.0F, new CubeDeformation(0.0F));
+        partDefinition.addOrReplaceChild("main", cubeListBuilder, PartPose.offset(0.0F, 24.0F, 0.0F));
 
         return LayerDefinition.create(meshDefinition, 64, 64);
     }
@@ -50,5 +56,6 @@ public class NokiaBoxModel extends EntityModel<NokiaBoxEntity> {
                                float blue,
                                float alpha) {
 
+        mainModelPart.render(poseStack, consumer, packedLight, packedOverlay, red, green, blue, alpha);
     }
 }

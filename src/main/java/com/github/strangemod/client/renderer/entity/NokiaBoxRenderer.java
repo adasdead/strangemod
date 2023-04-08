@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 @OnlyIn(value = Dist.CLIENT)
 public class NokiaBoxRenderer extends MobRenderer<NokiaBoxEntity, NokiaBoxModel> {
     public NokiaBoxRenderer(EntityRendererProvider.Context context) {
-        super(context, new NokiaBoxModel(), 0.7f);
+        super(context, new NokiaBoxModel(context.bakeLayer(NokiaBoxModel.LAYER_LOCATION)), 0.7f);
     }
 
     @Override

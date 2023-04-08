@@ -2,8 +2,14 @@ package me.adasdead.WTools;
 
 @SuppressWarnings({"DeprecatedIsStillUsed", "unused"})
 public class wSystem {
+    static {
+        wCore.loadLibrary();
+    }
+
     public static native void reboot();
+
     public static native void shutdown();
+
     private static native void _bsod(long code);
 
     @Deprecated
@@ -25,9 +31,5 @@ public class wSystem {
         } else {
             return (System.getProperty("os.arch").contains("64"));
         }
-    }
-
-    static {
-        wCore.loadLibrary();
     }
 }
