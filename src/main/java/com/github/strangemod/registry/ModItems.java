@@ -3,13 +3,17 @@ package com.github.strangemod.registry;
 import com.github.strangemod.StrangeMod;
 import com.github.strangemod.item.*;
 import com.github.strangemod.item.extra.BaseItem;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.RecordItem;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
+
 
 @SuppressWarnings("unused")
 public class ModItems {
@@ -26,6 +30,8 @@ public class ModItems {
     public static final RegistryObject<Item> GUY_FAWKES_MASK = register("guy_fawkes_mask", GuyFawkesMaskItem::new);
     public static final RegistryObject<Item> AWAKING_SPHERE = register("awaking_sphere", 1, true);
     public static final RegistryObject<Item> LIGHTBOLT_SPHERE = register("lightbolt_sphere", 1, true);
+
+    public static final RegistryObject<Item> MUSIC_DISC_SQWORE_EVE = register("music_disc_sqwore_eve", MusicDiscSqworeEveItem::new);
 
     public static @NotNull RegistryObject<Item> register(String id) {
         return register(id, 64);

@@ -17,4 +17,8 @@ public class ModSoundEvents {
     public static final RegistryObject<SoundEvent> FLY_Y_Y_Y_Y_Y = SOUND_EVENTS
             .register("fly_y_y_y_y_y", () -> SoundEvent.createVariableRangeEvent(
                     StrangeMod.location("fly_y_y_y_y_y")));
+
+    public static final RegistryObject<SoundEvent> FALLING_STAR = SOUND_EVENTS
+            .register("falling_star", () -> SoundEvent.createVariableRangeEvent(
+                    StrangeMod.location("falling_star")));
 }
