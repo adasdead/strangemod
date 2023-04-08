@@ -21,13 +21,10 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
 public class StaffOfLightningItem extends Item implements ItemEmptyClick {
-    private static final Item.Properties PROPERTIES = new Item.Properties()
-            .stacksTo(1).durability(1000);
-
     private static final double RAY_TRACE_DISTANCE = 50.0;
 
     public StaffOfLightningItem() {
-        super(PROPERTIES);
+        super(new Item.Properties().stacksTo(1).durability(1000));
     }
 
     public static void spawnLightningBolt(@NotNull Level level, @NotNull Vec3 pos) {

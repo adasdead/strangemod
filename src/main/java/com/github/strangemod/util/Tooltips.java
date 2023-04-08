@@ -12,7 +12,7 @@ public class Tooltips {
         return new Appender(components);
     }
 
-    public static class Appender {
+    public static final class Appender {
         private final List<Component> components;
 
         private Appender(List<Component> components) {

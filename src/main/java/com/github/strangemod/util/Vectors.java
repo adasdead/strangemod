@@ -6,6 +6,9 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 public class Vectors {
+    private Vectors() {
+    }
+
     @Contract(value = "_ -> new", pure = true)
     public static @NotNull Vec3 scalar(double value) {
         return new Vec3(value, value, value);

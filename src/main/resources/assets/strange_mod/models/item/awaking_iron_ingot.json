@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "strange_mod:item/awaking_iron_ingot"
+    "layer0": "strange_mod:item/awakened_iron_ingot"
   }
 }

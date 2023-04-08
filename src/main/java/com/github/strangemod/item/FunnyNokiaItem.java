@@ -22,13 +22,10 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class FunnyNokiaItem extends Item implements ItemEmptyClick {
-    private static final Item.Properties PROPERTIES = new Item.Properties()
-            .stacksTo(1);
-
     private static final double TO_DEGREES = Math.PI / 180.0;
 
     public FunnyNokiaItem() {
-        super(PROPERTIES);
+        super(new Item.Properties().stacksTo(1));
     }
 
     @Override

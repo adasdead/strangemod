@@ -1,63 +1,57 @@
-package com.github.strangemod.effect;
+package com.github.strangemod.item.pill;
 
 import com.github.strangemod.registry.ModSoundEvents;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.world.effect.InstantenousMobEffect;
-import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class FlyyyyyEffect extends InstantenousMobEffect {
+public class FlyyyyyPill extends AbstractPillItem {
     private static final double MAX_HEIGHT = 250;
 
-    public FlyyyyyEffect(MobEffectCategory category, int color) {
-        super(category, color);
-    }
-
     @Override
-    public void applyInstantenousEffect(@Nullable Entity source,
-                                        @Nullable Entity indirectSource,
-                                        @NotNull LivingEntity target,
-                                        int amplifier,
-                                        double effectiveness) {
-
-        new Timer().schedule(new TossIntoTheAirTask(target), 0, 1);
+    public void onEat(Player player) {
+        TossIntoTheAirTask.toss(player);
     }
 
     private static class TossIntoTheAirTask extends TimerTask {
         private final LivingEntity entity;
-        private final Vec3 startPos;
+        private final double startY;
         private double currentY;
 
         public TossIntoTheAirTask(@NotNull LivingEntity entity) {
             this.entity = entity;
-            this.startPos = entity.position();
-            this.currentY = this.startPos.y;
+            this.currentY = entity.position().y;
+            this.startY = entity.position().y;
 
             entity.playSound(ModSoundEvents.FLY_Y_Y_Y_Y_Y.get());
+        }
+
+        public static void toss(LivingEntity entity) {
+            TossIntoTheAirTask task = new TossIntoTheAirTask(entity);
+            new Timer().schedule(task, 0, 1);
         }
 
         @Override
         public void run() {
             if (!entity.isAlive()) cancel();
 
-            double normalized = normalize(currentY, startPos.y);
+            Vec3 position = entity.position();
+            double normalized = normalize(currentY, startY);
             double normalizedFinalY = easeIn(normalized);
-            double finalY = denormalize(normalizedFinalY, startPos.y);
+            double finalY = denormalize(normalizedFinalY, startY);
 
-            entity.setPos(startPos.x, finalY, startPos.z);
+            entity.setPos(position.x, finalY, position.z);
 
             entity.level.addParticle(ParticleTypes.CLOUD,
-                    startPos.x, finalY, startPos.z, 0.0D, 0.0D, 0.0D);
+                    position.x, finalY, position.z,
+                    0.0D, 0.0D, 0.0D);
 
             if ((currentY - 1) >= MAX_HEIGHT) {
-                entity.kill();
                 cancel();
             }
 
@@ -65,11 +59,11 @@ public class FlyyyyyEffect extends InstantenousMobEffect {
         }
 
         private double normalize(double value, double min) {
-            return (value - min) / (FlyyyyyEffect.MAX_HEIGHT - min);
+            return (value - min) / (MAX_HEIGHT - min);
         }
 
         private double denormalize(double value, double min) {
-            return min + (value * (FlyyyyyEffect.MAX_HEIGHT - min));
+            return min + (value * (MAX_HEIGHT - min));
         }
 
         private double easeIn(double value) {

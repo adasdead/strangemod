@@ -14,5 +14,13 @@
         "stream": true
       }
     ]
+  },
+  "star_fell": {
+    "sounds": [
+      {
+        "name": "strange_mod:music/star_fell",
+        "stream": true
+      }
+    ]
   }
 }
