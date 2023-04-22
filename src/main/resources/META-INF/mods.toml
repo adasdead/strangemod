@@ -23,3 +23,10 @@ versionRange = "[45,)" #mandatory
 ordering = "NONE"
 # Side this dependency is applied on - BOTH, CLIENT or SERVER
 side = "BOTH"
+
+[[dependencies.strange_mod]] #optional
+modId="geckolib" #mandatory
+mandatory=true #mandatory
+versionRange="[4.1.2,)" #mandatory
+ordering="NONE"
+side="BOTH"

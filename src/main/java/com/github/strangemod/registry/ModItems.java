@@ -22,7 +22,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> AWAKING_STAFF = register("awaking_staff", 1);
     public static final RegistryObject<Item> STAFF_OF_LIGHTNING = register("staff_of_lightning", StaffOfLightningItem::new);
-    public static final RegistryObject<Item> AWAKENED_IRON_INGOT = register("awakened_iron_ingot", 64, true);
+    public static final RegistryObject<Item> AWAKENED_IRON_INGOT = register("awaking_iron_ingot", 64, true);
     public static final RegistryObject<Item> STEEL_INGOT = register("steel_ingot");
     public static final RegistryObject<Item> CHIPS = register("chips", ChipsItem::new);
     public static final RegistryObject<Item> FUNNY_NOKIA = register("funny_nokia", FunnyNokiaItem::new);
@@ -31,7 +31,7 @@ public class ModItems {
     public static final RegistryObject<Item> GUY_FAWKES_MASK = register("guy_fawkes_mask", GuyFawkesMaskItem::new);
     public static final RegistryObject<Item> AWAKING_SPHERE = register("awaking_sphere", 1, true);
     public static final RegistryObject<Item> LIGHTBOLT_SPHERE = register("lightbolt_sphere", 1, true);
-    public static final RegistryObject<Item> MUSIC_DISC_SQWORE_EVE = registerRecord("music_disc_star_fell",
+    public static final RegistryObject<Item> MUSIC_DISC_SQWORE_EVE = registerRecord("music_disc_sqwore_eve",
             ModSoundEvents.STAR_FELL, "1m35s");
 
     // Pills

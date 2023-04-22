@@ -1,8 +1,10 @@
 package com.github.strangemod.item;
 
 import com.github.strangemod.entity.LightningFireballEntity;
+import com.github.strangemod.item.client.StaffOfLightningRenderer;
 import com.github.strangemod.item.extra.ItemEmptyClick;
 import com.github.strangemod.util.Vectors;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -18,9 +20,18 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import org.jetbrains.annotations.NotNull;
+import software.bernie.geckolib.animatable.GeoItem;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.*;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.RenderUtils;
 
-public class StaffOfLightningItem extends Item implements ItemEmptyClick {
+import java.util.function.Consumer;
+
+public class StaffOfLightningItem extends Item implements ItemEmptyClick, GeoItem {
     private static final double RAY_TRACE_DISTANCE = 50.0;
 
     public StaffOfLightningItem() {
@@ -70,4 +81,45 @@ public class StaffOfLightningItem extends Item implements ItemEmptyClick {
         player.getMainHandItem().hurtAndBreak(25, player,
                 entity -> entity.broadcastBreakEvent(player.getUsedItemHand()));
     }
-}
+    private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+
+    public StaffOfLightningItem(Properties properties) {
+        super(properties);
+    }
+
+    private PlayState predicate(AnimationState animationState) {
+        animationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
+        return PlayState.CONTINUE;
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        controllerRegistrar.add(new AnimationController(this, "controller", 0, this::predicate));
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
+    }
+
+    @Override
+    public double getTick(Object itemStack) {
+        return RenderUtils.getCurrentTick();
+    }
+
+    @Override
+    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+        consumer.accept(new IClientItemExtensions() {
+            private StaffOfLightningRenderer renderer;
+
+            @Override
+            public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+                if (this.renderer == null) {
+                    renderer = new StaffOfLightningRenderer();
+                }
+
+                return this.renderer;
+            }
+        });
+
+    }}

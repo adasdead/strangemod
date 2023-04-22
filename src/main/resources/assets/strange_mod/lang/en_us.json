@@ -6,7 +6,7 @@
   "block.strange_mod.awakened_iron_block": "Awakened iron block",
   "block.strange_mod.maxwell_block": "§oMAXWELL",
   "item.strange_mod.awaking_staff": "Awaking staff",
-  "item.strange_mod.awakened_iron_ingot": "Awakened iron ingot",
+  "item.strange_mod.awaking_iron_ingot": "Awaking iron ingot",
   "item.strange_mod.steel_ingot": "Steel ingot",
   "item.strange_mod.staff_of_lightning": "Staff of lightning",
   "item.strange_mod.chips": "Chips",
@@ -16,8 +16,8 @@
   "item.strange_mod.awakened_pickaxe": "Awakened pickaxe",
   "item.strange_mod.furhands": "Fur Hands",
   "item.strange_mod.guy_fawkes_mask": "Guy Fawkes mask",
-  "item.strange_mod.music_disc_star_fell.desc": "Sqwore - Eve - Star Fell",
-  "item.strange_mod.music_disc_star_fell": "Record",
+  "item.strange_mod.music_disc_sqwore_eve.desc": "Sqwore - Eve - Star Fell",
+  "item.strange_mod.music_disc_sqwore_eve": "Record",
   "item.strange_mod.flyyyyy_pill": "Flyyyyy pill",
   "tooltip.strange_mod.shift": "§7Hold SHIFT for more info",
   "tooltip.strange_mod.awakened_pickaxe.0": "§7Breaks 3x3x1",
@@ -27,5 +27,5 @@
   "tooltip.strange_mod.furhands.0": "§7Reference: Ray's Skulldog",
   "tooltip.strange_mod.guy_fawkes_mask.0": "§5§o1337",
   "subtitles.star_fell": "Sqwore - Eve - Star Fell",
-  "crop.strange_mod.awakened_iron": "awakened iron"
+  "crop.strange_mod.awakened_iron": "Awakened Iron"
 }
