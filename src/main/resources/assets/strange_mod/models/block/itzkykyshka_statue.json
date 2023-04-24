@@ -1,6 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
+	"render_type": "cutout",
 	"textures": {
 		"0": "strange_mod:block/itzkykyshka",
 		"1": "strange_mod:block/steel_block",

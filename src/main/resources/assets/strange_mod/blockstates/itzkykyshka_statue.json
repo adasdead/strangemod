@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "strange_mod:block/itzkykyshka_statue" },
+    "facing=south": { "model": "strange_mod:block/itzkykyshka_statue", "y": 180 },
+    "facing=west": { "model": "strange_mod:block/itzkykyshka_statue", "y": 270 },
+    "facing=east": { "model": "strange_mod:block/itzkykyshka_statue", "y": 90 }
+  }
+}
