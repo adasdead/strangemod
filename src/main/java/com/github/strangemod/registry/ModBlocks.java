@@ -3,6 +3,7 @@ package com.github.strangemod.registry;
 import com.github.strangemod.StrangeMod;
 import com.github.strangemod.block.AbstractMetalBlock;
 import com.github.strangemod.block.GunpowderBarrelBlock;
+import com.github.strangemod.block.ItzKyKySHkaStatueBlock;
 import com.github.strangemod.block.WoodCasingBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -22,6 +23,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> WOOD_CASING = register("wood_casing", WoodCasingBlock::new);
     public static final RegistryObject<Block> STEEL_BLOCK = register("steel_block", AbstractMetalBlock.Implementation::new);
     public static final RegistryObject<Block> AWAKENED_IRON_BLOCK = register("awakened_iron_block", AbstractMetalBlock.Implementation::new);
+    public static final RegistryObject<Block> ITZKYKYSHKA_STATUE = register("itzkykyshka_statue", ItzKyKySHkaStatueBlock::new);
 
     public static @NotNull RegistryObject<Block> register(String id, Supplier<Block> supplier) {
         RegistryObject<Block> registryObject = BLOCKS.register(id, supplier);

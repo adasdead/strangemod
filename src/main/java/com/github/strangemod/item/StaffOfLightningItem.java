@@ -58,7 +58,7 @@ public class StaffOfLightningItem extends Item implements ItemEmptyClick, GeoIte
             BlockPos pos = blockHitResult.getBlockPos();
 
             if (!level.getBlockState(pos).is(Blocks.AIR)) {
-                itemInHand.hurtAndBreak(5, player, entity -> entity.broadcastBreakEvent(hand));
+                itemInHand.hurtAndBreak(4, player, entity -> entity.broadcastBreakEvent(hand));
                 spawnLightningBolt(level, Vectors.toVec3(pos));
 
                 return InteractionResultHolder.success(itemInHand);

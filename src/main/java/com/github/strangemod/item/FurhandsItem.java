@@ -20,16 +20,17 @@ public class FurhandsItem extends ShovelItem {
         super(Tiers.IRON, 2, 3.0f, PROPERTIES);
     }
 
-    @Override
-    public void appendHoverText(@NotNull ItemStack stack,
-                                @Nullable Level world,
-                                @NotNull List<Component> components,
-                                @NotNull TooltipFlag flag) {
+    //  @Override
+    //public void appendHoverText(@NotNull ItemStack stack,
+    //                           @Nullable Level world,
+    //                           @NotNull List<Component> components,
+    //                        @NotNull TooltipFlag flag) {
 
-        Tooltips.Appender appender = Tooltips.appender(components);
-        appender.empty();
-        appender.translate("tooltip.strange_mod.furhands.0");
+    // Tooltips.Appender appender = Tooltips.appender(components);
+    //  appender.empty();
+    //  appender.translate("tooltip.strange_mod.furhands.0");
 
-        super.appendHoverText(stack, world, components, flag);
-    }
+    // super.appendHoverText(stack, world, components, flag);
+
+//}
 }
