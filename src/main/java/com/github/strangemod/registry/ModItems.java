@@ -27,7 +27,7 @@ public class ModItems {
     public static final RegistryObject<Item> CHIPS = register("chips", ChipsItem::new);
     public static final RegistryObject<Item> FUNNY_NOKIA = register("funny_nokia", FunnyNokiaItem::new);
     public static final RegistryObject<Item> AWAKENED_PICKAXE = register("awakened_pickaxe", AwakenedPickaxeItem::new);
-    public static final RegistryObject<Item> FURHANDS = register("furhands", FurhandsItem::new);
+   // public static final RegistryObject<Item> FURHANDS = register("furhands", FurhandsItem::new);
     public static final RegistryObject<Item> GUY_FAWKES_MASK = register("guy_fawkes_mask", GuyFawkesMaskItem::new);
     public static final RegistryObject<Item> AWAKING_SPHERE = register("awaking_sphere", 1, true);
     public static final RegistryObject<Item> LIGHTBOLT_SPHERE = register("lightbolt_sphere", 1, true);
