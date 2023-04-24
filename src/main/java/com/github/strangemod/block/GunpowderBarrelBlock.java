@@ -30,14 +30,10 @@ import java.util.stream.Stream;
 
 @SuppressWarnings("deprecation")
 public class GunpowderBarrelBlock extends FallingBlock {
-    private static final Block.Properties PROPERTIES = Block.Properties
-            .of(Material.WOOD)
-            .strength(1.0f);
-
     private static final float EXPLODE_RADIUS = 5.0f;
 
     public GunpowderBarrelBlock() {
-        super(PROPERTIES);
+        super(Block.Properties.of(Material.WOOD).strength(1.0f));
     }
 
     @Override
@@ -138,8 +134,7 @@ public class GunpowderBarrelBlock extends FallingBlock {
                                   BlockGetter level,
                                   BlockPos pos,
                                   Direction direction) {
-
-        return 1;
+        return 50;
     }
 
     @SuppressWarnings("deprecation")

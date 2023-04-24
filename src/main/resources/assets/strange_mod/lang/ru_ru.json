@@ -19,6 +19,7 @@
   "item.strange_mod.music_disc_sqwore_eve.desc": "Sqwore - Eve - Звезда упала",
   "item.strange_mod.music_disc_sqwore_eve": "Пластинка",
   "item.strange_mod.flyyyyy_pill": "Flyyyyy таблетка",
+  "item.strange_mod.fork": "Вилка",
   "tooltip.strange_mod.shift": "§7Нажми SHIFT, чтобы посмотреть доп. инфу",
   "tooltip.strange_mod.awakened_pickaxe.0": "§7Ломает 3x3x1",
   "tooltip.strange_mod.awakened_pickaxe.1": "§7Сразу же плавит:",
@@ -26,6 +27,9 @@
   "tooltip.strange_mod.funny_nokia.1": "§7ПКМ - взорвать все бомбы",
   "tooltip.strange_mod.furhands.0": "§7Референс: Скаллдог Рэя",
   "tooltip.strange_mod.guy_fawkes_mask.0": "§5§oВзлом жопы",
+  "tooltip.strange_mod.staff_of_lightning.0": "§7ЛКМ - большой бум из молний",
+  "tooltip.strange_mod.staff_of_lightning.1": "§7ПКМ - ударить молнией",
+  "tooltip.strange_mod.fork": "§aСъешь своего врага!",
   "subtitles.star_fell": "Sqwore - Eve - Звезда упала",
   "crop.strange_mod.awakened_iron": "пробуждённого железа",
   "block.strange_mod.itzkykyshka_statue": "Статуя Игрока"

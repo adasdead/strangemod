@@ -25,8 +25,8 @@ ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.strange_mod]] #optional
-modId="geckolib" #mandatory
-mandatory=true #mandatory
-versionRange="[4.1.2,)" #mandatory
-ordering="NONE"
-side="BOTH"
+modId = "geckolib" #mandatory
+mandatory = true #mandatory
+versionRange = "[4.1.2,)" #mandatory
+ordering = "NONE"
+side = "BOTH"

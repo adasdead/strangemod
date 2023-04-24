@@ -1,4 +1,4 @@
-package com.github.strangemod.item.client;
+package com.github.strangemod.client.renderer.model;
 
 import com.github.strangemod.StrangeMod;
 import com.github.strangemod.item.StaffOfLightningItem;
@@ -8,17 +8,17 @@ import software.bernie.geckolib.model.GeoModel;
 public class StaffOfLightningModel extends GeoModel<StaffOfLightningItem> {
     @Override
     public ResourceLocation getModelResource(StaffOfLightningItem animatable) {
-        return new ResourceLocation(StrangeMod.MOD_ID, "geo/staff_of_lightning.geo.json");
+        return StrangeMod.location("geo/staff_of_lightning.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(StaffOfLightningItem animatable) {
-        return new ResourceLocation(StrangeMod.MOD_ID, "textures/item/staff_of_lightning.png");
+        return StrangeMod.location("textures/item/staff_of_lightning.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(StaffOfLightningItem animatable) {
-        return new ResourceLocation(StrangeMod.MOD_ID, "animations/staff_of_lightning.animation.json");
+        return StrangeMod.location("animations/staff_of_lightning.animation.json");
     }
 }
 

@@ -18,4 +18,9 @@ public class Vectors {
     public static @NotNull Vec3 toVec3(@NotNull BlockPos blockPos) {
         return new Vec3(blockPos.getX(), blockPos.getY(), blockPos.getZ());
     }
+
+    @Contract(value = "_ -> new", pure = true)
+    public static @NotNull BlockPos toBlockPos(@NotNull Vec3 vec) {
+        return new BlockPos((int) vec.x, (int) vec.y, (int) vec.z);
+    }
 }

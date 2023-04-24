@@ -16,6 +16,6 @@ public abstract class AbstractMetalBlock extends Block {
         super(PROPERTIES);
     }
 
-    public static class Implementation extends AbstractMetalBlock {
+    public static class Impl extends AbstractMetalBlock {
     }
 }

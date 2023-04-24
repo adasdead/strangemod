@@ -31,6 +31,7 @@ public class ModItems {
     public static final RegistryObject<Item> GUY_FAWKES_MASK = register("guy_fawkes_mask", GuyFawkesMaskItem::new);
     public static final RegistryObject<Item> AWAKING_SPHERE = register("awaking_sphere", 1, true);
     public static final RegistryObject<Item> LIGHTBOLT_SPHERE = register("lightbolt_sphere", 1, true);
+    public static final RegistryObject<Item> FORK = register("fork", ForkItem::new);
     public static final RegistryObject<Item> MUSIC_DISC_SQWORE_EVE = registerRecord("music_disc_sqwore_eve",
             ModSoundEvents.STAR_FELL, "1m35s");
 

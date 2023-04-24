@@ -15,12 +15,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.stream.Stream;
 
 public class WoodCasingBlock extends HorizontalDirectionalBlock {
-    private static final Block.Properties PROPERTIES = Block.Properties
-            .of(Material.WOOD)
-            .lightLevel((state) -> 15);
-
     public WoodCasingBlock() {
-        super(PROPERTIES);
+        super(Block.Properties.of(Material.WOOD).lightLevel((state) -> 15));
     }
 
     @SuppressWarnings("deprecation")

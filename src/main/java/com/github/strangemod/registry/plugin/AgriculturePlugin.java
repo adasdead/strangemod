@@ -1,4 +1,4 @@
-package com.github.strangemod.registry.extra;
+package com.github.strangemod.registry.plugin;
 
 import com.blakebr0.mysticalagriculture.api.IMysticalAgriculturePlugin;
 import com.blakebr0.mysticalagriculture.api.MysticalAgriculturePlugin;

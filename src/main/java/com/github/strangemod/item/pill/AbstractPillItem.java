@@ -8,6 +8,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
+
 public abstract class AbstractPillItem extends Item {
     public AbstractPillItem() {
         super(new Properties().food(ModFoods.PILL));
@@ -24,4 +26,7 @@ public abstract class AbstractPillItem extends Item {
 
         return super.finishUsingItem(itemStack, level, entity);
     }
+
+    // TODO: To be implemented in the future
+    public abstract Color getColor();
 }

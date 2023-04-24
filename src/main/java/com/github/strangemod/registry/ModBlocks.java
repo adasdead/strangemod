@@ -21,8 +21,8 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> GUNPOWDER_BARREL = register("gunpowder_barrel", GunpowderBarrelBlock::new);
     public static final RegistryObject<Block> WOOD_CASING = register("wood_casing", WoodCasingBlock::new);
-    public static final RegistryObject<Block> STEEL_BLOCK = register("steel_block", AbstractMetalBlock.Implementation::new);
-    public static final RegistryObject<Block> AWAKENED_IRON_BLOCK = register("awakened_iron_block", AbstractMetalBlock.Implementation::new);
+    public static final RegistryObject<Block> STEEL_BLOCK = register("steel_block", AbstractMetalBlock.Impl::new);
+    public static final RegistryObject<Block> AWAKENED_IRON_BLOCK = register("awakened_iron_block", AbstractMetalBlock.Impl::new);
     public static final RegistryObject<Block> ITZKYKYSHKA_STATUE = register("itzkykyshka_statue", ItzKyKySHkaStatueBlock::new);
 
     public static @NotNull RegistryObject<Block> register(String id, Supplier<Block> supplier) {
