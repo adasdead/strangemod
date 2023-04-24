@@ -1,6 +1,7 @@
 package com.github.strangemod.registry;
 
 import com.github.strangemod.StrangeMod;
+import com.github.strangemod.client.renderer.item.FlyingSwordBlockItem;
 import com.github.strangemod.item.*;
 import com.github.strangemod.item.extra.BaseItem;
 import com.github.strangemod.item.pill.FlyyyyyPill;
@@ -19,8 +20,7 @@ import java.util.function.Supplier;
 @SuppressWarnings("unused")
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, StrangeMod.MOD_ID);
-
-    public static final RegistryObject<Item> AWAKING_STAFF = register("awaking_staff", 1);
+    //public static final RegistryObject<Item> AWAKING_STAFF = register("awaking_staff", 1);
     public static final RegistryObject<Item> STAFF_OF_LIGHTNING = register("staff_of_lightning", StaffOfLightningItem::new);
     public static final RegistryObject<Item> AWAKENED_IRON_INGOT = register("awaking_iron_ingot", 64, true);
     public static final RegistryObject<Item> STEEL_INGOT = register("steel_ingot");
@@ -34,6 +34,9 @@ public class ModItems {
     public static final RegistryObject<Item> FORK = register("fork", ForkItem::new);
     public static final RegistryObject<Item> MUSIC_DISC_SQWORE_EVE = registerRecord("music_disc_sqwore_eve",
             ModSoundEvents.STAR_FELL, "1m35s");
+
+    public static final RegistryObject<Item> FLYING_SWORD_BLOCK_ITEM = ITEMS.register("flying_sword",
+            () -> new FlyingSwordBlockItem(ModBlocks.FLYING_SWORD.get(), new Item.Properties()));
 
     // Pills
     public static final RegistryObject<Item> FLYYYYY_PILL = register("flyyyyy_pill", FlyyyyyPill::new);
