@@ -1,7 +1,7 @@
 package com.github.strangemod.client.renderer.entity;
 
 import com.github.strangemod.StrangeMod;
-import com.github.strangemod.client.renderer.model.NokiaBoxModel;
+import com.github.strangemod.client.model.NokiaBoxModel;
 import com.github.strangemod.entity.NokiaBoxEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;

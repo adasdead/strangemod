@@ -1,4 +1,4 @@
-package com.github.strangemod.client.renderer.model;
+package com.github.strangemod.client.model;
 
 import com.github.strangemod.StrangeMod;
 import com.github.strangemod.item.StaffOfLightningItem;

@@ -5,6 +5,7 @@ import com.github.strangemod.entity.LightningFireballEntity;
 import com.github.strangemod.item.extra.ItemEmptyClick;
 import com.github.strangemod.util.Tooltips;
 import com.github.strangemod.util.Vectors;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -27,20 +28,19 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.Animation;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.List;
 import java.util.function.Consumer;
 
 public class StaffOfLightningItem extends Item implements ItemEmptyClick, GeoItem {
     private static final double RAY_TRACE_DISTANCE = 50.0;
+    private static final RawAnimation IDLE_ANIM = RawAnimation.begin().thenLoop("idle");
 
-    private final AnimatableInstanceCache animatableInstanceCache;
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     public StaffOfLightningItem() {
         this(new Item.Properties().stacksTo(1).durability(1000));
@@ -48,7 +48,6 @@ public class StaffOfLightningItem extends Item implements ItemEmptyClick, GeoIte
 
     public StaffOfLightningItem(Properties properties) {
         super(properties);
-        animatableInstanceCache = new SingletonAnimatableInstanceCache(this);
     }
 
     public static void spawnLightningBolt(@NotNull Level level, @NotNull Vec3 pos) {
@@ -113,21 +112,29 @@ public class StaffOfLightningItem extends Item implements ItemEmptyClick, GeoIte
      * ****************************************************************************************** */
 
     @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(new AnimationController<>(this, "controller", 0, state -> {
-            RawAnimation rawAnimation = RawAnimation.begin().then("idle", Animation.LoopType.LOOP);
-            state.getController().setAnimation(rawAnimation);
-            return PlayState.CONTINUE;
-        }));
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "controller", 0,
+                state -> state.setAndContinue(IDLE_ANIM)));
     }
 
     @Override
     public void initializeClient(@NotNull Consumer<IClientItemExtensions> consumer) {
-        consumer.accept(new StaffOfLightningRenderer.ExConsumer());
+        consumer.accept(new IClientItemExtensions() {
+            private StaffOfLightningRenderer renderer = null;
+
+            @Override
+            public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+                if (this.renderer == null) {
+                    this.renderer = new StaffOfLightningRenderer();
+                }
+
+                return this.renderer;
+            }
+        });
     }
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return animatableInstanceCache;
+        return cache;
     }
 }

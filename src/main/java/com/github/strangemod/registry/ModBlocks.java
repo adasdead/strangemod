@@ -2,8 +2,6 @@ package com.github.strangemod.registry;
 
 import com.github.strangemod.StrangeMod;
 import com.github.strangemod.block.*;
-import com.github.strangemod.block.entity.FlyingSwordBlockEntity;
-
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;

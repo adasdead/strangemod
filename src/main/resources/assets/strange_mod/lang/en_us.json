@@ -5,14 +5,16 @@
   "block.strange_mod.steel_block": "Steel block",
   "block.strange_mod.awakened_iron_block": "Awakened iron block",
   "block.strange_mod.maxwell_block": "§oMAXWELL",
+  "block.strange_mod.itzkykyshka_statue": "Player statue",
+  "block.strange_mod.flying_sword": "Flying sword pedestal",
   "item.strange_mod.awaking_staff": "Awaking staff",
   "item.strange_mod.awaking_iron_ingot": "Awaking iron ingot",
   "item.strange_mod.steel_ingot": "Steel ingot",
   "item.strange_mod.staff_of_lightning": "Staff of lightning",
   "item.strange_mod.chips": "Chips",
   "item.strange_mod.funny_nokia": "Funny arabic Nokia",
-  "item.strange_mod.awaking_sphere": "Awaking Sphere",
-  "item.strange_mod.lightbolt_sphere": "Lightbolt Sphere",
+  "item.strange_mod.awaking_sphere": "Awaking sphere",
+  "item.strange_mod.lightbolt_sphere": "Lightbolt sphere",
   "item.strange_mod.awakened_pickaxe": "Awakened pickaxe",
   "item.strange_mod.furhands": "Fur Hands",
   "item.strange_mod.guy_fawkes_mask": "Guy Fawkes mask",
@@ -31,7 +33,5 @@
   "tooltip.strange_mod.staff_of_lightning.1": "§7RMB - to strike with lightning",
   "tooltip.strange_mod.fork": "§aEat your enemy!",
   "subtitles.star_fell": "Sqwore - Eve - Star Fell",
-  "crop.strange_mod.awakened_iron": "Awakened Iron",
-  "block.strange_mod.itzkykyshka_statue": "Player Statue",
-  "block.strange_mod.flying_sword": "Flying Sword Pedestal"
+  "crop.strange_mod.awakened_iron": "Awakened Iron"
 }
