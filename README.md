@@ -21,14 +21,14 @@ git clone https://github.com/adasdead/strangemod
 cd strangemod
 
 # Build the jar file of the mod
-gradle build # or .\gradlew.bat build
+gradle build # or ./gradlew build
 
 # Copy the jar file to the mods folder of your Minecraft
 cp build/libs/StrangeMod-1.2.jar ~/.minecraft/mods
 ```
 
 ## Usage
-To use the mod you need to run Minecraft with Forge installed for version 1.19.4 and select the Forge profile in the launcher. Then you can create a new world or load an existing one and enjoy the strange items from the mod. You can find them in creative mode or craft them by recipes from JEI.
+To use the mod you need to run Minecraft with Forge installed for version 1.19.4 and select the Forge profile in the launcher. Then you can create a new world or load an existing one and enjoy the strange items from the mod. You can find them in creative mode or craft them by recipes from [JEI](https://github.com/mezz/JustEnoughItems).
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
