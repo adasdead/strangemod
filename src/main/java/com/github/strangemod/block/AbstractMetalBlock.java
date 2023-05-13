@@ -6,14 +6,12 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 
 public abstract class AbstractMetalBlock extends Block {
-    private static final Block.Properties PROPERTIES = Block.Properties
-            .of(Material.METAL, MaterialColor.DIAMOND)
-            .requiresCorrectToolForDrops()
-            .strength(5.0F, 6.0F)
-            .sound(SoundType.METAL);
-
     public AbstractMetalBlock() {
-        super(PROPERTIES);
+        super(Block.Properties
+                .of(Material.METAL, MaterialColor.DIAMOND)
+                .requiresCorrectToolForDrops()
+                .strength(5.0F, 6.0F)
+                .sound(SoundType.METAL));
     }
 
     public static class Impl extends AbstractMetalBlock {

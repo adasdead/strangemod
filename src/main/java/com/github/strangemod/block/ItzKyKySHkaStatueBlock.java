@@ -22,11 +22,6 @@ import java.util.stream.Stream;
 public class ItzKyKySHkaStatueBlock extends HorizontalDirectionalBlock {
     private static final Map<Direction, VoxelShape> SHAPES = new EnumMap<>(Direction.class);
 
-    private static final Block.Properties PROPERTIES = Block.Properties
-            .of(Material.STONE)
-            .lightLevel((state) -> 15)
-            .strength(1.0f);
-
     private static final VoxelShape SHAPE = Stream.of(
             Block.box(2, 0, 2, 14, 2, 14),
             Block.box(4.1, 0, 6, 8.1, 12, 10),
@@ -38,18 +33,21 @@ public class ItzKyKySHkaStatueBlock extends HorizontalDirectionalBlock {
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
     public ItzKyKySHkaStatueBlock() {
-        super(PROPERTIES);
+        super(Block.Properties
+                .of(Material.STONE)
+                .lightLevel((state) -> 15)
+                .strength(1.0f));
 
         registerDefaultState(defaultBlockState().setValue(FACING, Direction.NORTH));
 
         for (Direction direction : Direction.values()) {
-            SHAPES.put(direction, rotateShape(direction, SHAPE));
+            SHAPES.put(direction, rotateShape(direction));
         }
     }
 
     // https://www.youtube.com/watch?v=ngSgStS-gm4
-    private static VoxelShape rotateShape(@NotNull Direction to, VoxelShape shape) {
-        final VoxelShape[] buffer = {shape, Shapes.empty()};
+    private VoxelShape rotateShape(@NotNull Direction to) {
+        final VoxelShape[] buffer = {ItzKyKySHkaStatueBlock.SHAPE, Shapes.empty()};
 
         final int times = (to.get2DDataValue() - Direction.NORTH.get2DDataValue() + 4) % 4;
         for (int i = 0; i < times; i++) {
@@ -63,7 +61,7 @@ public class ItzKyKySHkaStatueBlock extends HorizontalDirectionalBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(FACING);
     }

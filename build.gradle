@@ -132,7 +132,7 @@ repositories {
 
 dependencies {
     // Forge / Minecraft
-    minecraft 'net.minecraftforge:forge:1.19.4-45.0.47'
+    minecraft 'net.minecraftforge:forge:1.19.4-45.0.59'
 
     // Jetbrains Annotations
     implementation 'org.jetbrains:annotations:24.0.1'
