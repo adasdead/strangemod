@@ -5,7 +5,7 @@
 
 A very strange mod for Minecraft version **1.19.4**. The project has no clear goal, we add whatever comes to our mind. Of course, sometimes we borrow some ideas from other mods and games for items/blocks, but we try to come up with a lot of things ourselves.
 
-The mod contains various items: starting from an anonymous mask that adds a bouncing effect, ending with a buggy fork that you can eat your enemies with.
+The mod contains various items: starting from an anonymous mask that adds a Jump Boost effect, ending with a buggy fork that you can eat your enemies with.
 
 We try to write the best quality code possible, but because we have little experience in creating mods for Minecraft, it sometimes (or maybe everywhere xd) turns out to be terrible. Therefore, if you can somehow improve the situation with the code, feel free to make pull requests. If you also have ideas on what else nonsense can be added to the mod, suggest them in issues.
 
