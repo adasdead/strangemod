@@ -1,7 +1,7 @@
-<p style="text-align:center;">
+<p align="center">
   <img src="https://github.com/adasdead/strangemod/blob/1.19.4/src/main/resources/strange_mod.png" width="25%" height="25%" alt="logo"/>
 </p>
-<h1 style="text-align:center;">StrangeMod (in dev)</h1>
+<h1 align="center">StrangeMod (in dev)</h1>
 
 A very strange mod for Minecraft version **1.19.4**. The project has no clear goal, we add whatever comes to our mind. Of course, sometimes we borrow some ideas from other mods and games for items/blocks, but we try to come up with a lot of things ourselves.
 
