@@ -30,7 +30,9 @@ public class ModItems {
     public static final RegistryObject<Item> LIGHTBOLT_SPHERE = register("lightbolt_sphere", 1, true);
     public static final RegistryObject<Item> FORK = register("fork", ForkItem::new);
     public static final RegistryObject<Item> MUSIC_DISC_SQWORE_EVE = registerRecord("music_disc_sqwore_eve",
-            ModSoundEvents.STAR_FELL, "1m35s");
+            ModSoundEvents.STAR_FELL, "1m35s" );
+
+    public static final RegistryObject<Item> COOL_BOOK = register("cool_book", 1);
 
     // Pills
     public static final RegistryObject<Item> FLYYYYY_PILL = register("flyyyyy_pill", FlyyyyyPill::new);

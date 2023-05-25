@@ -24,6 +24,8 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> FLYING_SWORD = register("flying_sword", FlyingSwordBlock::new);
 
+
+
     public static @NotNull RegistryObject<Block> register(String id, Supplier<Block> supplier) {
         RegistryObject<Block> registryObject = BLOCKS.register(id, supplier);
         ModItems.register(id, () -> new BlockItem(registryObject.get(), new Item.Properties()));
