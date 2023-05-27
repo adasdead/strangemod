@@ -1,6 +1,7 @@
 package com.github.strangemod.registry;
 
 import com.github.strangemod.StrangeMod;
+import com.github.strangemod.block.entity.ChipsStandBlockEntity;
 import com.github.strangemod.block.entity.FlyingSwordBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -17,6 +18,10 @@ public class ModBlockEntities {
     public static final RegistryObject<BlockEntityType<FlyingSwordBlockEntity>> FLYING_SWORD =
             register("flying_sword_block_entity", () -> BlockEntityType.Builder.of(
                     FlyingSwordBlockEntity::new, ModBlocks.FLYING_SWORD.get()));
+
+    public static final RegistryObject<BlockEntityType<ChipsStandBlockEntity>> CHIPS_BLOCK_ENTITY =
+            register("chips_stand_block_entity", () -> BlockEntityType.Builder.of(
+                    ChipsStandBlockEntity::new, ModBlocks.CHIPS_STAND.get()));
 
     @SuppressWarnings("DataFlowIssue")
     public static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> register(
