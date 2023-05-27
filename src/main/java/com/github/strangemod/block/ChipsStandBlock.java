@@ -1,7 +1,6 @@
 package com.github.strangemod.block;
 
 import com.github.strangemod.block.entity.ChipsStandBlockEntity;
-import com.github.strangemod.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -13,8 +12,6 @@ import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
@@ -40,16 +37,6 @@ public class ChipsStandBlock extends BaseEntityBlock {
         return new ChipsStandBlockEntity(blockPos, state);
     }
 
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level,
-                                                                  @NotNull BlockState state,
-                                                                  @NotNull BlockEntityType<T> type) {
-
-        return createTickerHelper(type, ModBlockEntities.CHIPS_BLOCK_ENTITY.get(),
-                                  ChipsStandBlockEntity::tick);
-    }
-
     @Override
     public @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
         return RenderShape.MODEL;
@@ -65,7 +52,7 @@ public class ChipsStandBlock extends BaseEntityBlock {
                                           @NotNull BlockHitResult result) {
 
         if (!level.isClientSide()) {
-            getEntity(level, pos).ifPresent(entity -> {
+            getBlockEntity(level, pos).ifPresent(entity -> {
                 NetworkHooks.openScreen((ServerPlayer) player, entity, pos);
             });
         }
@@ -82,7 +69,7 @@ public class ChipsStandBlock extends BaseEntityBlock {
                          boolean isMoving) {
 
         if (state.getBlock() != newState.getBlock()) {
-            getEntity(level, pos).ifPresent(ChipsStandBlockEntity::drop);
+            getBlockEntity(level, pos).ifPresent(ChipsStandBlockEntity::drop);
         }
 
         super.onRemove(state, level, pos, newState, isMoving);
@@ -105,7 +92,7 @@ public class ChipsStandBlock extends BaseEntityBlock {
         ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
     }
 
-    private Optional<ChipsStandBlockEntity> getEntity(@NotNull Level level, BlockPos pos) {
+    private Optional<ChipsStandBlockEntity> getBlockEntity(@NotNull Level level, BlockPos pos) {
         BlockEntity entity = level.getBlockEntity(pos);
 
         if (entity instanceof ChipsStandBlockEntity) {

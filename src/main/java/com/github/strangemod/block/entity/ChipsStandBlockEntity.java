@@ -1,6 +1,8 @@
 package com.github.strangemod.block.entity;
 
+import com.github.strangemod.client.screens.ChipsStandScreen;
 import com.github.strangemod.registry.ModBlockEntities;
+import com.github.strangemod.registry.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -11,7 +13,7 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -25,6 +27,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 
 public class ChipsStandBlockEntity extends BlockEntity implements MenuProvider {
+    private static final Ingredient CHIPS = Ingredient.of(ModItems.CHIPS.get());
+
     private final ItemStackHandler itemStackHandler = new ItemStackHandler(1) {
         @Override
         protected void onContentsChanged(int slot) {
@@ -49,7 +53,7 @@ public class ChipsStandBlockEntity extends BlockEntity implements MenuProvider {
                                             @NotNull Inventory inventory,
                                             @NotNull Player player) {
 
-        return null;
+        return new ChipsStandScreen.Menu(containerId, inventory, this);
     }
 
     @Override
@@ -86,13 +90,13 @@ public class ChipsStandBlockEntity extends BlockEntity implements MenuProvider {
         itemStackHandler.deserializeNBT(compoundTag.getCompound("inventory"));
     }
 
+    public boolean containsChips() {
+        return CHIPS.test(itemStackHandler.getStackInSlot(0));
+    }
+
     public void drop() {
         SimpleContainer container = new SimpleContainer(itemStackHandler.getSlots());
         container.setItem(0, container.getItem(0));
         Containers.dropContents(Objects.requireNonNull(level), worldPosition, container);
-    }
-
-    public static void tick(Level level, BlockPos pos, BlockState state, ChipsStandBlockEntity entity) {
-
     }
 }
