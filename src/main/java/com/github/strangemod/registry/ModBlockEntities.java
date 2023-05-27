@@ -17,10 +17,11 @@ public class ModBlockEntities {
     public static final RegistryObject<BlockEntityType<FlyingSwordBlockEntity>> FLYING_SWORD =
             register("flying_sword_block_entity", () -> BlockEntityType.Builder.of(
                     FlyingSwordBlockEntity::new, ModBlocks.FLYING_SWORD.get()));
+
     @SuppressWarnings("DataFlowIssue")
     public static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> register(
-            String id, Supplier<BlockEntityType.Builder<T>> builderSupplier) {
-
+            String id, Supplier<BlockEntityType.Builder<T>> builderSupplier
+    ) {
         return BLOCK_ENTITIES.register(id, () -> builderSupplier.get().build(null));
     }
 }

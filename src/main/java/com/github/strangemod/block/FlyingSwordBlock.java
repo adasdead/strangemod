@@ -42,12 +42,10 @@ public class FlyingSwordBlock extends DirectionalBlock implements EntityBlock {
                                         @NotNull BlockGetter getter,
                                         @NotNull BlockPos pos,
                                         @NotNull CollisionContext context) {
-
         return Stream.of(
-
-                        Block.box(1, 0, 1, 15, 1, 15),
-                        Block.box(1, 8, 1, 15, 9, 15),
-                        Block.box(2, 1, 2, 14, 8, 14)
+                Block.box(1, 0, 1, 15, 1, 15),
+                Block.box(1, 8, 1, 15, 9, 15),
+                Block.box(2, 1, 2, 14, 8, 14)
         ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
     }
 }
