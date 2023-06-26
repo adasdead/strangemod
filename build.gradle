@@ -131,7 +131,7 @@ dependencies {
     // Jetbrains Annotations
     implementation 'org.jetbrains:annotations:24.0.1'
     // MysticalAgriculture+
-    implementation fg.deobf('com.blakebr0.cucumber:Cucumber:1.19.4-6.2.0')
+    implementation fg.deobf('com.blakebr0.cucumber:Cucumber:1.20.1-7.0.0')
     implementation fg.deobf('com.blakebr0.mysticalagriculture:MysticalAgriculture:1.19.4-6.2.0')
     implementation fg.deobf('com.blakebr0.mysticalagradditions:MysticalAgradditions:1.19.4-6.2.0')
 
