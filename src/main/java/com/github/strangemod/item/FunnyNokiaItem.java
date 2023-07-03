@@ -19,6 +19,7 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.IOException;
 import java.util.List;
 
 public class FunnyNokiaItem extends Item implements ItemEmptyClick {
@@ -36,9 +37,9 @@ public class FunnyNokiaItem extends Item implements ItemEmptyClick {
         EntityType<NokiaBoxEntity> entityType = ModEntityTypes.NOKIA_BOX.get();
         AABB aabb = player.getBoundingBox().inflate(50, 50, 50);
 
-        player.level.getEntities(entityType, aabb, entity -> true)
-                .forEach(entity -> entity.explode(entity.level));
-
+        player.level().getEntities(entityType, aabb, entity -> true)
+                .forEach(entity -> entity.explode(entity.level()));
+        
         return super.use(level, player, hand);
     }
 

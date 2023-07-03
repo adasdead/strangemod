@@ -2,16 +2,16 @@ package com.github.strangemod.block;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
 public abstract class AbstractMetalBlock extends Block {
     public AbstractMetalBlock() {
-        super(Block.Properties
-                .of(Material.METAL, MaterialColor.DIAMOND)
+        super(Properties.of()
+                .instrument(NoteBlockInstrument.BASEDRUM)
                 .requiresCorrectToolForDrops()
-                .strength(5.0F, 6.0F)
-                .sound(SoundType.METAL));
+                .strength(3.0F, 3.0F)
+                .sound(SoundType.METAL)
+                .noOcclusion());
     }
 
     public static class Impl extends AbstractMetalBlock {

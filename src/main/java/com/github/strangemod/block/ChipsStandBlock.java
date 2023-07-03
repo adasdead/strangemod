@@ -12,8 +12,9 @@ import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -28,7 +29,11 @@ import java.util.stream.Stream;
 
 public class ChipsStandBlock extends BaseEntityBlock {
     public ChipsStandBlock() {
-        super(Properties.of(Material.METAL).noOcclusion());
+        super(BlockBehaviour.Properties.of()
+                .instrument(NoteBlockInstrument.BASEDRUM)
+                .requiresCorrectToolForDrops()
+                .strength(1.5F, 6.0F)
+                .noOcclusion());
     }
 
     @Nullable

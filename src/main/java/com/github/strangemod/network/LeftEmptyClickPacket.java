@@ -35,7 +35,7 @@ public class LeftEmptyClickPacket {
             ItemStack itemInHand = player.getMainHandItem();
 
             if (itemInHand.getItem() instanceof ItemEmptyClick) {
-                Level level = Objects.requireNonNull(ctx.get().getSender()).getLevel();
+                Level level = Objects.requireNonNull(ctx.get().getSender()).level();
                 ((ItemEmptyClick) itemInHand.getItem()).onEmptyClick(level, player);
             }
         }

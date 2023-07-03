@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -19,15 +19,13 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.stream.Stream;
 
-public class FlyingSwordBlock extends DirectionalBlock implements EntityBlock {
+public class FlyingSwordBlock extends DirectionalBlock {
     public FlyingSwordBlock() {
-        super(Properties.of(Material.METAL).noOcclusion());
-    }
-
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-        return ModBlockEntities.FLYING_SWORD.get().create(pos, state);
+        super(Properties.of()
+                .instrument(NoteBlockInstrument.BASEDRUM)
+                .requiresCorrectToolForDrops()
+                .strength(3.0F, 3.0F)
+                .noOcclusion());
     }
 
     @SuppressWarnings("deprecation")

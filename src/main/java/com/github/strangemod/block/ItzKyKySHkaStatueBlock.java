@@ -8,7 +8,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -34,7 +33,7 @@ public class ItzKyKySHkaStatueBlock extends HorizontalDirectionalBlock {
 
     public ItzKyKySHkaStatueBlock() {
         super(Block.Properties
-                .of(Material.STONE)
+                .of()
                 .lightLevel((state) -> 15)
                 .strength(1.0f));
 

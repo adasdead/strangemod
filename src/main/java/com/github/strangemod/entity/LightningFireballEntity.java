@@ -8,6 +8,8 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
+
 public class LightningFireballEntity extends Fireball {
     private static final int LIGHTNING_COUNT = 25;
 
@@ -17,12 +19,14 @@ public class LightningFireballEntity extends Fireball {
 
     @Override
     protected void onHit(@NotNull HitResult result) {
-        if (!this.level.isClientSide) {
+        Level fireballLevel = this.level();
+
+        if (!fireballLevel.isClientSide) {
             Vec3 curPosition = result.getLocation();
 
             for (int i = 0; i < LIGHTNING_COUNT; i++) {
                 Vec3 position = curPosition.add(random(), 0, random());
-                StaffOfLightningItem.spawnLightningBolt(this.level, position);
+                StaffOfLightningItem.spawnLightningBolt(fireballLevel, position);
             }
 
             remove(RemovalReason.DISCARDED);

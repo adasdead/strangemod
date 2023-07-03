@@ -17,6 +17,7 @@ import net.minecraft.world.phys.HitResult;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,8 +42,8 @@ public class AwakenedPickaxeItem extends PickaxeItem {
     public boolean onBlockStartBreak(ItemStack stack, BlockPos pos, @NotNull Player player) {
         HitResult hitResult = player.pick(25.0, 3.0f, true);
 
-        if (getDestroySpeed(stack, player.level.getBlockState(pos)) != speed) {
-            player.level.destroyBlock(pos, true);
+        if (getDestroySpeed(stack, player.level().getBlockState(pos)) != speed) {
+            player.level().destroyBlock(pos, true);
         }
 
         if (hitResult.getType() == HitResult.Type.BLOCK) {
@@ -69,10 +70,11 @@ public class AwakenedPickaxeItem extends PickaxeItem {
     private void handleBlock(@NotNull Player player, @NotNull ItemStack stack,
                              @NotNull BlockPos pos) {
 
-        BlockState blockState = player.level.getBlockState(pos);
+        Level playerLevel = player.level();
+        BlockState blockState = playerLevel.getBlockState(pos);
 
         if (player.isCreative()) {
-            player.level.destroyBlock(pos, false);
+            playerLevel.destroyBlock(pos, false);
             return;
         }
 
@@ -85,14 +87,14 @@ public class AwakenedPickaxeItem extends PickaxeItem {
             }
 
             if (spawnItem.isPresent()) {
-                player.level.destroyBlock(pos, false);
+                playerLevel.destroyBlock(pos, false);
 
-                ItemEntity entity = new ItemEntity(EntityType.ITEM, player.level);
+                ItemEntity entity = new ItemEntity(EntityType.ITEM, playerLevel);
                 entity.setPos(Vectors.toVec3(pos).add(Vectors.scalar(0.5)));
                 entity.setItem(spawnItem.get().getDefaultInstance());
-                player.level.addFreshEntity(entity);
+                playerLevel.addFreshEntity(entity);
             } else {
-                player.level.destroyBlock(pos, true);
+                playerLevel.destroyBlock(pos, true);
             }
         }
     }

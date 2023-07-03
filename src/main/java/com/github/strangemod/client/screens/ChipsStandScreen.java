@@ -7,6 +7,7 @@ import com.github.strangemod.registry.ModItems;
 import com.github.strangemod.registry.ModMenuTypes;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.FriendlyByteBuf;
@@ -34,21 +35,22 @@ public class ChipsStandScreen extends AbstractContainerScreen<ChipsStandScreen.M
     }
 
     @Override
-    protected void renderBg(@NotNull PoseStack poseStack, float tick, int mouseX, int mouseY) {
+    protected void renderBg(@NotNull GuiGraphics graphics, float tick, int mouseX, int mouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
+
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        blit(poseStack, x, y, 0, 0, imageWidth, imageHeight);
+        graphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
     }
 
     @Override
-    public void render(@NotNull PoseStack poseStack, int mouseX, int mouseY, float delta) {
-        renderBackground(poseStack);
-        super.render(poseStack, mouseX, mouseY, delta);
-        renderTooltip(poseStack, mouseX, mouseY);
+    public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float delta) {
+        renderBackground(graphics);
+        super.render(graphics, mouseX, mouseY, delta);
+        renderTooltip(graphics, mouseX, mouseY);
     }
 
     public static class Menu extends AbstractContainerMenu {
@@ -56,7 +58,7 @@ public class ChipsStandScreen extends AbstractContainerScreen<ChipsStandScreen.M
         private final Level level;
 
         public Menu(int containerId, Inventory inventory, @NotNull FriendlyByteBuf byteBuf) {
-            this(containerId, inventory, inventory.player.level.getBlockEntity(byteBuf.readBlockPos()));
+            this(containerId, inventory, inventory.player.level().getBlockEntity(byteBuf.readBlockPos()));
         }
 
         public Menu(int containerId, Inventory inventory, BlockEntity entity) {
@@ -64,7 +66,7 @@ public class ChipsStandScreen extends AbstractContainerScreen<ChipsStandScreen.M
 
             checkContainerSize(inventory, 1);
             this.blockEntity = (ChipsStandBlockEntity) entity;
-            this.level = inventory.player.level;
+            this.level = inventory.player.level();
             addPlayerInventory(inventory);
             addPlayerHotbar(inventory);
 

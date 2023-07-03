@@ -53,7 +53,7 @@ public class FlyyyyyPill extends AbstractPillItem {
 
             entity.setPos(position.x, finalY, position.z);
 
-            entity.level.addParticle(ParticleTypes.CLOUD,
+            entity.level().addParticle(ParticleTypes.CLOUD,
                     position.x, finalY, position.z,
                     0.0D, 0.0D, 0.0D);
 
