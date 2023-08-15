@@ -143,7 +143,7 @@ dependencies {
     implementation fg.deobf('com.blakebr0.mysticalagradditions:MysticalAgradditions:1.20.1-7.0.1')
 
     // GeckoLib
-    // unsupported...
+        implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.20.1:4.2.1')
 
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
