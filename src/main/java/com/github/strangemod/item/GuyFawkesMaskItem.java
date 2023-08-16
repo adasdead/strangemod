@@ -4,6 +4,8 @@ import com.github.strangemod.registry.ModArmorMaterial;
 import com.github.strangemod.util.Tooltips;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
@@ -26,8 +28,14 @@ public class GuyFawkesMaskItem extends ArmorItem {
     }
 
     @Override
-    public void onArmorTick(ItemStack stack, Level level, @NotNull Player player) {
-        player.addEffect(new MobEffectInstance(JUMP, 10, 5));
+    public void inventoryTick(@NotNull ItemStack itemStack,
+                              @NotNull Level level,
+                              @NotNull Entity entity,
+                              int itemSlot,
+                              boolean isSelected) {
+
+        if (Inventory.HELMET_SLOT_ONLY[0] == itemSlot && entity instanceof Player)
+            ((Player)entity).addEffect(new MobEffectInstance(JUMP, 10, 5));
     }
 
     @Override
