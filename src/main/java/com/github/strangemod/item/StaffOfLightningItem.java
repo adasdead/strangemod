@@ -1,9 +1,11 @@
 package com.github.strangemod.item;
 
+import com.github.strangemod.client.renderer.item.StaffOfLightningRenderer;
 import com.github.strangemod.entity.LightningFireballEntity;
 import com.github.strangemod.item.extra.ItemEmptyClick;
 import com.github.strangemod.util.Tooltips;
 import com.github.strangemod.util.Vectors;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -21,12 +23,24 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import java.util.List;
+import software.bernie.geckolib.animatable.GeoItem;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class StaffOfLightningItem extends Item implements ItemEmptyClick {
+import java.util.List;
+import java.util.function.Consumer;
+
+public class StaffOfLightningItem extends Item implements ItemEmptyClick, GeoItem {
     private static final double RAY_TRACE_DISTANCE = 50.0;
+    private static final RawAnimation IDLE_ANIM = RawAnimation.begin().thenLoop("idle");
+
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     public StaffOfLightningItem() {
         this(new Item.Properties().stacksTo(1).durability(1000));
@@ -91,5 +105,36 @@ public class StaffOfLightningItem extends Item implements ItemEmptyClick {
         appender.translate("tooltip.strange_mod.staff_of_lightning.1");
 
         super.appendHoverText(stack, world, components, flag);
+    }
+
+    /* ****************************************************************************************** *
+     *                                          GECKOLIB                                          *
+     * ****************************************************************************************** */
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "controller", 0,
+                state -> state.setAndContinue(IDLE_ANIM)));
+    }
+
+    @Override
+    public void initializeClient(@NotNull Consumer<IClientItemExtensions> consumer) {
+        consumer.accept(new IClientItemExtensions() {
+            private StaffOfLightningRenderer renderer = null;
+
+            @Override
+            public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+                if (this.renderer == null) {
+                    this.renderer = new StaffOfLightningRenderer();
+                }
+
+                return this.renderer;
+            }
+        });
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
     }
 }

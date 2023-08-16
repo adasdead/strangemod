@@ -19,13 +19,19 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.stream.Stream;
 
-public class FlyingSwordBlock extends DirectionalBlock {
+public class FlyingSwordBlock extends DirectionalBlock implements EntityBlock {
     public FlyingSwordBlock() {
         super(Properties.of()
                 .instrument(NoteBlockInstrument.BASEDRUM)
                 .requiresCorrectToolForDrops()
                 .strength(3.0F, 3.0F)
                 .noOcclusion());
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
+        return ModBlockEntities.FLYING_SWORD.get().create(pos, state);
     }
 
     @SuppressWarnings("deprecation")
