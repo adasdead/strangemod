@@ -1,9 +1,26 @@
 {
   "nokia_box_ringtone": {
-    "category": "music",
-    "stream": true,
     "sounds": [
-      "strange_mod:nokia_box_ringtone"
+      {
+        "name": "strange_mod:nokia_box_ringtone",
+        "stream": true
+      }
+    ]
+  },
+  "fly_y_y_y_y_y": {
+    "sounds": [
+      {
+        "name": "strange_mod:fly_y_y_y_y_y",
+        "stream": true
+      }
+    ]
+  },
+  "star_fell": {
+    "sounds": [
+      {
+        "name": "strange_mod:music/star_fell",
+        "stream": true
+      }
     ]
   }
 }
