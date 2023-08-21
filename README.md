@@ -1,12 +1,12 @@
 <h1 align="center">StrangeMod (in dev)</h1>
 
-> __Warning__: 1.16.5 is no longer supported, use the [latest](https://github.com/adasdead/strangemod) version!
+> __Warning__: This is the LTS version of the mod for 1.16.5, which will be supported until the popularity of 1.16.5 fades.
 
 A very strange mod for Minecraft version **1.16.5**. The project has no clear goal, we add whatever comes to our mind. Of course, sometimes we borrow some ideas from other mods and games for items/blocks, but we try to come up with a lot of things ourselves.
 
-The mod contains various items: starting from an anonymous mask that adds a Jump Boost effect, ~~ending with a buggy fork that you can eat your enemies with~~.
+The mod contains various items: starting from an anonymous mask that adds a Jump Boost effect, ending with a buggy fork that you can eat your enemies with.
 
-We try to write the best quality code possible, but because we have little experience in creating mods for Minecraft, it sometimes (or maybe everywhere xd) turns out to be terrible. ~~Therefore, if you can somehow improve the situation with the code, feel free to make pull requests. If you also have ideas on what else nonsense can be added to the mod, suggest them in issues.~~
+We try to write the best quality code possible, but because we have little experience in creating mods for Minecraft, it sometimes (or maybe everywhere xd) turns out to be terrible.
 
 ## Building
 
