@@ -27,6 +27,7 @@ public class StrangeMod {
         ModEntityTypes.ENTITY_TYPES.register(eventBus);
         ModBlockEntities.BLOCK_ENTITIES.register(eventBus);
         ModSoundEvents.SOUND_EVENTS.register(eventBus);
+        ModMenuTypes.CONTAINER_TYPES.register(eventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }

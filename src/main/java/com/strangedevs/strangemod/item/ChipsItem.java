@@ -7,15 +7,11 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Objects;
 import java.util.Random;
-
-import static net.minecraft.potion.Effects.SATURATION;
 
 public class ChipsItem extends Item {
     private static final Item.Properties PROPERTIES = new Item.Properties()

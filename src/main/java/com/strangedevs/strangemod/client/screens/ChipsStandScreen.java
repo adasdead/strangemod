@@ -1,7 +1,6 @@
 package com.strangedevs.strangemod.client.screens;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.strangedevs.strangemod.StrangeMod;
 import com.strangedevs.strangemod.block.entity.ChipsStandBlockEntity;
@@ -52,27 +51,6 @@ public class ChipsStandScreen extends ContainerScreen<ChipsStandScreen.Menu> {
     }
 
     public static class Menu extends Container {
-        private final ChipsStandBlockEntity blockEntity;
-        private final World world;
-
-        public Menu(int containerId, PlayerInventory inventory, @NotNull PacketBuffer byteBuf) {
-            this(containerId, inventory, inventory.player.level.getBlockEntity(byteBuf.readBlockPos()));
-        }
-
-        public Menu(int containerId, PlayerInventory inventory, TileEntity entity) {
-            super(ModMenuTypes.CHIPS_STAND_MENU, containerId);
-
-            checkContainerSize(inventory, 1);
-            this.blockEntity = (ChipsStandBlockEntity) entity;
-            this.world = inventory.player.level;
-            addPlayerInventory(inventory);
-            addPlayerHotbar(inventory);
-
-            this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-                this.addSlot(new ChipsSlot(handler, 0, 80, 34));
-            });
-        }
-
         // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
         // must assign a slot number to each of the slots used by the GUI.
         // For this container, we can see both the tile inventory's slots as well as the player inventory slots and the hotbar.
@@ -85,11 +63,29 @@ public class ChipsStandScreen extends ContainerScreen<ChipsStandScreen.Menu> {
         private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
         private static final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
         private static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
-        private static final int VANILLA_FIRST_SLOT_INDEX = 0;
         private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
-
+        private static final int VANILLA_FIRST_SLOT_INDEX = 0;
         // THIS YOU HAVE TO DEFINE!
         private static final int TE_INVENTORY_SLOT_COUNT = 4;  // must be the number of slots you have!
+        private final ChipsStandBlockEntity blockEntity;
+        private final World world;
+        public Menu(int containerId, PlayerInventory inventory, @NotNull PacketBuffer byteBuf) {
+            this(containerId, inventory, inventory.player.level.getBlockEntity(byteBuf.readBlockPos()));
+        }
+
+        public Menu(int containerId, PlayerInventory inventory, TileEntity entity) {
+            super(ModMenuTypes.CHIPS_STAND_MENU.get(), containerId);
+
+            checkContainerSize(inventory, 1);
+            this.blockEntity = (ChipsStandBlockEntity) entity;
+            this.world = inventory.player.level;
+            addPlayerInventory(inventory);
+            addPlayerHotbar(inventory);
+
+            this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
+                this.addSlot(new ChipsSlot(handler, 0, 80, 34));
+            });
+        }
 
         @Override
         public @NotNull ItemStack quickMoveStack(@NotNull PlayerEntity playerIn, int index) {

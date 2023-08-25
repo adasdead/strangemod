@@ -35,10 +35,15 @@ public class ChipsStandBlock extends DirectionalBlock {
                 .noOcclusion());
     }
 
+    @Override
+    public boolean hasTileEntity(BlockState state) {
+        return true;
+    }
+
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return super.createTileEntity(state, world);
+        return new ChipsStandBlockEntity();
     }
 
     @SuppressWarnings("deprecation")
@@ -50,11 +55,11 @@ public class ChipsStandBlock extends DirectionalBlock {
     @SuppressWarnings("deprecation")
     @Override
     public @NotNull ActionResultType use(@NotNull BlockState state,
-                                          @NotNull World world,
-                                          @NotNull BlockPos pos,
-                                          @NotNull PlayerEntity player,
-                                          @NotNull Hand hand,
-                                          @NotNull BlockRayTraceResult result) {
+                                         @NotNull World world,
+                                         @NotNull BlockPos pos,
+                                         @NotNull PlayerEntity player,
+                                         @NotNull Hand hand,
+                                         @NotNull BlockRayTraceResult result) {
 
         if (!world.isClientSide()) {
             getBlockEntity(world, pos).ifPresent(entity -> {

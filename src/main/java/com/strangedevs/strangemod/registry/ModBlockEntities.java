@@ -18,14 +18,14 @@ public class ModBlockEntities {
 //            register("flying_sword_block_entity", () -> BlockEntityType.Builder.of(
 //                    FlyingSwordBlockEntity::new, ModBlocks.FLYING_SWORD.get()));
 
-    public static final RegistryObject<TileEntityType<ChipsStandBlockEntity>> CHIPS_BLOCK_ENTITY =
-            register("chips_stand_block_entity", () -> TileEntityType.Builder.of(
-                    ChipsStandBlockEntity::new, ModBlocks.CHIPS_STAND.get()));
-
     @SuppressWarnings("DataFlowIssue")
     public static <T extends TileEntity> RegistryObject<TileEntityType<T>> register(
             String id, Supplier<TileEntityType.Builder<T>> builderSupplier
     ) {
         return BLOCK_ENTITIES.register(id, () -> builderSupplier.get().build(null));
-    }
+    }    public static final RegistryObject<TileEntityType<ChipsStandBlockEntity>> CHIPS_BLOCK_ENTITY =
+            register("chips_stand_block_entity", () -> TileEntityType.Builder.of(
+                    ChipsStandBlockEntity::new, ModBlocks.CHIPS_STAND.get()));
+
+
 }

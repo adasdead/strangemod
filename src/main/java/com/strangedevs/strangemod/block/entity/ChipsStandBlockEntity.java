@@ -4,18 +4,16 @@ import com.strangedevs.strangemod.client.screens.ChipsStandScreen;
 import com.strangedevs.strangemod.registry.ModBlockEntities;
 import com.strangedevs.strangemod.registry.ModItems;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.ChestContainer;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
@@ -98,9 +96,8 @@ public class ChipsStandBlockEntity extends TileEntity implements INamedContainer
     }
 
     public void drop() {
-//        level
-//        Container container = new ChestContainer(itemStackHandler.getSlots());
-//        container.setItem(0, container.getItem(0));
-//        Containers.dropContents(Objects.requireNonNull(level), worldPosition, container);
+        ItemEntity entity = new ItemEntity(Objects.requireNonNull(level), worldPosition.getX(),
+                worldPosition.getY(), worldPosition.getZ(), itemStackHandler.getStackInSlot(0));
+        level.addFreshEntity(entity);
     }
 }

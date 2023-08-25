@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 
 public class ModGroups {
     public static final ItemGroup EXAMPLE_MOD = new ModItemGroup(StrangeMod.MOD_ID,
-            () -> new ItemStack(ModItems.CHIPS.get()));
+            () -> new ItemStack(ModItems.GUY_FAWKES_MASK.get()));
 
     public static class ModItemGroup extends ItemGroup {
         @NotNull
