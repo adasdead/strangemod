@@ -2,9 +2,9 @@ package com.strangedevs.strangemod.item;
 
 import com.strangedevs.strangemod.entity.NokiaBoxEntity;
 import com.strangedevs.strangemod.item.extra.ItemEmptyClick;
-import com.strangedevs.strangemod.item.extra.ItemTooltipAppender;
 import com.strangedevs.strangemod.registry.ModEntityTypes;
 import com.strangedevs.strangemod.registry.ModGroups;
+import com.strangedevs.strangemod.util.Tooltips;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -39,8 +39,7 @@ public class FunnyNokiaItem extends Item implements ItemEmptyClick {
                                                 @NotNull Hand hand) {
 
         EntityType<NokiaBoxEntity> entityType = ModEntityTypes.NOKIA_BOX.get();
-        AxisAlignedBB alignedBB = playerEntity.getBoundingBox()
-                .inflate(50, 50, 50);
+        AxisAlignedBB alignedBB = playerEntity.getBoundingBox().inflate(50, 50, 50);
 
         playerEntity.level.getEntities(entityType, alignedBB, entity -> true)
                 .forEach(entity -> entity.explode(DamageSource.mobAttack(playerEntity)));
@@ -67,8 +66,10 @@ public class FunnyNokiaItem extends Item implements ItemEmptyClick {
                                 @NotNull List<ITextComponent> components,
                                 @NotNull ITooltipFlag flag) {
 
-        ItemTooltipAppender appender = new ItemTooltipAppender(components, true);
-        appender.translate("funny_nokia.0").translate("funny_nokia.1");
+        Tooltips.Appender appender = Tooltips.appender(components);
+        appender.translate("tooltip.strange_mod.funny_nokia.0");
+        appender.translate("tooltip.strange_mod.funny_nokia.1");
+
         super.appendHoverText(stack, world, components, flag);
     }
 

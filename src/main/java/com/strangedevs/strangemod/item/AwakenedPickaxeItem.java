@@ -1,8 +1,10 @@
 package com.strangedevs.strangemod.item;
 
-import com.strangedevs.strangemod.item.extra.ItemTooltipAppender;
 import com.strangedevs.strangemod.registry.ModGroups;
+import com.strangedevs.strangemod.util.Tooltips;
+import com.strangedevs.strangemod.util.Vectors;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityType;
@@ -12,12 +14,15 @@ import net.minecraft.item.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class AwakenedPickaxeItem extends PickaxeItem {
@@ -25,6 +30,13 @@ public class AwakenedPickaxeItem extends PickaxeItem {
             .stacksTo(1)
             .durability(500)
             .tab(ModGroups.EXAMPLE_MOD);
+
+    private static final Map<Block, Item> MELTING_RESULT = new HashMap<>();
+
+    static {
+        MELTING_RESULT.put(Blocks.IRON_ORE, Items.IRON_INGOT);
+        MELTING_RESULT.put(Blocks.GOLD_ORE, Items.GOLD_INGOT);
+    }
 
     public AwakenedPickaxeItem() {
         super(ItemTier.NETHERITE, 2, 3.0f, PROPERTIES);
@@ -45,13 +57,13 @@ public class AwakenedPickaxeItem extends PickaxeItem {
                 for (int j = -1; j <= 1; j++) {
                     switch (blockResult.getDirection().getAxis()) {
                         case X:
-                            handleBlock(itemStack, player.level, pos.offset(0, i, j));
+                            handleBlock(player, itemStack, pos.offset(0, i, j));
                             break;
                         case Y:
-                            handleBlock(itemStack, player.level, pos.offset(i, 0, j));
+                            handleBlock(player, itemStack, pos.offset(i, 0, j));
                             break;
                         case Z:
-                            handleBlock(itemStack, player.level, pos.offset(i, j, 0));
+                            handleBlock(player, itemStack, pos.offset(i, j, 0));
                             break;
                     }
                 }
@@ -65,36 +77,32 @@ public class AwakenedPickaxeItem extends PickaxeItem {
         return true;
     }
 
-    private void handleBlock(@NotNull ItemStack stack, @NotNull World world, @NotNull BlockPos pos) {
-        Block block = world.getBlockState(pos).getBlock();
+    private void handleBlock(@NotNull PlayerEntity player, @NotNull ItemStack stack, @NotNull BlockPos pos) {
+        BlockState blockState = player.level.getBlockState(pos);
 
-        if (!block.is(Blocks.AIR)) {
-            Optional<ItemStack> spawnItem = Optional.empty();
+        if (player.isCreative()) {
+            player.level.destroyBlock(pos, false);
+            return;
+        }
 
-            if (getDestroySpeed(stack, block.defaultBlockState()) != speed) {
+        if (!blockState.is(Blocks.AIR)) {
+            Optional<Item> spawnItem = Optional
+                    .ofNullable(MELTING_RESULT.get(blockState.getBlock()));
+
+            if (getDestroySpeed(stack, blockState) != speed) {
                 return;
             }
 
-            if (block.is(Blocks.IRON_ORE)) {
-                spawnItem = Optional.of(Items.IRON_INGOT.getDefaultInstance());
-            }
-
-            if (block.is(Blocks.SAND)) {
-                spawnItem = Optional.of(Items.GLASS.getDefaultInstance());
-            }
-
-            if (block.is(Blocks.GOLD_ORE)) {
-                spawnItem = Optional.of(Items.GOLD_INGOT.getDefaultInstance());
-            }
-
             if (spawnItem.isPresent()) {
-                ItemEntity entity = new ItemEntity(EntityType.ITEM, world);
-                entity.setPos(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
-                entity.setItem(spawnItem.get());
-                world.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
-                world.addFreshEntity(entity);
+                player.level.destroyBlock(pos, false);
+
+                ItemEntity entity = new ItemEntity(EntityType.ITEM, player.level);
+                Vector3d vPos = Vectors.toVec3(pos).add(Vectors.scalar(0.5));
+                entity.setPos(vPos.x, vPos.y, vPos.z);
+                entity.setItem(spawnItem.get().getDefaultInstance());
+                player.level.addFreshEntity(entity);
             } else {
-                world.destroyBlock(pos, true);
+                player.level.destroyBlock(pos, true);
             }
         }
     }
@@ -105,8 +113,14 @@ public class AwakenedPickaxeItem extends PickaxeItem {
                                 @NotNull List<ITextComponent> components,
                                 @NotNull ITooltipFlag flag) {
 
-        ItemTooltipAppender appender = new ItemTooltipAppender(components, true);
-        appender.translate("awakened_pickaxe.0").translate("awakened_pickaxe.1");
+        Tooltips.Appender appender = Tooltips.appender(components);
+        appender.translate("tooltip.strange_mod.awakened_pickaxe.0");
+        appender.translate("tooltip.strange_mod.awakened_pickaxe.1");
+
+        MELTING_RESULT.keySet().forEach(block -> {
+            appender.append(" - " + block.getName().getString());
+        });
+
         super.appendHoverText(stack, world, components, flag);
     }
 

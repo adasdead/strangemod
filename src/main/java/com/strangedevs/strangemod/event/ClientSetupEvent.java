@@ -1,8 +1,9 @@
 package com.strangedevs.strangemod.event;
 
 import com.strangedevs.strangemod.StrangeMod;
-import com.strangedevs.strangemod.renderer.entity.NokiaBoxRenderer;
+import com.strangedevs.strangemod.client.renderer.entity.NokiaBoxRenderer;
 import com.strangedevs.strangemod.item.ChipsItem;
+import com.strangedevs.strangemod.registry.ModBlockEntities;
 import com.strangedevs.strangemod.registry.ModEntityTypes;
 import com.strangedevs.strangemod.registry.ModItems;
 import net.minecraft.item.ItemModelsProperties;

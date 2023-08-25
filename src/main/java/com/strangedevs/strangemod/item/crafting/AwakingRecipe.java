@@ -18,7 +18,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class AwakingRecipe extends SpecialRecipe {
-    private static final Ingredient STAFF_INGREDIENT = Ingredient.of(ModItems.AWAKING_STAFF.get());
+    private static final Ingredient STAFF_INGREDIENT = Ingredient.of(ModItems.AWAKING_SPHERE.get());
     private static final Ingredient INGOT_INGREDIENT = Ingredient.of(Items.IRON_INGOT);
 
     private static final int AMOUNT_OF_DAMAGE = 5;
@@ -62,7 +62,7 @@ public class AwakingRecipe extends SpecialRecipe {
 
     @Override
     public @NotNull ItemStack assemble(@NotNull CraftingInventory inventory) {
-        return new ItemStack(ModItems.AWAKING_IRON_INGOT.get());
+        return new ItemStack(ModItems.AWAKENED_IRON_INGOT.get());
     }
 
     @Override

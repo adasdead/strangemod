@@ -1,9 +1,9 @@
 package com.strangedevs.strangemod.block;
 
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
+import net.minecraft.block.DirectionalBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.IBooleanFunction;
@@ -15,13 +15,12 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.stream.Stream;
 
-public class WoodCasingBlock extends HorizontalBlock {
-    private static final Properties PROPERTIES = AbstractBlock.Properties
-            .of(Material.WOOD)
-            .lightLevel((state) -> 15);
-
-    public WoodCasingBlock() {
-        super(PROPERTIES);
+public class FlyingSwordBlock extends DirectionalBlock {
+    public FlyingSwordBlock() {
+        super(Properties.of(Material.STONE)
+                .requiresCorrectToolForDrops()
+                .strength(3.0F, 3.0F)
+                .noOcclusion());
     }
 
     @SuppressWarnings("deprecation")
@@ -31,14 +30,9 @@ public class WoodCasingBlock extends HorizontalBlock {
                                         @NotNull BlockPos pos,
                                         @NotNull ISelectionContext context) {
         return Stream.of(
-                Block.box(4.5, 4.5, 4.5, 11.5, 11.5, 11.5),
-                Block.box(12, 4, 0, 16, 12, 4),
-                Block.box(0, 4, 12, 4, 12, 16),
-                Block.box(12, 4, 12, 16, 12, 16),
-                Block.box(0, 4, 0, 4, 12, 4),
-                Block.box(0, 12, 0, 16, 16, 16),
-                Block.box(0, 0, 0, 16, 4, 16)
+                Block.box(1, 0, 1, 15, 1, 15),
+                Block.box(1, 8, 1, 15, 9, 15),
+                Block.box(2, 1, 2, 14, 8, 14)
         ).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
     }
 }
-

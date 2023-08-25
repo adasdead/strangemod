@@ -1,8 +1,8 @@
 package com.strangedevs.strangemod.item;
 
-import com.strangedevs.strangemod.item.extra.ItemTooltipAppender;
 import com.strangedevs.strangemod.registry.ModArmorMaterial;
 import com.strangedevs.strangemod.registry.ModGroups;
+import com.strangedevs.strangemod.util.Tooltips;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -40,8 +40,9 @@ public class GuyFawkesMaskItem extends ArmorItem {
                                 @NotNull List<ITextComponent> components,
                                 @NotNull ITooltipFlag flag) {
 
-        ItemTooltipAppender appender = new ItemTooltipAppender(components);
-        appender.translate("guy_fawkes_mask.0");
+        Tooltips.appender(components)
+                .translate("tooltip.strange_mod.guy_fawkes_mask.0");
+
         super.appendHoverText(stack, world, components, flag);
     }
 }

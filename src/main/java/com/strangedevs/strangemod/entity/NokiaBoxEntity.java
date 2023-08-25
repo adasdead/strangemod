@@ -1,6 +1,7 @@
 package com.strangedevs.strangemod.entity;
 
 import com.strangedevs.strangemod.StrangeMod;
+import com.strangedevs.strangemod.registry.ModSoundEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.EntityTickableSound;
 import net.minecraft.client.audio.SoundHandler;
@@ -19,15 +20,13 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public class NokiaBoxEntity extends MobEntity {
-    private static final ResourceLocation SOUNDS_LOCATION = StrangeMod
-            .location("nokia_box_ringtone");
-
     private final NokiaBoxTickableSound tickableSound;
 
     public NokiaBoxEntity(EntityType<? extends NokiaBoxEntity> type, World world) {
         super(type, world);
 
-        tickableSound = new NokiaBoxTickableSound(this, new SoundEvent(SOUNDS_LOCATION));
+        tickableSound = new NokiaBoxTickableSound(this,
+                ModSoundEvents.NOKIA_BOX_RINGTONE.get());
     }
 
     public static @NotNull EntityType<NokiaBoxEntity> newEntityTypeFabric() {

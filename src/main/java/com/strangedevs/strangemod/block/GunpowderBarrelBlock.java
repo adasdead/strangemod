@@ -1,6 +1,5 @@
 package com.strangedevs.strangemod.block;
 
-import com.strangedevs.strangemod.block.extra.RegisterBlockItem;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -33,7 +32,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.stream.Stream;
 
-@RegisterBlockItem
 public class GunpowderBarrelBlock extends FallingBlock {
     private static final Properties PROPERTIES = AbstractBlock.Properties
             .of(Material.WOOD)
