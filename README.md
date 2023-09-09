@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/adasdead/strangemod/blob/1.20.1/src/main/resources/strange_mod.png" width="25%" height="25%" alt="logo"/>
+  <img src="https://github.com/adasdead/strangemod/blob/1.20.1/src/main/resources/strange_mod.png" width="80%" height="80%" alt="logo"/>
 </p>
 <h1 align="center">StrangeMod (in dev)</h1>
 
