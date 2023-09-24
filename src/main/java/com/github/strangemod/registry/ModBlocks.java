@@ -2,6 +2,7 @@ package com.github.strangemod.registry;
 
 import com.github.strangemod.StrangeMod;
 import com.github.strangemod.block.*;
+import com.github.strangemod.registry.plugin.RegisterTypes;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -26,7 +27,7 @@ public class ModBlocks {
 
     public static @NotNull RegistryObject<Block> register(String id, Supplier<Block> supplier) {
         RegistryObject<Block> registryObject = BLOCKS.register(id, supplier);
-        ModItems.register(id, () -> new BlockItem(registryObject.get(), new Item.Properties()));
+        RegisterTypes.register(id, () -> new BlockItem(registryObject.get(), new Item.Properties()));
         return registryObject;
     }
 }

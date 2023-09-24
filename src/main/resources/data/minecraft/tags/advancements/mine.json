@@ -1,0 +1,25 @@
+{
+  "display": {
+    "icon": {
+      "item": "strangemod:guy_fawkes_mask"
+    },
+    "title": "Mine",
+    "description": "craft",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "background": "strangemod:textures/block/steel_block.png"
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "minecraft:logs"
+          }
+        ]
+      }
+    }
+  }
+}

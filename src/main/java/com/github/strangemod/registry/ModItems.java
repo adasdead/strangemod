@@ -16,11 +16,14 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
+import static com.github.strangemod.registry.plugin.RegisterTypes.register;
+import static com.github.strangemod.registry.plugin.RegisterTypes.registerRecord;
+
 @SuppressWarnings("unused")
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, StrangeMod.MOD_ID);
     public static final RegistryObject<Item> STAFF_OF_LIGHTNING = register("staff_of_lightning", StaffOfLightningItem::new);
-    public static final RegistryObject<Item> AWAKENED_IRON_INGOT = register("awaking_iron_ingot", 64, true);
+    public static final RegistryObject<Item> AWAKENED_IRON_INGOT = register("awakened_iron_ingot", 64, true);
     public static final RegistryObject<Item> STEEL_INGOT = register("steel_ingot");
     public static final RegistryObject<Item> CHIPS = register("chips", ChipsItem::new);
     public static final RegistryObject<Item> FUNNY_NOKIA = register("funny_nokia", FunnyNokiaItem::new);
@@ -29,35 +32,18 @@ public class ModItems {
     public static final RegistryObject<Item> AWAKING_SPHERE = register("awaking_sphere", 1, true);
     public static final RegistryObject<Item> LIGHTBOLT_SPHERE = register("lightbolt_sphere", 1, true);
     public static final RegistryObject<Item> FORK = register("fork", ForkItem::new);
-    public static final RegistryObject<Item> MUSIC_DISC_SQWORE_EVE = registerRecord("music_disc_sqwore_eve",
-            ModSoundEvents.STAR_FELL, "1m35s");
 
+    public static final RegistryObject<Item> POTATO_KNISH = register("potato_knish", PotatoKnishes::new);
+   public static final RegistryObject<Item> MUSIC_DISC_SQWORE_EVE = registerRecord("music_disc_sqwore_eve",
+            ModSoundEvents.STAR_FELL,"1m35s");
+
+    public static final RegistryObject<Item> COKE_COAL = register("coke_coal",
+            CoalCoke::new);
     public static final RegistryObject<Item> COOL_BOOK = register("cool_book", 1);
+
+    public static final RegistryObject<Item> POISONED_SWORD = register("poisoned_sword", PoisonedSwordItem::new);
 
     // Pills
     public static final RegistryObject<Item> FLYYYYY_PILL = register("flyyyyy_pill", FlyyyyyPill::new);
 
-    public static @NotNull RegistryObject<Item> register(String id) {
-        return register(id, 64);
-    }
-
-    public static @NotNull RegistryObject<Item> register(String id, int stacksTo) {
-        return register(id, stacksTo, false);
-    }
-
-    public static @NotNull RegistryObject<Item> register(String id, int stacksTo, boolean foil) {
-        return register(id, BaseItem.builder().stacksTo(stacksTo).foil(foil).supplier());
-    }
-
-    public static @NotNull RegistryObject<Item> registerRecord(String id,
-                                                               Supplier<SoundEvent> sound,
-                                                               String duration) {
-
-        Item.Properties properties = new Item.Properties().stacksTo(1).rarity(Rarity.RARE);
-        return register(id, () -> new RecordItem(15, sound, properties, Durations.toTicks(duration)));
-    }
-
-    public static @NotNull RegistryObject<Item> register(String id, Supplier<Item> supplier) {
-        return ITEMS.register(id, supplier);
-    }
 }

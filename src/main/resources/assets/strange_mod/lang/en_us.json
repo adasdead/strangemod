@@ -9,7 +9,7 @@
   "block.strange_mod.flying_sword": "Flying sword pedestal",
   "block.strange_mod.chips_stand": "Stand for chips",
   "item.strange_mod.awaking_staff": "Awaking staff",
-  "item.strange_mod.awaking_iron_ingot": "Awaking iron ingot",
+  "item.strange_mod.awakened_iron_ingot": "Awaking iron ingot",
   "item.strange_mod.steel_ingot": "Steel ingot",
   "item.strange_mod.staff_of_lightning": "Staff of lightning",
   "item.strange_mod.chips": "Chips",
@@ -34,5 +34,10 @@
   "tooltip.strange_mod.staff_of_lightning.1": "§7RMB - to strike with lightning",
   "tooltip.strange_mod.fork": "§aEat your enemy!",
   "subtitles.star_fell": "Sqwore - Eve - Star Fell",
-  "crop.strange_mod.awakened_iron": "Awakened Iron"
+  "crop.strange_mod.awakened_iron": "Awakened Iron",
+  "item.strange_mod.cool_book": "Cool Book",
+  "item.strange_mod.potato_knish": "Potato Knish",
+  "item.strange_mod.poisoned_sword": "Poisoned Sword",
+  "item.strange_mod.coke_coal": "Coke Coal"
+
 }

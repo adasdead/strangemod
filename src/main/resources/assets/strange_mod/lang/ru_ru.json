@@ -9,7 +9,7 @@
   "block.strange_mod.flying_sword": "Пьедестал с левитирующим мечом",
   "block.strange_mod.chips_stand": "Стенд для чипсов",
   "item.strange_mod.awaking_staff": "Пробуждающий посох",
-  "item.strange_mod.awaking_iron_ingot": "Пробуждённый железный слиток",
+  "item.strange_mod.awakened_iron_ingot": "Пробуждённый железный слиток",
   "item.strange_mod.steel_ingot": "Стальной слиток",
   "item.strange_mod.staff_of_lightning": "Посох молний",
   "item.strange_mod.chips": "Чипсы",
@@ -34,5 +34,9 @@
   "tooltip.strange_mod.staff_of_lightning.1": "§7ПКМ - ударить молнией",
   "tooltip.strange_mod.fork": "§aСъешь своего врага!",
   "subtitles.star_fell": "Sqwore - Eve - Звезда упала",
-  "crop.strange_mod.awakened_iron": "пробуждённого железа"
+  "crop.strange_mod.awakened_iron": "пробуждённого железа",
+  "item.strange_mod.cool_book": "Хайповая книга",
+  "item.strange_mod.potato_knish": "Пирог с картохой",
+  "item.strange_mod.poisoned_sword": "Отравленный Меч",
+  "item.strange_mod.coke_coal": "Коксовый уголь"
 }

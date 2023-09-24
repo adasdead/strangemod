@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 public final class ModCrops {
     public static final Crop awakened_iron = new Crop(
             StrangeMod.location("awakened_iron"),
-            CropTier.THREE, CropType.RESOURCE, CropTextures.INGOT_CROP_TEXTURES, 25512724,
+            CropTier.FIVE, CropType.RESOURCE, CropTextures.INGOT_CROP_TEXTURES, 25512724,
             LazyIngredient.item("strange_mod:awakened_iron_ingot"));
 
     public static void onRegisterCrops(@NotNull ICropRegistry registry) {

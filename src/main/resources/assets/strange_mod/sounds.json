@@ -18,7 +18,7 @@
   "star_fell": {
     "sounds": [
       {
-        "name": "strange_mod:music/star_fell",
+        "name": "strange_mod:star_fell",
         "stream": true
       }
     ]
