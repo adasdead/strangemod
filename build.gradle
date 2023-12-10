@@ -141,7 +141,7 @@ dependencies {
     // MysticalAgriculture+
     implementation fg.deobf('com.blakebr0.cucumber:Cucumber:1.20.1-7.0.6')
     implementation fg.deobf('com.blakebr0.mysticalagriculture:MysticalAgriculture:1.20.1-7.0.5')
-    implementation fg.deobf('com.blakebr0.mysticalagradditions:MysticalAgradditions:1.20.1-7.0.1')
+    implementation fg.deobf('com.blakebr0.mysticalagradditions:MysticalAgradditions:1.20.1-7.0.2')
 
     // GeckoLib
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.20.1:4.3')
