@@ -1,4 +1,4 @@
-package com.github.strangemod.item.pill;
+package com.github.strangemod.item.extra;
 
 import com.github.strangemod.registry.ModFoods;
 import net.minecraft.world.entity.LivingEntity;

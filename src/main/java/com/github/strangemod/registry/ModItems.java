@@ -43,6 +43,11 @@ public class ModItems {
 
     public static final RegistryObject<Item> POISONED_SWORD = register("poisoned_sword", PoisonedSwordItem::new);
 
+    // public static final RegistryObject<Item> MEGA_FEATHER = register("mega_feather", MegaFeatherItem::new);
+    //Steel Items
+    public static final RegistryObject<Item> STEEL_ROD = register("steel_rod");
+    public static final RegistryObject<Item> STEEL_SCYTH = register("steel_scyth", SteelScythItem::new);
+
     // Pills
     public static final RegistryObject<Item> FLYYYYY_PILL = register("flyyyyy_pill", FlyyyyyPill::new);
 

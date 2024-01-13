@@ -1,5 +1,6 @@
 package com.github.strangemod.item.pill;
 
+import com.github.strangemod.item.extra.AbstractPillItem;
 import com.github.strangemod.registry.ModSoundEvents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.LivingEntity;

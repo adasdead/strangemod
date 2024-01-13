@@ -12,7 +12,7 @@ public class PoisonedSwordItem extends SwordItem {
     }
 
     private static final Item.Properties PROPERTIES = new Item.Properties()
-            .stacksTo(1).durability(5000);
+            .stacksTo(1).durability(3000);
 
     public PoisonedSwordItem() {
         super(Tiers.NETHERITE, 2, 3.0f, PROPERTIES);

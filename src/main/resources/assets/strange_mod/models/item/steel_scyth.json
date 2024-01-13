@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "strange_mod:item/steel_scyth"
+  }
+}
