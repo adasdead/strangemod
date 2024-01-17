@@ -19,8 +19,8 @@
   "item.strange_mod.awakened_pickaxe": "Пробужденная кирка",
   "item.strange_mod.furhands": "Пушистые перчатки",
   "item.strange_mod.guy_fawkes_mask": "Маска анонимуса",
-  "item.strange_mod.music_disc_sqwore_eve.desc": "Sqwore - Eve - Звезда упала",
-  "item.strange_mod.music_disc_sqwore_eve": "Пластинка",
+  "item.strange_mod.star_fell_music_disc.desc": "Sqwore - Eve - Звезда упала",
+  "item.strange_mod.star_fell_music_disc": "Пластинка",
   "item.strange_mod.flyyyyy_pill": "Flyyyyy таблетка",
   "item.strange_mod.fork": "Вилка",
   "tooltip.strange_mod.shift": "§7Нажми SHIFT, чтобы посмотреть доп. инфу",
@@ -38,5 +38,7 @@
   "item.strange_mod.cool_book": "Хайповая книга",
   "item.strange_mod.potato_knish": "Пирог с картохой",
   "item.strange_mod.poisoned_sword": "Отравленный Меч",
-  "item.strange_mod.coke_coal": "Коксовый уголь"
+  "item.strange_mod.coke_coal": "Коксовый уголь",
+  "item.strange_mod.steel_scyth": "Стальная коса",
+  "item.strange_mod.steel_rod": "Стальной стержень"
 }

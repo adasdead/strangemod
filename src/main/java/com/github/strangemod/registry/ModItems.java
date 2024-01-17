@@ -34,7 +34,7 @@ public class ModItems {
     public static final RegistryObject<Item> FORK = register("fork", ForkItem::new);
 
     public static final RegistryObject<Item> POTATO_KNISH = register("potato_knish", PotatoKnishes::new);
-   public static final RegistryObject<Item> MUSIC_DISC_SQWORE_EVE = registerRecord("music_disc_sqwore_eve",
+   public static final RegistryObject<Item> STAR_FELL_MUSIC_DISC = registerRecord("star_fell_music_disc",
             ModSoundEvents.STAR_FELL,"1m35s");
 
     public static final RegistryObject<Item> COKE_COAL = register("coke_coal",

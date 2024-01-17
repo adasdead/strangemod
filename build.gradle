@@ -137,7 +137,7 @@ dependencies {
     // The "userdev" classifier will be requested and setup by ForgeGradle.
     // If the group id is "net.minecraft" and the artifact id is one of ["client", "server", "joined"],
     // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
-    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    minecraft "net.minecraftforge:forge:${mapping_version}-${forge_version}"
 
     // Jetbrains Annotations
     implementation 'org.jetbrains:annotations:24.0.1'
@@ -156,11 +156,8 @@ dependencies {
     // GeckoLib
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.20.1:4.3.1')
 
-    // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
-    // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
-    // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
-    // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
-    // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
+    //JEI
+    implementation fg.deobf('curse.maven:jei-238222:4712868')
 
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar

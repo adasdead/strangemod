@@ -1,7 +1,8 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "5": "strange_mod:block/flying_sword"
+    "5": "strange_mod:block/flying_sword",
+    "particle": "strange_mod:block/steel_block"
   },
   "elements": [
     {

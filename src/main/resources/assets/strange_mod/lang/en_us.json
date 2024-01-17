@@ -19,8 +19,8 @@
   "item.strange_mod.awakened_pickaxe": "Awakened pickaxe",
   "item.strange_mod.furhands": "Fur Hands",
   "item.strange_mod.guy_fawkes_mask": "Guy Fawkes mask",
-  "item.strange_mod.music_disc_sqwore_eve.desc": "Sqwore - Eve - Star Fell",
-  "item.strange_mod.music_disc_sqwore_eve": "Record",
+  "item.strange_mod.star_fell_music_disc.desc": "Sqwore - Eve - Star Fell",
+  "item.strange_mod.star_fell_music_disc": "Record",
   "item.strange_mod.flyyyyy_pill": "Flyyyyy pill",
   "item.strange_mod.fork": "Fork",
   "tooltip.strange_mod.shift": "§7Hold SHIFT for more info",
@@ -38,6 +38,7 @@
   "item.strange_mod.cool_book": "Cool Book",
   "item.strange_mod.potato_knish": "Potato Knish",
   "item.strange_mod.poisoned_sword": "Poisoned Sword",
-  "item.strange_mod.coke_coal": "Coke Coal"
-
+  "item.strange_mod.coke_coal": "Coke Coal",
+  "item.strange_mod.steel_scyth": "Steel Scyth",
+  "item.strange_mod.steel_rod": "Steel rod"
 }
